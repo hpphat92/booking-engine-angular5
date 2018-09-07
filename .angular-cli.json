@@ -19,9 +19,22 @@
       "testTsconfig": "tsconfig.spec.json",
       "prefix": "app",
       "styles": [
-        "styles.scss"
+        "styles.scss",
+        "assets/css/animate.min.css",
+        "assets/css/flexslider.css",
+        "assets/css/jquery.fancybox.css",
+        "assets/css/main.css"
       ],
-      "scripts": [],
+      "scripts": [
+        "assets/js/jquery.min.js",
+        "assets/js/jquery.flexslider-min.js",
+        "assets/js/jquery.fancybox.pack.js",
+        "assets/js/jquery.waypoints.min.js",
+        "assets/js/retina.min.js",
+        "assets/js/modernizr.js",
+        "assets/lib/slick/slick.js",
+        "assets/js/main.js"
+      ],
       "environmentSource": "environments/environment.ts",
       "environments": {
         "dev": "environments/environment.ts",

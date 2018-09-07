@@ -1,1 +1,8 @@
-/* You can add global styles to this file, and also import other style files */
+@import "assets/css/responsive";
+@import "custom-theme";
+@import "assets/lib/slick/slick-theme";
+@import "assets/lib/slick/slick";
+
+html, body {
+  font-family: 'Nunito Sans', sans-serif;
+}

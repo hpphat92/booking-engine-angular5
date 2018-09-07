@@ -4,6 +4,12 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MaterialModule } from './shared/material.module';
+import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SharedModule } from './shared/shared.module';
+import { ApiModule } from './shared/api';
 
 
 @NgModule({
@@ -11,7 +17,10 @@ import { AppComponent } from './app.component';
     AppComponent
   ],
   imports: [
+    ApiModule,
+    BrowserAnimationsModule,
     BrowserModule,
+    SharedModule,
     AppRoutingModule
   ],
   providers: [],
