@@ -1,136 +1,213 @@
-<div class="cover-photos">
-  <img src="../assets/images/travelling_main1.png" alt="">
-  <img src="../assets/images/travelling_main2.png" alt="">
-  <img src="../assets/images/travelling_main3.jpg" alt="">
-</div>
-<div class="header-cover-container">
-  <div class="header">
-    <div class="super-heading">
-      Great deals are here,
-      Finally.
-    </div>
-    <div class="small-heading">
-      You are a great traveller. Always does.
-    </div>
+<section id="search-form">
+  <div class="cover-photos">
+    <img src="../assets/images/travelling_main1.png" alt="">
+    <img src="../assets/images/travelling_main2.png" alt="">
+    <img src="../assets/images/travelling_main3.jpg" alt="">
   </div>
-  <div class="form-search">
-    <div class="tabs">
+  <div class="header-cover-container">
+    <div class="header">
+      <div class="super-heading">
+        Great deals are here,
+        Finally.
+      </div>
+      <div class="small-heading">
+        You are a great traveller. Always does.
+      </div>
+    </div>
+    <div class="form-search">
+      <div class="tabs">
 
-      <input type="radio" id="tab1" name="tab-control" checked>
-      <input type="radio" id="tab2" name="tab-control">
-      <input type="radio" id="tab3" name="tab-control">
-      <input type="radio" id="tab4" name="tab-control">
-      <ul class="dragscroll">
-        <li title="Rooms" class="active"><label for="tab1" role="button"><span>Rooms</span></label></li>
-        <li title="Activities"><label for="tab2" role="button"><span>Activities</span></label></li>
-        <li title="Flights"><label for="tab3" role="button">
-          <span>Flights</span></label></li>
-        <li title="Rentals"><label for="tab4" role="button">
-          <span>Rentals</span></label></li>
-      </ul>
+        <input type="radio" id="tab1" name="tab-control" checked>
+        <input type="radio" id="tab2" name="tab-control">
+        <input type="radio" id="tab3" name="tab-control">
+        <input type="radio" id="tab4" name="tab-control">
+        <ul class="dragscroll">
+          <li title="Rooms" class="active"><label for="tab1" role="button"><span>Rooms</span></label></li>
+          <li title="Activities"><label for="tab2" role="button"><span>Activities</span></label></li>
+          <li title="Flights"><label for="tab3" role="button">
+            <span>Flights</span></label></li>
+          <li title="Rentals"><label for="tab4" role="button">
+            <span>Rentals</span></label></li>
+        </ul>
 
-      <!--<div class="slider">-->
-      <!--<div class="indicator"></div>-->
-      <!--</div>-->
-      <div class="content">
-        <section class="search-rooms">
-          <form autocomplete="off" [formGroup]="form">
-            <div class="input-placeholder">
-              <input #searchBox id="search-box" placeholder="&nbsp;"
-                     formControlName="keyword"
-                     class="blocks-search"/>
-              <div class="placeholder">
-                <mat-icon>search</mat-icon>
-                Where are you going?
+        <!--<div class="slider">-->
+        <!--<div class="indicator"></div>-->
+        <!--</div>-->
+        <div class="content">
+          <section class="search-rooms">
+            <form autocomplete="off" [formGroup]="form">
+              <div class="input-placeholder">
+                <input #searchBox id="search-box" placeholder="&nbsp;"
+                       formControlName="keyword"
+                       class="blocks-search"/>
+                <div class="placeholder">
+                  <mat-icon>search</mat-icon>
+                  Where are you going?
+                </div>
               </div>
-            </div>
-            <input autocomplete="false" name="hidden" type="text" style="display:none;">
-            <mat-form-field>
-              <input matInput placeholder="Check in - Check out" type="text" ngxDaterangepickerMd
-                     [autoApply]="true"
-                     [locale]="{format: 'DD-MM-YYYY'}"
-                     startKey="checkIn"
-                     endKey="checkOut"
-                     formControlName="checkInCheckOut" class="form-control"/>
-              <span matSuffix>
+              <input autocomplete="false" name="hidden" type="text" style="display:none;">
+              <mat-form-field>
+                <input matInput placeholder="Check in - Check out" type="text" ngxDaterangepickerMd
+                       [autoApply]="true"
+                       [locale]="{format: 'DD-MM-YYYY'}"
+                       startKey="checkIn"
+                       endKey="checkOut"
+                       formControlName="checkInCheckOut" class="form-control"/>
+                <span matSuffix>
                     <mat-icon>calendar_today</mat-icon>
                   </span>
-            </mat-form-field>
-            <mat-form-field>
-              <input matInput placeholder="Adult/Infrant" formControlName="numberOfPax">
-              <span matSuffix>
+              </mat-form-field>
+              <mat-form-field>
+                <input matInput placeholder="Adult/Infrant" formControlName="numberOfPax">
+                <span matSuffix>
                     <mat-icon>people</mat-icon>
                   </span>
-            </mat-form-field>
-            <button mat-button mat-raised-button color="primary" class="search-button">
-              Search
-            </button>
-            <mat-checkbox [disableRipple]="true" formControlName="isTraveliingForWork">I'm travelling for work
-            </mat-checkbox>
-          </form>
-        </section>
-        <section>
-          <h2>Delivery Contents</h2>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem quas adipisci a accusantium eius ut
-          voluptatibus ad impedit nulla, ipsa qui. Quasi temporibus eos commodi aliquid impedit amet, similique
-          nulla.
-        </section>
-        <section>
-          <h2>Shipping</h2>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam nemo ducimus eius, magnam error quisquam
-          sunt voluptate labore, excepturi numquam! Alias libero optio sed harum debitis! Veniam, quia in eum.
-        </section>
-        <section>
-          <h2>Returns</h2>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa dicta vero rerum? Eaque repudiandae
-          architecto libero reprehenderit aliquam magnam ratione quidem? Nobis doloribus molestiae enim deserunt
-          necessitatibus eaque quidem incidunt.
-        </section>
+              </mat-form-field>
+              <button mat-button mat-raised-button color="primary" class="search-button" (click)="search()">
+                Search
+              </button>
+              <mat-checkbox [disableRipple]="true" formControlName="isTraveliingForWork">I'm travelling for work
+              </mat-checkbox>
+            </form>
+          </section>
+          <section>
+            <h2>Delivery Contents</h2>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem quas adipisci a accusantium eius ut
+            voluptatibus ad impedit nulla, ipsa qui. Quasi temporibus eos commodi aliquid impedit amet, similique
+            nulla.
+          </section>
+          <section>
+            <h2>Shipping</h2>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam nemo ducimus eius, magnam error quisquam
+            sunt voluptate labore, excepturi numquam! Alias libero optio sed harum debitis! Veniam, quia in eum.
+          </section>
+          <section>
+            <h2>Returns</h2>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa dicta vero rerum? Eaque repudiandae
+            architecto libero reprehenderit aliquam magnam ratione quidem? Nobis doloribus molestiae enim deserunt
+            necessitatibus eaque quidem incidunt.
+          </section>
+        </div>
+      </div>
+    </div>
+    <div class="dot-slider"></div>
+  </div>
+</section>
+<section id="recommended">
+  <div class="sort-by">
+    <mat-form-field>
+      <mat-select [(ngModel)]="selected">
+        <mat-option value="">Sort by: Popularity</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <mat-tab-group [disableRipple]="true">
+    <mat-tab label="Switzerland">
+      <div class="list-hotel">
+        <app-place-viewer *ngFor="let hotel of hotelList">
+          <img [src]="hotel.photo" alt="">
+          <label name>{{hotel.name}}</label>
+          <label description>{{hotel.description}}</label>
+        </app-place-viewer>
+      </div>
+    </mat-tab>
+    <mat-tab label="Germany">
+      <div class="list-hotel">
+        <app-place-viewer *ngFor="let hotel of hotelList">
+          <img [src]="hotel.photo" alt="">
+          <label name>{{hotel.name}}</label>
+          <label description>{{hotel.description}}</label>
+        </app-place-viewer>
+      </div>
+    </mat-tab>
+    <mat-tab label="Japan">
+      <div class="list-hotel">
+        <app-place-viewer *ngFor="let hotel of hotelList">
+          <img [src]="hotel.photo" alt="">
+          <label name>{{hotel.name}}</label>
+          <label description>{{hotel.description}}</label>
+        </app-place-viewer>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</section>
+<section id="videoPreview">
+  <video controls>
+    <source id="mp4" src="http://grochtdreis.de/fuer-jsfiddle/video/sintel_trailer-480.mp4" type="video/mp4">
+  </video>
+  <div class="description">
+    <div class="header-content">
+      Malak Regency
+      Boutique Hotel
+    </div>
+    <div class="sub-heading">
+      Videos section could be used for
+      VR tours, hotel promo video etc
+    </div>
+    <div class="next-button">
+      <mat-icon>arrow_forward</mat-icon>
+    </div>
+  </div>
+</section>
+<section id="contact">
+  <div class="earn-more">
+    <img src="../../assets/images/earnmore.png" alt="">
+    <div class="content">
+      <div class="title">Earn more rewards</div>
+      <div class="input-group">
+        <input type="text" placeholder="Your email address">
+        <button mat-button mat-raised-button class="button-submit">Submit</button>
       </div>
     </div>
   </div>
-  <div class="dot-slider"></div>
-</div>
+  <div class="maximise-earning">
+    <img src="../../assets/images/success.jpg" alt="">
+    <div class="content">
+      <div class="title">Maximise your earnings</div>
+      <button mat-button mat-raised-button color="primary">List my room</button>
+    </div>
+  </div>
+</section>
 <!-- banner -->
 <!--<section id="destination-list">-->
-  <!--<div class="header">Where you plan to go?</div>-->
+<!--<div class="header">Where you plan to go?</div>-->
 
-  <!--<div class="country-list">-->
-    <!--<div class="country-item">-->
-      <!--<img class="small-avatar" src="../assets/images/vietnam.jpg"/>-->
-      <!--<div class="sub-title">Vietnam</div>-->
-    <!--</div>-->
-    <!--<div class="country-item">-->
-      <!--<img class="small-avatar" src="../assets/images/cambodia.jpg"/>-->
-      <!--<div class="sub-title">Cambodia</div>-->
-    <!--</div>-->
-    <!--<div class="country-item">-->
-      <!--<img class="small-avatar" src="../assets/images/thailand.jpg"/>-->
-      <!--<div class="sub-title">Thailand</div>-->
-    <!--</div>-->
-    <!--<div class="country-item">-->
-      <!--<img class="small-avatar" src="../assets/images/singapore.jpg"/>-->
-      <!--<div class="sub-title">Singapore</div>-->
-    <!--</div>-->
-    <!--<div class="country-item">-->
-      <!--<img class="small-avatar" src="../assets/images/korean.jpg"/>-->
-      <!--<div class="sub-title">Korea</div>-->
-    <!--</div>-->
-    <!--<div class="country-item">-->
-      <!--<img class="small-avatar" src="../assets/images/japan.jpg"/>-->
-      <!--<div class="sub-title">Japan</div>-->
-    <!--</div>-->
-    <!--<div class="country-item">-->
-      <!--<img class="small-avatar" src="../assets/images/australia.jpg"/>-->
-      <!--<div class="sub-title">Australia</div>-->
-    <!--</div>-->
-    <!--<div class="country-item">-->
-      <!--<img class="small-avatar" src="../assets/images/india.jpg"/>-->
-      <!--<div class="sub-title">India</div>-->
-    <!--</div>-->
-    <!--<div class="country-item">-->
-      <!--<img class="small-avatar" src="../assets/images/brazil.jpg"/>-->
-      <!--<div class="sub-title">Brazil</div>-->
-    <!--</div>-->
-  <!--</div>-->
+<!--<div class="country-list">-->
+<!--<div class="country-item">-->
+<!--<img class="small-avatar" src="../assets/images/vietnam.jpg"/>-->
+<!--<div class="sub-title">Vietnam</div>-->
+<!--</div>-->
+<!--<div class="country-item">-->
+<!--<img class="small-avatar" src="../assets/images/cambodia.jpg"/>-->
+<!--<div class="sub-title">Cambodia</div>-->
+<!--</div>-->
+<!--<div class="country-item">-->
+<!--<img class="small-avatar" src="../assets/images/thailand.jpg"/>-->
+<!--<div class="sub-title">Thailand</div>-->
+<!--</div>-->
+<!--<div class="country-item">-->
+<!--<img class="small-avatar" src="../assets/images/singapore.jpg"/>-->
+<!--<div class="sub-title">Singapore</div>-->
+<!--</div>-->
+<!--<div class="country-item">-->
+<!--<img class="small-avatar" src="../assets/images/korean.jpg"/>-->
+<!--<div class="sub-title">Korea</div>-->
+<!--</div>-->
+<!--<div class="country-item">-->
+<!--<img class="small-avatar" src="../assets/images/japan.jpg"/>-->
+<!--<div class="sub-title">Japan</div>-->
+<!--</div>-->
+<!--<div class="country-item">-->
+<!--<img class="small-avatar" src="../assets/images/australia.jpg"/>-->
+<!--<div class="sub-title">Australia</div>-->
+<!--</div>-->
+<!--<div class="country-item">-->
+<!--<img class="small-avatar" src="../assets/images/india.jpg"/>-->
+<!--<div class="sub-title">India</div>-->
+<!--</div>-->
+<!--<div class="country-item">-->
+<!--<img class="small-avatar" src="../assets/images/brazil.jpg"/>-->
+<!--<div class="sub-title">Brazil</div>-->
+<!--</div>-->
+<!--</div>-->
 <!--</section>-->

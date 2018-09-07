@@ -1,0 +1,39 @@
+<form autocomplete="off" [formGroup]="form">
+  <div class="input-placeholder">
+    <input #searchBox id="search-box" placeholder="&nbsp;"
+           formControlName="keyword"
+           class="blocks-search"/>
+    <div class="placeholder">
+      <mat-icon>search</mat-icon>
+      Where are you going?
+    </div>
+  </div>
+  <input autocomplete="false" name="hidden" type="text" style="display:none;">
+  <mat-form-field>
+    <input matInput placeholder="Check in" [singleDatePicker]="true" type="text" ngxDaterangepickerMd
+           [autoApply]="true"
+           [locale]="{format: 'DD-MM-YYYY'}"
+           formControlName="checkIn" class="form-control"/>
+    <span matSuffix>
+                    <mat-icon>calendar_today</mat-icon>
+                  </span>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Check in" [singleDatePicker]="true" type="text" ngxDaterangepickerMd
+           [autoApply]="true"
+           [locale]="{format: 'DD-MM-YYYY'}"
+           formControlName="checkOut" class="form-control"/>
+    <span matSuffix>
+                    <mat-icon>calendar_today</mat-icon>
+                  </span>
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Who" formControlName="numberOfPax">
+    <span matSuffix>
+                    <mat-icon>people</mat-icon>
+                  </span>
+  </mat-form-field>
+  <button mat-button mat-raised-button color="primary" class="search-button" (click)="search()">
+    Search
+  </button>
+</form>

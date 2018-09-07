@@ -1,7 +1,11 @@
 :host /deep/ {
   .section-header-banner {
+    width: 70%;
+    height: auto;
+    margin: auto;
     #header {
       top: 0;
+      width: 70%;
       background: #fff;
       .header-content {
         height: 97px;

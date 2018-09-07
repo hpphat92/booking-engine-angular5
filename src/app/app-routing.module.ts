@@ -6,6 +6,10 @@ const routes: Routes = [
   {
     path: '',
     loadChildren: './home/home.module#HomeModule'
+  },
+  {
+    path: 'search',
+    loadChildren: './search/search.module#SearchModule'
   }
 ];
 

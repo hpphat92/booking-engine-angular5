@@ -6,3 +6,18 @@
 html, body {
   font-family: 'Nunito Sans', sans-serif;
 }
+
+::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  height: 5px;
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #1486FF;
+  border: none;
+}

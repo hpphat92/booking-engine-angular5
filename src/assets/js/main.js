@@ -66,33 +66,7 @@ $(document).ready(function () {
     nav.toggleClass('open');
   });
 
-  $('.tabs li').on('click', function () {
-    var currentEl = $(this);
-    var parentEl = $(this.parentElement);
-    var width = $(this).outerWidth();
-    var thisLeft = $(this).offset().left;
-    var currentLeft = (thisLeft - $(this.parentElement).offset().left + width);
-    var parentWidth = $(this.parentElement).width();
-    var scrollvalue = 0;
-    if (parentWidth < currentLeft) {
-      scrollvalue = currentLeft - parentWidth + width / 2;
-      $(this.parentElement).animate({
-        scrollLeft: currentLeft
-      }, 50)
-    }
-    if (currentLeft < width) {
-      scrollvalue = 0;
-      $(this.parentElement).animate({
-        scrollLeft: 0
-      }, 50)
-    }
-    $('.tabs li.active').removeClass('active');
-    currentEl.addClass('active');
-    setTimeout(function () {
 
-      // $('.slider')[0].style.left = (currentEl.offset().left - parentEl.offset().left) + "px";
-    }, 100);
-  })
 
 
   // $('.cover-photos').slick({
