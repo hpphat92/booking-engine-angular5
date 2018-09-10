@@ -4,12 +4,16 @@ import { HomeModule } from './home/home.module';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'home',
     loadChildren: './home/home.module#HomeModule'
   },
   {
     path: 'search',
     loadChildren: './search/search.module#SearchModule'
+  },
+  {
+    path: '**',
+    redirectTo: 'home'
   }
 ];
 

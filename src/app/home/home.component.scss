@@ -1,8 +1,9 @@
 :host /deep/ {
   position: relative;
-  margin: 97px auto 0 auto;
-  width: 70%;
-  height: 450px;
+  margin: 0 auto;
+  width: var(--main-page-width);
+  height: auto;
+  min-height: 450px;
   background-size: cover;
   background-repeat: no-repeat;
   border: none;
@@ -221,7 +222,7 @@
           }
 
           .content {
-            margin-top: 30px;
+            margin-top: 20px;
             margin-left: 20px;
             section {
               display: none;
@@ -321,6 +322,7 @@
             $font-size: 14px;
             .input-placeholder {
               position: relative;
+              mb10px
               &:before {
                 position: absolute;
                 content: '';
@@ -463,43 +465,6 @@
           color: #2E323F;
           font-family: "Nunito Sans", sans-serif;
         }
-      }
-    }
-    mat-tab-group {
-      align-items: baseline;
-      .mat-tab-header {
-        .mat-tab-label-container {
-          flex-grow: 0;
-          .mat-tab-list {
-            flex-grow: 0;
-            .mat-tab-labels {
-              display: inline-flex;
-              width: auto;
-              .mat-tab-label {
-                padding: 0 15px 0 5px;
-                text-align: left;
-                justify-content: flex-start;
-                color: #9E9E9E;
-                font-family: "Nunito Sans", sans-serif;
-                font-size: 18px;
-                line-height: 24px;
-                &.mat-tab-label-active {
-                  color: #000000;
-                }
-                &:focus {
-                  background: transparent;
-                }
-              }
-            }
-          }
-        }
-        .mat-ink-bar {
-          height: 4px;
-          background: #1486FF;
-        }
-      }
-      .mat-tab-body-wrapper {
-        width: 100%;
       }
     }
     .list-hotel {

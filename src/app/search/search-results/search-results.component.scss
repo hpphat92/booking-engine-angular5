@@ -1,0 +1,193 @@
+@mixin box-style {
+  border: 1px solid #e2e2e2;
+  border-radius: 5px;
+  padding: 15px 35px;
+}
+
+:host /deep/ {
+  display: flex;
+  .left-list-details {
+    width: 65%;
+    .hotel-list {
+      padding: 25px 0;
+      .hotel-items {
+        display: flex;
+        border: 1px solid #e2e2e2;
+        border-top-right-radius: 5px;
+        border-bottom-right-radius: 5px;
+        margin-bottom: 25px;
+        &:hover {
+          opacity: 1;
+          cursor: pointer;
+          img {
+            filter: grayscale(0) !important;
+            transform: scale(1.2);
+          }
+        }
+        .photo {
+          width: 22%;
+          height: 180px;
+          overflow: hidden;
+          img {
+            filter: grayscale(0.4);
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.2s ease-in-out all;
+          }
+        }
+        .description {
+          display: flex;
+          padding: 25px;
+          flex-grow: 1;
+          .left-description {
+            display: flex;
+            flex-direction: column;
+            width: 60%;
+            .star-rating {
+              color: #1486ff;
+              font-size: 12px;
+            }
+            .hotel-name {
+              font-size: 18px;
+              line-height: 2;
+              margin: 10px 0 15px 0;
+            }
+            .facilities {
+              display: flex;
+              color: #aaa;
+              font-size: 12px;
+              margin-bottom: 12px;
+              margin-top: auto;
+              i {
+                margin-right: 18px;
+              }
+              .more {
+                margin-left: -5px;
+              }
+            }
+            .more-features {
+              display: flex;
+              .feature {
+                background: #f5f5f5;
+                color: #c5c5c5;
+                font-size: 12px;
+                display: inline;
+                padding: 5px 12px;
+                border-radius: 16px;
+                margin: 0 5px 0 5px;
+              }
+              .more {
+                letter-spacing: 3px;
+              }
+            }
+          }
+          .right-description {
+            align-items: flex-end;
+            flex-grow: 1;
+            text-align: right;
+            display: flex;
+            flex-direction: column;
+            .score {
+              padding: 10px 15px;
+              border: 1px solid #1486FD;
+              border-radius: 8px;
+              color: #1486FE;
+            }
+            .views-count {
+              font-size: 12px;
+              margin-top: 10px;
+              color: #ccc;
+            }
+            .price-buttons {
+              margin-top: auto;
+              display: flex;
+              height: 44px;
+              .off-count {
+                background: #dedede;
+                border-top-left-radius: 6px;
+                border-bottom-left-radius: 6px;
+                width: 100px;
+                display: flex;
+                font-size: 14px;
+                align-items: center;
+                justify-content: center;
+              }
+              .price {
+                background: #1486ff;
+                color: #fff;
+                border-top-right-radius: 6px;
+                border-bottom-right-radius: 6px;
+                width: 100px;
+                display: flex;
+                font-size: 14px;
+                align-items: center;
+                justify-content: center;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .right-searching-box {
+    flex-grow: 1;
+    padding-left: 30px;
+    .show-map {
+      height: 120px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      &:before {
+        content: '';
+        background: url("../../../assets/images/mapDirections.png");
+        display: block;
+        width: 100%;
+        height: 100%;
+        filter: blur(3px);
+      }
+      button {
+        height: 44px;
+        width: 150px;
+        border-radius: 7px;
+        font-size: 18px;
+        position: absolute;
+      }
+    }
+    .price-range {
+      margin: 18px 0;
+      @include box-style;
+      display: flex;
+      flex-direction: column;
+      .limit-value {
+        font-size: 14px;
+        text-align: right;
+      }
+    }
+    .searching-criteria {
+      @include box-style;
+      $color-select: #aaa;
+      padding-top: 30px !important;
+      .search-group {
+        margin-bottom: 25px;
+        .title {
+          font-size: 18px;
+          color: #222;
+          font-weight: bold;
+          margin-bottom: 10px;
+        }
+        .mat-checkbox-frame, .mat-radio-outer-circle {
+          border-color: $color-select;
+        }
+        .content-select {
+          display: flex;
+          flex-direction: column;
+          line-height: 2.5;
+          color: $color-select;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,106 @@
+<div class="left-list-details">
+  <mat-tab-group class="custom-tabs" [disableRipple]="true">
+    <mat-tab label="Hotels">
+      <div class="hotel-list">
+        <div class="hotel-items" *ngFor="let hotel of hotelList, let i = index">
+          <div class="photo">
+            <img [src]='"https://picsum.photos/" + (i*2 + 500) +"?random"' alt="">
+          </div>
+          <div class="description">
+            <div class="left-description">
+              <div class="star-rating">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+              </div>
+              <div class="hotel-name">{{hotel.name}}</div>
+              <div class="facilities">
+                <i class="fas fa-wifi"></i>
+                <i class="fas fa-shower"></i>
+                <div class="more">+12</div>
+              </div>
+              <div class="more-features">
+                <div class="feature">Free cancellation</div>
+                <div class="feature">Pay later</div>
+                <div class="feature more">•••</div>
+              </div>
+            </div>
+            <div class="right-description">
+              <div class="score">{{hotel.score }}</div>
+              <div class="views-count">{{hotel.viewCounts.toLocaleString()}} reviews</div>
+
+              <div class="price-buttons">
+                <div class="off-count">59% off</div>
+                <div class="price">{{299 | currency: '$': 'USD'}}</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Activities">
+      Activities goes here
+    </mat-tab>
+  </mat-tab-group>
+</div>
+<div class="right-searching-box">
+  <div class="show-map">
+    <button color="primary" mat-button mat-raised-button>Show Map</button>
+  </div>
+  <div class="price-range">
+    <div class="price-title">Price</div>
+    <mat-slider [thumbLabel]="true"></mat-slider>
+    <div class="limit-value">up to RM290</div>
+  </div>
+  <div class="searching-criteria">
+    <div class="search-group">
+      <div class="title">Accomodation class</div>
+      <mat-radio-group class="content-select">
+        <mat-radio-button value="1">Budget</mat-radio-button>
+        <mat-radio-button value="2">Luxury</mat-radio-button>
+      </mat-radio-group>
+    </div>
+    <div class="search-group">
+      <div class="title">Deals and discounts</div>
+      <div class="content-select">
+        <mat-checkbox>50% discount or more</mat-checkbox>
+        <mat-checkbox>Secret deals</mat-checkbox>
+      </div>
+    </div>
+    <div class="search-group">
+      <div class="title">Deals and discounts</div>
+      <div class="content-select">
+        <mat-checkbox>50% discount or more</mat-checkbox>
+        <mat-checkbox>Secret deals</mat-checkbox>
+      </div>
+    </div>
+    <div class="search-group">
+      <div class="title">Deals and discounts</div>
+      <div class="content-select">
+        <mat-checkbox>50% discount or more</mat-checkbox>
+        <mat-checkbox>Secret deals</mat-checkbox>
+      </div>
+    </div>
+    <div class="search-group">
+      <div class="title">Deals and discounts</div>
+      <div class="content-select">
+        <mat-checkbox>50% discount or more</mat-checkbox>
+        <mat-checkbox>Secret deals</mat-checkbox>
+      </div>
+    </div>
+    <div class="search-group">
+      <div class="title">Deals and discounts</div>
+      <div class="content-select">
+        <mat-checkbox>50% discount or more</mat-checkbox>
+        <mat-checkbox>Secret deals</mat-checkbox>
+      </div>
+    </div>
+    <div class="search-group">
+      <div class="title">Deals and discounts</div>
+      <div class="content-select">
+        <mat-checkbox>50% discount or more</mat-checkbox>
+        <mat-checkbox>Secret deals</mat-checkbox>
+      </div>
+    </div>
+  </div>
+</div>

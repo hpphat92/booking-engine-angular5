@@ -107,7 +107,6 @@ ul li {
 	$Header
 ========================================================================== */
 #header {
-  position: fixed;
   width: 100%;
   z-index: 999;
 }
@@ -162,7 +161,7 @@ ul li {
   color: rgba(255, 255, 255, 0.75);
   font-size: 13px;
   font-weight: 700;
-  margin-left: 40px;
+  margin-left: 65px;
   font-family: "Nunito Sans", sans-serif;
 }
 

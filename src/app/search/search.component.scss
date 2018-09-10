@@ -1,448 +1,75 @@
 :host /deep/ {
-  position: relative;
-  margin: 97px auto 0 auto;
-  width: 70%;
-  height: 450px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  border: none;
-  border-radius: 22px;
+  $font-size: 14px;
   display: block;
-  .cover-photos {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    .slick-list {
-      &, .slick-track {
-        height: 100%;
-      }
-      .slick-slide {
-        height: 100%;
-        & > *, img {
-          height: 100%;
-        }
-        img {
-          object-fit: cover;
-          border-radius: 22px;
-        }
-      }
-    }
-  }
-  .header-cover-container {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background: #0000008c;
-    border-radius: 22px;
+  width: var(--main-page-width);
+  margin: auto;
+  form {
     display: flex;
     align-items: center;
-    padding: 0 66px 0 96px;
-    box-sizing: border-box;
-    .header {
-      width: 50%;
-      color: #fff;
-      padding-left: 20px;
-      margin-bottom: 70px;
-      .super-heading {
-        font-size: 36px;
-        line-height: 49px;
-        font-weight: 600;
-        white-space: pre-line;
-      }
-      .small-heading {
-        line-height: 24px;
-        font-size: 18px;
-        margin-top: 10px;
-      }
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 20px;
+    &:after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      bottom: 11px;
+      height: 200%;
+      box-shadow: 0 4px 9px -1px #e8e8e8;
+      pointer-events: none;
     }
-    .form-search {
-      width: 50%;
-      height: 74%;
-      /* colors */
-      $blue: #1486FF;
-      $red: #FF4A53;
-      $dark: #333;
-
-      $accent: $blue;
-      $accent-inactive: desaturate($accent, 85%);
-      $secondary: $accent-inactive;
-
-      /* tab setting */
-      $tab-count: 4;
-      $indicator-width: 50px;
-      $indicator-height: 4px;
-
-      /* selectors relative to radio inputs */
-      $label-selector: "~ ul > li";
-      $slider-selector: "~ .slider";
-      $content-selector: "~ .content > section";
-      @mixin tabs(
-        $label-selector: $label-selector,
-        //$slider-selector: $slider-selector,
-        $content-selector: $content-selector) {
-
-        @for $i from 1 through $tab-count {
-          &:nth-of-type(#{$i}):checked {
-            #{$label-selector}:nth-child(#{$i}) {
-              @content;
-            }
-
-            //#{$slider-selector} {
-            //  transform: translateX(#{100% * ($i - 1)});
-            //}
-
-            #{$content-selector}:nth-child(#{$i}) {
-              display: block;
-            }
-          }
-        }
-      }
-
-      /* breakpoints */
-      $breakpoints: (
-        medium: #{$tab-count*250px},
-        small: #{$tab-count*150px}
-      );
-      .tabs {
-        position: relative;
-        background: white;
-        padding: 20px 10px 10px 10px;
+    .input-placeholder {
+      height: 44px;
+      width: 300px;
+      position: relative;
+      .placeholder {
+        position: absolute;
         height: 100%;
-        box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
-        border-radius: 10px;
-        max-width: 300px;
+        top: 0;
         width: 100%;
-        margin-left: auto;
+        display: flex;
+        align-items: center;
+        padding: 0 15px;
+        pointer-events: none;
+        opacity: 0.6;
+        font-size: $font-size;
+      }
+      .blocks-search {
         box-sizing: border-box;
-        input[name="tab-control"] {
+        width: 100%;
+        line-height: 2;
+        padding: 8px 15px;
+        border-radius: 20px;
+        box-shadow: none;
+        border: none;
+        outline: none;
+        background: #f2f2f2;
+        font-size: $font-size;
+      }
+      mat-icon {
+        width: $font-size * 1.7;
+        height: $font-size * 1.7;
+        font-size: $font-size * 1.7;
+      }
+      input:not(:placeholder-shown) {
+        & + .placeholder {
           display: none;
         }
-        li.active {
-          position: relative;
-          &:after {
-            content: '';
-            position: absolute;
-            width: 50%;
-            height: 2px;
-            background: $blue;
-            left: 0;
-            transform: translateX(50%);
-            bottom: -5px;
-          }
-        }
-        .content section h2,
-        ul li label {
-          font-family: "Nunito Sans", sans-serif;
-          font-weight: bold;
-          font-size: 12px;
-          color: #2E323F;
-        }
-
-        ::-webkit-scrollbar {
-          width: 5px; /* remove scrollbar space */
-          height: 0px; /* remove scrollbar space */
-          background: transparent; /* optional: just make scrollbar invisible */
-        }
-        /* optional: show position indicator in red */
-        ::-webkit-scrollbar-thumb {
-          background: $blue;
-        }
-        ul {
-          list-style-type: none;
-          padding-left: 0;
-          display: flex;
-          flex-direction: row;
-          margin-bottom: 10px;
-          justify-content: space-between;
-          align-items: flex-end;
-          flex-wrap: nowrap;
-          overflow: auto;
-          padding-bottom: 5px;
-          li {
-            box-sizing: border-box;
-            padding: 0 5px 0 5px;
-            text-align: center;
-            min-width: 80px;
-            label {
-              transition: all 0.3s ease-in-out;
-              color: $secondary;
-              padding: 5px auto;
-              overflow: hidden;
-              text-overflow: ellipsis;
-              display: block;
-              cursor: pointer;
-              transition: all 0.2s ease-in-out;
-              white-space: nowrap;
-              -webkit-touch-callout: none;
-              user-select: none;
-              margin: 0;
-              br {
-                display: none;
-              }
-
-              svg {
-                fill: $secondary;
-                height: 1.2em;
-                vertical-align: bottom;
-                margin-right: 0.2em;
-                transition: all 0.2s ease-in-out;
-              }
-
-              &:hover,
-              &:focus,
-              &:active {
-                outline: 0;
-                color: lighten($secondary, 15%);
-                svg {
-                  fill: lighten($secondary, 15%);
-                }
-              }
-            }
-          }
-        }
-
-        .slider {
-          position: relative;
-          width: 100px;
-          transition: all 0.33s cubic-bezier(0.38, 0.8, 0.32, 1.07);
-          .indicator {
-            position: relative;
-            width: $indicator-width;
-            max-width: 100%;
-            margin: 0 auto;
-            height: $indicator-height;
-            background: $accent;
-            border-radius: 1px;
-          }
-
-        }
-
-        .content {
-          margin-top: 30px;
-          margin-left: 20px;
-          section {
-            display: none;
-            animation: {
-              name: content;
-              direction: normal;
-              duration: 0.3s;
-              timing-function: ease-in-out;
-              iteration-count: 1;
-            }
-            line-height: 1.4;
-
-            h2 {
-              color: $accent;
-              display: none;
-              &::after {
-                content: "";
-                position: relative;
-                display: block;
-                width: 30px;
-                height: 3px;
-                background: $accent;
-                margin-top: 5px;
-                left: 1px;
-              }
-            }
-          }
-        }
-
-        input[name="tab-control"] {
-          @include tabs {
-            > label {
-              cursor: default;
-              color: $accent;
-
-              svg {
-                fill: $accent;
-              }
-
-              @media (max-width: map-get($breakpoints, small)) {
-                background: rgba(0, 0, 0, 0.08);
-              }
-            }
-          }
-        }
-
-        @keyframes content {
-          from {
-            opacity: 0;
-            transform: translateY(5%);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0%);
-          }
-        }
-
-        @media (max-width: map-get($breakpoints, medium)) {
-          ul li label {
-            white-space: initial;
-
-            br {
-              display: initial;
-            }
-
-            svg {
-              height: 1.5em;
-            }
-          }
-        }
-
-        @media (max-width: map-get($breakpoints, small)) {
-          ul li label {
-            padding: 5px;
-            border-radius: 5px;
-
-            //span {
-            //  display: none;
-            //}
-          }
-
-          .slider {
-            display: none;
-          }
-
-          .content {
-            margin-top: 20px;
-            section h2 {
-              display: block;
-            }
-          }
-        }
-      }
-      .content {
-        padding-right: 20px;
-        .search-rooms {
-          $font-size: 14px;
-          .input-placeholder {
-            position: relative;
-            &:before {
-              position: absolute;
-              content: '';
-              height: 100%;
-              background: #1486FF;
-              border-top-right-radius: 44px;
-              border-bottom-right-radius: 44px;
-              left: -30px;
-              width: 22px;
-              height: 100%;
-            }
-            .placeholder {
-              position: absolute;
-              height: 100%;
-              top: 0;
-              width: 100%;
-              display: flex;
-              align-items: center;
-              padding: 0 15px;
-              pointer-events: none;
-              opacity: 0.6;
-              font-size: $font-size;
-            }
-            .blocks-search {
-              box-sizing: border-box;
-              width: 100%;
-              line-height: 2;
-              padding: 8px 15px;
-              border-radius: 20px;
-              box-shadow: none;
-              border: none;
-              outline: none;
-              background: #f2f2f2;
-              font-size: $font-size;
-            }
-            mat-icon {
-              width: $font-size * 1.7;
-              height: $font-size * 1.7;
-              font-size: $font-size * 1.7;
-            }
-            input:not(:placeholder-shown) {
-              & + .placeholder {
-                display: none;
-              }
-            }
-          }
-          mat-form-field {
-            width: 100%;
-            font-size: 14px;
-            mat-icon {
-              $form-mat-icon-fsz: 15px;
-              font-size: $form-mat-icon-fsz;
-              width: $form-mat-icon-fsz;
-              height: $form-mat-icon-fsz;
-              color: #9E9E9E;
-            }
-            .mat-form-field-wrapper {
-              padding-bottom: 20px !important;
-            }
-            &:first-child {
-              margin-top: 30px;
-            }
-          }
-          .md-drppicker {
-            display: flex;
-          }
-          .search-button {
-            display: block;
-            width: 100%;
-            font-size: 16px;
-            line-height: 22px;
-            border-radius: 10px;
-            margin-bottom: 10px;
-            color: #fff;
-            background: #11C2A1;
-            height: 44px;
-            font-family: "Nunito Sans", sans-serif;
-            font-weight: 600;
-          }
-          mat-checkbox {
-            text-align: center;
-            display: block;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            -ms-user-select: none;
-            user-select: none;
-            color: #9E9E9E;
-            font-family: "Nunito Sans", sans-serif;
-            font-size: 11px;
-            font-weight: 300;
-            .mat-checkbox-inner-container {
-              width: 10px;
-              height: 10px;
-              .mat-checkbox-frame {
-                border: 1px solid #9E9E9E;
-              }
-            }
-          }
-        }
       }
     }
-    .dot-slider {
-      position: absolute;
-      bottom: 80px;
-      transform: translateX(10px);
-      ul {
-        display: flex;
-        li {
-          &.slick-active {
-            button {
-              &:before {
-                opacity: 1 !important;
-              }
-            }
-          }
-          button {
-            &:before {
-              color: #fff !important;
-              font-size: 14px !important;
-              opacity: 0.5 !important;
-            }
-          }
-        }
-      }
+    .search-button {
+      width: 200px;
+      height: 44px;
+      border-radius: 10px;
     }
+    mat-form-field {
+      width: calc((100% - 650px) / 3);
+      margin: 0 10px;
+    }
+  }
+  .content-container {
+    padding: 20px 0;
   }
 }
 

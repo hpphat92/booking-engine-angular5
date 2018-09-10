@@ -1,7 +1,7 @@
 <section class="section-header-banner">
   <header id="header">
     <div class="header-content">
-      <a class="logo" href="#"><img src="../assets/images/trabble-logo.png" alt=""></a>
+      <a class="logo" href="/home"><img src="../assets/images/trabble-logo.png" alt=""></a>
       <nav class="navigation" role="navigation">
         <ul class="primary-nav">
           <li><a href="#features">Properties</a></li>
@@ -13,9 +13,10 @@
         <div class="user-avatar">
           <img src="../assets/images/useravatar.jpeg" alt="">
         </div>
-        <div class="side-bar-toggle">
-          <span></span>
-        </div>
+        <i class="fas fa-bars"></i>
+        <!--<div class="side-bar-toggle">-->
+          <!--<span></span>-->
+        <!--</div>-->
       </nav>
       <a href="#" class="nav-toggle">Menu<span></span></a>
 
@@ -23,7 +24,43 @@
   </header><!-- header -->
 </section>
 <router-outlet></router-outlet>
-
+<section id="footer">
+  <a class="logo" href="#"><img src="../assets/images/trabble-logo.png" alt=""></a>
+  <div class="footer-content">
+    <div class="left-routing">
+      <div class="routing-row">
+        <div class="routing"><span>About</span></div>
+        <div class="routing"><span>Help</span></div>
+        <div class="routing"><span>Press</span></div>
+      </div>
+      <div class="routing-row">
+        <div class="routing"><span>Feedback</span></div>
+        <div class="routing"><span>Careers</span></div>
+        <div class="routing"><span>Investors</span></div>
+      </div>
+    </div>
+    <div class="right-address">
+      <div class="address">250 North Bridge Rd, Singapore 179101</div>
+      <div class="contact">
+        <div class="facebook-icon">
+          <i class="fab fa-facebook"></i>
+        </div>
+        <div class="twitter-icon">
+          <i class="fab fa-twitter"></i>
+        </div>
+        <div class="email">hello@trabble.co</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-small-content">
+    <div class="nav">
+      <span>Terms & Conditions</span> | <span>Privacy Statement</span> | <span>Corporate Contact</span>
+    </div>
+    <div class="copy-right">
+      Copyright © 1996-2018 Trabble.co. All rights reserved.
+    </div>
+  </div>
+</section>
 <!-- banner -->
 <!--<section id="destination-list">-->
 <!--<div class="header">Where you plan to go?</div>-->

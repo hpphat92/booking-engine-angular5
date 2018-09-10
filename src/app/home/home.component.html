@@ -54,13 +54,13 @@
                        endKey="checkOut"
                        formControlName="checkInCheckOut" class="form-control"/>
                 <span matSuffix>
-                    <mat-icon>calendar_today</mat-icon>
+                  <i class="far fa-calendar-alt"></i>
                   </span>
               </mat-form-field>
               <mat-form-field>
                 <input matInput placeholder="Adult/Infrant" formControlName="numberOfPax">
                 <span matSuffix>
-                    <mat-icon>people</mat-icon>
+                    <i class="far fa-user"></i>
                   </span>
               </mat-form-field>
               <button mat-button mat-raised-button color="primary" class="search-button" (click)="search()">
@@ -101,7 +101,7 @@
       </mat-select>
     </mat-form-field>
   </div>
-  <mat-tab-group [disableRipple]="true">
+  <mat-tab-group class="custom-tabs" [disableRipple]="true">
     <mat-tab label="Switzerland">
       <div class="list-hotel">
         <app-place-viewer *ngFor="let hotel of hotelList">

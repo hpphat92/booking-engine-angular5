@@ -2,6 +2,7 @@ import { AfterViewInit, Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import * as data from './hotel.json';
+
 console.log(data);
 declare var $: any;
 
@@ -15,6 +16,7 @@ export class HomeComponent implements AfterViewInit {
   title = 'app';
   public form: FormGroup;
   public hotelList = data;
+
   constructor(public formBuilder: FormBuilder,
               public router: Router) {
     this.form = this.formBuilder.group({
