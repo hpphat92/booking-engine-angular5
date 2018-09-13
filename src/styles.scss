@@ -2,7 +2,8 @@
 @import "custom-theme";
 @import "assets/lib/slick/slick-theme";
 @import "assets/lib/slick/slick";
-
+@import "~@ng-select/ng-select/themes/material.theme.css";
+@import "var";
 html, body {
   font-family: 'Nunito Sans', sans-serif;
 }
@@ -18,6 +19,14 @@ html, body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #1486FF;
+  background-color: $main-blue;
   border: none;
+}
+
+mat-tab-group {
+  font-family: 'Nunito Sans', sans-serif !important;
+}
+
+.text-center {
+  text-align: center;
 }

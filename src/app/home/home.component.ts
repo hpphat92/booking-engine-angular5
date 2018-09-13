@@ -1,7 +1,10 @@
 import { AfterViewInit, Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import * as data from './hotel.json';
+import * as _ from 'lodash';
+import { AuthService } from '../shared/services/auth.service';
+import AppConstant from '../app.constant';
 
 console.log(data);
 declare var $: any;
@@ -18,6 +21,8 @@ export class HomeComponent implements AfterViewInit {
   public hotelList = data;
 
   constructor(public formBuilder: FormBuilder,
+              public authService: AuthService,
+              public route: ActivatedRoute,
               public router: Router) {
     this.form = this.formBuilder.group({
       keyword: [''],
@@ -50,7 +55,7 @@ export class HomeComponent implements AfterViewInit {
         scrollvalue = currentLeft - parentWidth + width / 2;
         $(this.parentElement).animate({
           scrollLeft: currentLeft
-        }, 50)
+        }, 50);
       }
       if (currentLeft < width) {
         scrollvalue = 0;
@@ -64,6 +69,14 @@ export class HomeComponent implements AfterViewInit {
   }
 
   public search() {
-    this.router.navigate(['search']);
+    const model = this.form.getRawValue();
+    this.authService.search = {
+      checkIn: model.checkInCheckOut.checkIn.toDate(),
+      checkOut: model.checkInCheckOut.checkOut.startOf('day').toDate(),
+      numberOfPax: model.numberOfPax,
+      keyword: model.keyword,
+      isTraveliingForWork: model.isTraveliingForWork,
+    };
+    this.authService.navigateByUrl('search');
   }
 }

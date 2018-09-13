@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Injectable, ModuleWithProviders, NgModule, Provider } from '@angular/core';
 import { MaterialModule } from './material.module';
 import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -7,7 +7,10 @@ import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { ApiModule } from './api';
 import { HttpClientModule } from '@angular/common/http';
 import { PlaceViewerComponent } from './components/place-viewer/place-viewer.component';
-
+import { LocalStorageModule } from 'angular-2-local-storage';
+import { AuthService } from './services/auth.service';
+import { NguCarouselModule } from '@ngu/carousel';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 const modules = [
   MaterialModule,
@@ -15,16 +18,25 @@ const modules = [
   FormsModule,
   ReactiveFormsModule,
   NgxDaterangepickerMd,
-  HttpClientModule
+  HttpClientModule,
+  NguCarouselModule,
+  NgSelectModule
 ];
 const components = [
   PlaceViewerComponent
+];
+const services: Provider[] = [
+  AuthService
 ];
 
 @NgModule({
   declarations: [...components],
   imports: [
-    ...modules
+    ...modules,
+    LocalStorageModule.withConfig({
+      prefix: 'trabble.booking-engine-v2',
+      storageType: 'localStorage'
+    }),
   ],
   exports: [
     ...modules,
@@ -32,5 +44,11 @@ const components = [
   ]
 })
 export class SharedModule {
-
+  static forRoot(): ModuleWithProviders {
+    return {
+      ngModule: SharedModule,
+      providers: [...services
+      ]
+    };
+  }
 }

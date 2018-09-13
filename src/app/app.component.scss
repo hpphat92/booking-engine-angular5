@@ -1,3 +1,5 @@
+@import "../var";
+
 :host /deep/ {
   $main-page-width: 60%;
   --main-page-width: 60%;
@@ -20,6 +22,7 @@
         -moz-box-sizing: border-box;
         box-sizing: border-box;
         .logo {
+          cursor: pointer;
           img {
             width: 250px;
             height: 64px;
@@ -146,7 +149,7 @@
           width: 50%;
           height: 74%;
           /* colors */
-          $blue: #1486FF;
+          $blue: $main-blue;
           $red: #FF4A53;
           $dark: #333;
 
@@ -409,7 +412,7 @@
                   position: absolute;
                   content: '';
                   height: 100%;
-                  background: #1486FF;
+                  background: $main-blue;
                   border-top-right-radius: 44px;
                   border-bottom-right-radius: 44px;
                   left: -30px;
@@ -427,12 +430,13 @@
                   pointer-events: none;
                   opacity: 0.6;
                   font-size: $font-size;
+                  color: #aaa;
                 }
                 .blocks-search {
                   box-sizing: border-box;
                   width: 100%;
                   line-height: 2;
-                  padding: 8px 15px;
+                  padding: 8px 20px;
                   border-radius: 20px;
                   box-shadow: none;
                   border: none;
@@ -723,7 +727,7 @@
       }
       .mat-ink-bar {
         height: 4px;
-        background: #1486FF;
+        background: $main-blue;
       }
     }
     .mat-tab-body-wrapper {

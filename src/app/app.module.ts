@@ -9,21 +9,36 @@ import { MaterialModule } from './shared/material.module';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
-import { ApiModule } from './shared/api';
+import { ApiModule, BASE_PATH, Configuration } from './shared/api';
+import AppConstant from './app.constant';
+import './rxjs-operators';
+import { RouterComponent } from './router/router.component';
 
+let domain = {
+  toString: () => AppConstant.domain,
+  valueof: () => AppConstant.domain,
+};
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    RouterComponent
   ],
   imports: [
-    ApiModule,
+    ApiModule.forRoot((): Configuration => {
+      return new Configuration({
+        apiKeys: {},
+      });
+    }),
     BrowserAnimationsModule,
     BrowserModule,
-    SharedModule,
-    AppRoutingModule
+    SharedModule.forRoot(),
+    AppRoutingModule,
+
+  ], providers: [
+    { provide: BASE_PATH, useValue: domain },
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

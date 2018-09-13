@@ -1,0 +1,149 @@
+<div class="hotel-general-info">
+  <div class="info">
+    <div class="star-rating">
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+      <i class="fas fa-star"></i>
+    </div>
+    <div class="price-buttons">
+      <div class="action">Map</div>
+      <div class="price">{{299 | currency: '$': 'USD'}}</div>
+    </div>
+    <div class="hotel-name">
+      {{hotel?.name}}
+    </div>
+    <div class="hotel-nationality"> {{hotel?.country}}
+    </div>
+  </div>
+  <div class="photo">
+    <ngu-carousel
+      #myCarousel
+      class="carousel"
+      [inputs]="carouselPhoto">
+      <ngu-item NguCarouselItem
+                *ngFor="let img of ((hotel?.images?.length)? hotel.images : [])">
+        <img [src]="img" alt="">
+      </ngu-item>
+      <div NguCarouselPrev class="nav-button left" [class.hidden]="myCarousel.data.isFirst && myCarousel.data.isLast"
+           [class.disabled]="myCarousel.data.isFirst">
+        <mat-icon>chevron_left</mat-icon>
+      </div>
+      <div NguCarouselNext class="nav-button right" [class.hidden]="myCarousel.data.isFirst && myCarousel.data.isLast"
+           [class.disabled]="myCarousel.data.isLast ">
+        <mat-icon>chevron_right</mat-icon>
+      </div>
+    </ngu-carousel>
+    <!--<img [src]="i" *ngFor="let i of hotel.images" alt="">-->
+  </div>
+</div>
+<div class="hotel-detail-info">
+  <mat-tab-group class="custom-tabs" [disableRipple]="true">
+    <mat-tab label="Rooms">
+      <div class="table-rooms" *ngIf="hotel">
+        <table>
+          <tbody *ngFor="let room of hotel.rooms">
+          <tr class="header">
+            <td class="room-name-col">Room Type</td>
+            <td class="text-center">Today's Price</td>
+            <td class="text-center room-capacity-col">Sleeps</td>
+            <td class="text-center">Select Rooms</td>
+            <td></td>
+          </tr>
+          <tr class="row-data" *ngFor="let rate of room.rateList, let i = index, let first = first">
+            <td class="room-info-description" [attr.rowspan]="room.rateList.length" *ngIf="first">
+              <div class="room-name">
+                {{room.name}}
+              </div>
+              <div class="room-image">
+                <ngu-carousel
+                  #myCarousel
+                  class="carousel"
+                  [inputs]="carouselPhoto">
+                  <ngu-item NguCarouselItem
+                            *ngFor="let img of ((hotel?.images?.length)? hotel.images : [])">
+                    <img [src]="img" alt="">
+                  </ngu-item>
+                  <div NguCarouselPrev class="nav-button left"
+                       [class.hidden]="myCarousel.data.isFirst && myCarousel.data.isLast"
+                       [class.disabled]="myCarousel.data.isFirst">
+                    <mat-icon>chevron_left</mat-icon>
+                  </div>
+                  <div NguCarouselNext class="nav-button right"
+                       [class.hidden]="myCarousel.data.isFirst && myCarousel.data.isLast"
+                       [class.disabled]="myCarousel.data.isLast ">
+                    <mat-icon>chevron_right</mat-icon>
+                  </div>
+                </ngu-carousel>
+              </div>
+              <div class="room-description">
+                {{room.description}}
+              </div>
+              <div class="facilities">
+                <i class="fas fa-bed"></i>
+                <i class="fas fa-tv"></i>
+                <i class="fas fa-wifi"></i>
+                <i class="fas fa-utensils"></i>
+                <i class="fas fa-shower"></i>
+                <div class="more">+12</div>
+              </div>
+              <div class="more-features">
+                <div class="feature-item">Free cancellation</div>
+                <div class="feature-item">Pay later</div>
+                <div class="feature-item more">•••</div>
+              </div>
+            </td>
+            <td class="rate-info">
+              <div class="rate-value">
+                {{rate.rateValue | currency: 'USD':'$'}}
+              </div>
+              <div class="rate-type">
+                {{rate.rate.name}}
+              </div>
+              <div class="off-count">59% off</div>
+            </td>
+            <td class="capacity-count">
+              <i class="far fa-user"></i> x 2
+            </td>
+            <td class="select-room-ddl">
+              <ng-select [clearable]="true"
+                         bindLabel="items"
+                         [disabled]="!rate.options || !rate.options.length"
+                         [(ngModel)]="rate.selectedItemIds"
+                         (change)="extractListSelectedItems(room)"
+                         appendTo="body"
+                         [searchable]="false"
+                         [markFirst]="false"
+                         placeholder="Choose Amount">
+                <ng-option *ngFor="let val of rate.options" [value]="val">
+                  <!--[disabled]="(bookingRecordDetail.maxPaxAllowed + (bookingRecordDetail.selectedRooms[room.room.id + '_'+ room.rateType.id] || 0) * (room.rateType.capability || 1) < bookingRecordDetail.amountPAXSelected + val * (room.rateType.capability || 1)) && (bookingRecordDetail.maxPaxAllowed <= bookingRecordDetail.amountPAXSelected) || room.rateType.capability<val">-->
+                  {{val.length}} Room<span *ngIf="val.length<2">s</span>
+                </ng-option>
+                <ng-template ng-label-tmp let-item="item">
+                  {{item.length}} Room<span *ngIf="item.length<2">s</span>
+                </ng-template>
+                <ng-template ng-option-tmp let-item="item" let-index="index">
+                  {{item.length}} <span><b
+                  *ngIf="item"> {{(item.length * rate.rateValue) | currency: 'USD':'$'}}</b></span>
+                </ng-template>
+              </ng-select>
+            </td>
+            <td class="reserve-button-cell" [attr.rowspan]="room.rateList.length" *ngIf="first">
+              <div class="content">
+                <button class="reserve-button" mat-button mat-raised-button>Reserve</button>
+                <ul class="text">
+                  <li>No booking/credit card fees.</li>
+                  <li>Confirmation required</li>
+                  <li>No registration required</li>
+                </ul>
+              </div>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </mat-tab>
+    <mat-tab label="About">
+    </mat-tab>
+  </mat-tab-group>
+
+</div>

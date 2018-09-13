@@ -1,3 +1,4 @@
+@import "../../../../var";
 :host ::ng-deep {
   display: flex;
   width: 270px;
@@ -39,7 +40,7 @@
   }
   .description {
     flex-grow: 1;
-    background: #1486FF;
+    background: $main-blue;
     color: #fff;
     display: flex;
     align-items: center;

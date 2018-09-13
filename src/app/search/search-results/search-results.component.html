@@ -2,37 +2,86 @@
   <mat-tab-group class="custom-tabs" [disableRipple]="true">
     <mat-tab label="Hotels">
       <div class="hotel-list">
-        <div class="hotel-items" *ngFor="let hotel of hotelList, let i = index">
-          <div class="photo">
-            <img [src]='"https://picsum.photos/" + (i*2 + 500) +"?random"' alt="">
-          </div>
-          <div class="description">
-            <div class="left-description">
-              <div class="star-rating">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
+        <div class="hotel-items" [class.expanded]="hotel.isExpanding"
+             *ngFor="let hotel of hotelList, let i = index">
+          <div class="hotel-info" (click)="toggleHotelExpanding(hotel)">
+            <div class="photo">
+              <img [src]="hotel.image || '/assets/images/no-preview.jpg'" alt="">
+            </div>
+            <div class="description">
+              <div class="left-description">
+                <div class="star-rating">
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                  <i class="fas fa-star"></i>
+                </div>
+                <div class="hotel-name">{{hotel.name}}</div>
+                <div class="hotel-address">{{hotel.city}}, {{hotel.country}}</div>
+                <div class="facilities">
+                  <i class="fas fa-wifi"></i>
+                  <i class="fas fa-shower"></i>
+                  <div class="more">+12</div>
+                </div>
+                <div class="more-features">
+                  <div class="feature">Free cancellation</div>
+                  <div class="feature">Pay later</div>
+                  <div class="feature more">•••</div>
+                </div>
               </div>
-              <div class="hotel-name">{{hotel.name}}</div>
-              <div class="facilities">
-                <i class="fas fa-wifi"></i>
-                <i class="fas fa-shower"></i>
-                <div class="more">+12</div>
-              </div>
-              <div class="more-features">
-                <div class="feature">Free cancellation</div>
-                <div class="feature">Pay later</div>
-                <div class="feature more">•••</div>
+              <div class="right-description">
+                <div class="score">{{hotel.score || 0}}</div>
+                <div class="views-count">{{(hotel.viewCounts || 0).toLocaleString()}} reviews</div>
+
+                <div class="price-buttons">
+                  <div class="off-count">59% off</div>
+                  <div class="price">{{hotel.minPrice | currency: '$': 'USD'}}</div>
+                </div>
               </div>
             </div>
-            <div class="right-description">
-              <div class="score">{{hotel.score }}</div>
-              <div class="views-count">{{hotel.viewCounts.toLocaleString()}} reviews</div>
-
-              <div class="price-buttons">
-                <div class="off-count">59% off</div>
-                <div class="price">{{299 | currency: '$': 'USD'}}</div>
-              </div>
+          </div>
+          <div class="hotel-detail-container">
+            <div class="hotel-detail">
+              <mat-tab-group class="custom-tabs" [disableRipple]="true">
+                <mat-tab label="Hotels">
+                  <div class="hotel-detail-info">
+                    <div class="photo">
+                      <img [src]="hotel.image || '/assets/images/no-preview.jpg'" alt="">
+                    </div>
+                    <div class="description">
+                      <div class="hotel-brief-description">
+                        <div class="left-description">
+                          <div class="star-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                          </div>
+                        </div>
+                        <div class="right-description">
+                          <div class="views-count">{{(hotel.viewCounts || 0).toLocaleString()}} reviews</div>
+                          <div class="score">{{hotel.score || 0}}</div>
+                        </div>
+                      </div>
+                      <div class="hotel-name">{{hotel.name}}</div>
+                      <div class="hotel-address">{{hotel.city}}, {{hotel.country}}</div>
+                      <div class="hotel-description">{{hotel.description}}</div>
+                    </div>
+                  </div>
+                  <div class="list-facilities">
+                    <i class="fas fa-wifi"></i>
+                    <i class="fas fa-shower"></i>
+                    <i class="fas fa-wifi"></i>
+                    <i class="fas fa-shower"></i>
+                    <i class="fas fa-wifi"></i>
+                    <i class="fas fa-shower"></i>
+                    <i class="fas fa-wifi"></i>
+                    <i class="fas fa-shower"></i>
+                    <i class="fas fa-wifi"></i>
+                    <i class="fas fa-shower"></i>
+                  </div>
+                </mat-tab>
+                <mat-tab label="Rooms">
+                </mat-tab>
+              </mat-tab-group>
             </div>
           </div>
         </div>

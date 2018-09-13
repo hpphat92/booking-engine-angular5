@@ -4,6 +4,7 @@ import { SearchComponent } from './search.component';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
 import { SearchResultsComponent } from './search-results/search-results.component';
+import { HotelDetailComponent } from './hotel-detail/hotel-detail.component';
 
 
 const routes: Routes = [
@@ -12,6 +13,9 @@ const routes: Routes = [
     children: [
       {
         path: 'results', component: SearchResultsComponent
+      },
+      {
+        path: 'detail/:id', component: HotelDetailComponent
       },
       {
         path: '**',
@@ -24,7 +28,8 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     SearchComponent,
-    SearchResultsComponent
+    SearchResultsComponent,
+    HotelDetailComponent
   ],
   imports: [
     SharedModule,
