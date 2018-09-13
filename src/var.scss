@@ -1,2 +1,12 @@
 $main-green: #11c2a1;
 $main-blue: #1486FF;
+
+
+@mixin off-count {
+  display: inline-block;
+  padding: 5px 12px;
+  font-size: 12px;
+  border-radius: 5px;
+  background: #dedede;
+  margin-top: 5px;
+}

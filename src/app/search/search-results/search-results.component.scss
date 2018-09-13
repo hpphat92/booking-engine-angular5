@@ -149,10 +149,22 @@
           padding: 0 25px;
           overflow: hidden;
           border: 1px solid #e2e2e2;
-          transition: max-height .2s ease-out;
+          transition: all 0.3s ease-out;
           animation-fill-mode: forwards;
           border-top: none;
           border-bottom-right-radius: 10px;
+          position: relative;
+          .close-description {
+            position: absolute;
+            cursor: pointer;
+            right: 20px;
+            padding: 10px;
+            font-size: 40px;
+            top: 10px;
+            &:hover {
+              opacity: 0.9;
+            }
+          }
           .hotel-detail {
             padding: 20px 0;
             .mat-tab-body-content {
@@ -214,6 +226,58 @@
                   margin-right: 10px;
                 }
               }
+              .room-item-list {
+                .room-item {
+                  padding: 20px 0;
+                  border-bottom: 1px solid #ccc;
+                  .room-data {
+                    display: flex;
+                    width: 100%;
+                    img {
+                      height: 120px;
+                    }
+                    .room-info-description {
+                      padding: 0 20px 10px 20px;
+                      width: 55%;
+                      .name {
+                        line-height: 2;
+                        font-size: 18px;
+                        font-weight: bold;
+                      }
+                      .description {
+                        font-size: 14px;
+                        color: #aaa;
+                        line-height: 1.5;
+                      }
+                    }
+                    .room-price {
+                      text-align: center;
+                      .price {
+                        color: $main-blue;
+                        font-size: 20px;
+                        font-weight: bold;
+                      }
+                      .price-discount {
+                        @include off-count;
+                        font-weight: bold;
+                        padding: 8px 12px !important;
+                      }
+                    }
+                    .nav-icon {
+                      display: flex;
+                      align-items: center;
+                      flex-grow: 1;
+                      justify-content: center;
+                      font-size: 36px;
+                      color: #888;
+                      * {
+                        color: #aaa;
+                        cursor: pointer;
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
         }
@@ -224,8 +288,8 @@
           .hotel-detail-container {
             border: 1px solid #e2e2e2;
             border-top: none;
-            max-height: 1000px;
-            transition: max-height .3s ease-in;
+            max-height: 10000px;
+            transition: all 0.5s ease-in;
           }
         }
       }

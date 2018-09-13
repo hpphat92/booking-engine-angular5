@@ -2,6 +2,7 @@ import { AfterViewInit, Component, OnDestroy } from '@angular/core';
 import { AuthService } from '../../shared/services/auth.service';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { BookingService } from '../../shared/api';
+import * as _ from 'lodash';
 import * as moment from 'moment';
 import AppConstant from '../../app.constant';
 
@@ -66,6 +67,36 @@ export class SearchResultsComponent implements OnDestroy {
 
   public toggleHotelExpanding(hotel) {
     hotel.isExpanding = !hotel.isExpanding;
+    if (hotel.isExpanding) {
+      this.getHotelFullInfo(hotel);
+    }
+  }
+
+
+  public getHotelFullInfo(hotel) {
+    if (hotel.roomData) {
+      return;
+    }
+    let modelSearch = this.authService.search;
+    hotel.roomData = {};
+    this.bookingService.bookingDetailProperty(
+      hotel.id,
+      moment(modelSearch.checkIn).format(AppConstant.typeFormat.date),
+      moment(modelSearch.checkOut).format(AppConstant.typeFormat.date),
+    ).subscribe((resp) => {
+      let data: any = resp.data;
+      hotel.rooms = _.flatten(_.map(data.rooms, (room) => {
+        return _.flatten(_.map(room.rateTypes, (rate) => {
+          let groupRates = _.groupBy(rate.items, 'rate');
+          return _.map(_.toPairs(groupRates), ([rateValue, items]) => {
+            return {
+              rate,
+              rateValue: +rateValue,
+            };
+          });
+        }));
+      }));
+    });
   }
 
   ngOnDestroy() {

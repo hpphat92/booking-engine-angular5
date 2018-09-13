@@ -40,6 +40,7 @@
             </div>
           </div>
           <div class="hotel-detail-container">
+            <div class="close-description" (click)="toggleHotelExpanding(hotel)">&times;</div>
             <div class="hotel-detail">
               <mat-tab-group class="custom-tabs" [disableRipple]="true">
                 <mat-tab label="Hotels">
@@ -80,6 +81,24 @@
                   </div>
                 </mat-tab>
                 <mat-tab label="Rooms">
+                  <div class="room-item-list">
+                    <div class="room-item" *ngFor="let room of hotel.rooms">
+                      <div class="room-data">
+                        <img src="/assets/images/no-preview.jpg" alt="">
+                        <div class="room-info-description">
+                          <div class="name">{{room.rate.name}}</div>
+                          <div class="description">{{room.rate.description || 'No description'}}</div>
+                        </div>
+                        <div class="room-price">
+                          <div class="price">{{room.rateValue | currency: '$': 'USD'}}</div>
+                          <div class="price-discount">59% off</div>
+                        </div>
+                        <div class="nav-icon">
+                          <i class="fas fa-chevron-right" (click)="goDetail(hotel)"></i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </mat-tab>
               </mat-tab-group>
             </div>
