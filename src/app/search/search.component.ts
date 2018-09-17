@@ -10,8 +10,9 @@ declare var $: any;
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
-  styleUrls: ['./search.component.scss']
+  styleUrls: ['./search.component.scss'],
 })
+
 export class SearchComponent implements AfterViewInit {
 
   title = 'app';
@@ -47,7 +48,7 @@ export class SearchComponent implements AfterViewInit {
     this.authService.search = {
       checkIn: model.checkIn.startDate.toDate(),
       checkOut: model.checkOut.startDate.toDate(),
-      numberOfPax: model.numberOfPax,
+      numberOfPax: 1 || model.numberOfPax,
       keyword: model.keyword,
       isTraveliingForWork: model.isTraveliingForWork,
     };

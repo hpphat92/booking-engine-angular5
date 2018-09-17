@@ -1,0 +1,15 @@
+<div class="choose-passenger-container" [formGroup]="frm">
+  <div class="selection">
+    <div class="title">Rooms</div>
+    <select name="rooms" id="rooms" formControlName="rooms">
+      <option [value]="v" *ngFor="let v of listSelections">{{v}}</option>
+    </select>
+  </div>
+  <div class="selection">
+    <div class="title">Adults</div>
+    <select name="rooms" id="adults" formControlName="adults">
+      <option [value]="v" *ngFor="let v of listSelections">{{v}}</option>
+    </select>
+  </div>
+</div>
+<ng-content></ng-content>

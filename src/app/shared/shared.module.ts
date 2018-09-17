@@ -11,6 +11,9 @@ import { LocalStorageModule } from 'angular-2-local-storage';
 import { AuthService } from './services/auth.service';
 import { NguCarouselModule } from '@ngu/carousel';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { ChoosePassengerComponent } from './components/choose-passenger/choose-passenger.component';
+import { MasonryGalleryModule } from 'ngx-masonry-gallery';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
 const modules = [
   MaterialModule,
@@ -20,10 +23,12 @@ const modules = [
   NgxDaterangepickerMd,
   HttpClientModule,
   NguCarouselModule,
-  NgSelectModule
+  NgSelectModule,
+  MasonryGalleryModule
 ];
 const components = [
-  PlaceViewerComponent
+  PlaceViewerComponent,
+  ChoosePassengerComponent
 ];
 const services: Provider[] = [
   AuthService
@@ -33,6 +38,7 @@ const services: Provider[] = [
   declarations: [...components],
   imports: [
     ...modules,
+    LeafletModule.forRoot(),
     LocalStorageModule.withConfig({
       prefix: 'trabble.booking-engine-v2',
       storageType: 'localStorage'
@@ -40,7 +46,8 @@ const services: Provider[] = [
   ],
   exports: [
     ...modules,
-    ...components
+    ...components,
+    LeafletModule
   ]
 })
 export class SharedModule {

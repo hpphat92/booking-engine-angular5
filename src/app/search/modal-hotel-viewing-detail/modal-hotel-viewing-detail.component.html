@@ -1,0 +1,113 @@
+<mat-tab-group class="custom-tabs" [disableRipple]="true" (selectChange)="onTabChange($event)">
+  <mat-tab label="Images">
+    <ngx-masonry-gallery [width]="220" [verticalGutter]="10" [gutter]="10"
+                         [images]="hotel.listImages"></ngx-masonry-gallery>
+  </mat-tab>
+  <mat-tab label="About">
+    <div class="hotel-name">{{hotel.name}}</div>
+    <div class="hotel-description">{{hotel.description}}</div>
+  </mat-tab>
+  <mat-tab label="Location">
+    <div class="location-address">12, Sejong-daero 12-gil, Jung-gu, Myeong-dong, Seoul, South Korean, 04526</div>
+    <div class="map-location-viewer"
+         leaflet
+         [leafletCenter]="hotel.location"
+         [leafletLayers]="layers"
+         (leafletMapReady)="mapReady($event)"
+         [leafletOptions]="options">
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Amenities">
+    <div class="list-amenities">
+      <div class="facility">
+        <i class="fas fa-wifi"></i>
+        <div class="label">WiFi</div>
+      </div>
+      <div class="facility">
+        <i class="fas fa-tshirt"></i>
+        <div class="label">Laundry service</div>
+      </div>
+      <div class="facility">
+        <i class="fas fa-smoking-ban"></i>
+        <div class="label">Non-smoking</div>
+      </div>
+      <div class="facility">
+        <i class="fas fa-hdd"></i>
+        <div class="label">Safety Deposit Boxes</div>
+      </div>
+      <div class="facility">
+        <i class="fas fa-coffee"></i>
+        <div class="label">Complimentary Breakfast</div>
+      </div>
+      <div class="facility">
+        <i class="fas fa-home"></i>
+        <div class="label">Daily housekeeping</div>
+      </div>
+      <div class="facility">
+        <i class="far fa-handshake"></i>
+        <div class="label">Free cancellation</div>
+      </div>
+      <div class="facility">
+        <i class="fas fa-air-freshener"></i>
+        <div class="label">Air-Cond</div>
+      </div>
+      <div class="facility">
+        <i class="fas fa-dumbbell"></i>
+        <div class="label">Gym</div>
+      </div>
+      <div class="facility">
+        <i class="fas fa-phone-volume"></i>
+        <div class="label">Telephone</div>
+      </div>
+    </div>
+    <div class="show-all-amennities">
+      + Show all amenities
+    </div>
+  </mat-tab>
+  <mat-tab label="Reviews">
+    <div class="review-container" *ngFor="let review of reviews">
+      <div class="star-rating">
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+        <i class="fas fa-star"></i>
+      </div>
+      <div class="user-info">
+        <img src="../../../assets/images/useravatar.jpeg" alt="">
+        <div class="reviewer-info-detail">
+          <div class="name">{{review.name}}</div>
+          <div class="location">{{review.location}}</div>
+        </div>
+        <div class="score">{{review.reviewScore || 0}}</div>
+      </div>
+      <div class="review-title">{{review.title}}</div>
+      <div class="review-comment">{{review.comment}}</div>
+    </div>
+  </mat-tab>
+
+  <mat-tab label="Deals">
+    <div class="room-item-list">
+      <div class="room-item" *ngFor="let room of hotel.rooms">
+        <div class="room-data">
+          <img src="/assets/images/no-preview.jpg" alt="">
+          <div class="room-info-description">
+            <div class="name">{{room.rate.name}}</div>
+            <div class="description">{{room.rate.description || 'No description'}}</div>
+          </div>
+          <div class="room-price">
+            <div class="price">{{room.rateValue | currency: '$': 'USD'}}</div>
+            <div class="price-discount">59% off</div>
+          </div>
+          <div class="nav-icon">
+            <i class="fas fa-chevron-right" (click)="goDetail(hotel)"></i>
+          </div>
+        </div>
+        <div class="more-features">
+          <div class="feature-item">Free cancellation</div>
+          <div class="feature-item">Pay later</div>
+          <div class="feature-item more">•••</div>
+        </div>
+      </div>
+    </div>
+  </mat-tab>
+</mat-tab-group>

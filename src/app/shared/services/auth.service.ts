@@ -1,7 +1,9 @@
-import { Component, OnInit, Injectable } from '@angular/core';
+import { Component, OnInit, Injectable, Inject } from '@angular/core';
 import { LocalStorageService } from 'angular-2-local-storage';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as _ from 'lodash';
+import { Title } from '@angular/platform-browser';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class AuthService {
@@ -11,7 +13,19 @@ export class AuthService {
   private _bookingInfo;
   private _userInfo;
 
-  private _currentPartnerId;
+  private _currentPartnerAlliasName;
+
+
+  private _siteResources = {
+    fromPartner: null,
+    favIcon: 'favicon.png',
+    name: 'Trabble | Booking Engine New Version',
+    mainLogo: '/assets/images/trabble-logo.png',
+    mainVideo: 'https://grochtdreis.de/fuer-jsfiddle/video/sintel_trailer-480.mp4',
+    carouselPhotos: ['/assets/images/japan1.jpg', '/assets/images/japan2.jpg', '/assets/images/japan3.jpg'],
+    title: `Great deals are here,
+            Finally.`
+  };
 
   get search() {
     return { ...(this._search || this.localStorageService.get('search')) };
@@ -49,20 +63,41 @@ export class AuthService {
     this.localStorageService.set('user-info', value);
   }
 
-  get currentPartnerId() {
-    return this._currentPartnerId;
+  get currentPartnerAlliasName() {
+    return this._currentPartnerAlliasName;
   }
 
-  set currentPartnerId(value) {
-    this._currentPartnerId = value;
+  set currentPartnerAlliasName(value) {
+    this._currentPartnerAlliasName = value;
   }
+
+  get siteResources() {
+    return this._siteResources;
+  }
+
+  set siteResources(value) {
+    this._siteResources = value;
+    this.siteResource$.next(value);
+    this.updateSettingResoures();
+  }
+
+  public siteResource$: Subject<any> = new Subject<any>();
 
   constructor(public localStorageService: LocalStorageService,
               public router: Router,
+              private titleService: Title,
               public route: ActivatedRoute) {
+    this.updateSettingResoures();
   }
 
+
+  public updateSettingResoures() {
+    this.titleService.setTitle(this.siteResources.name);
+    document.getElementById('appFavicon').setAttribute('href', this.siteResources.favIcon);
+  }
+
+
   public navigateByUrl(url, opt = {}) {
-    this.router.navigate(_.compact(['/', this.currentPartnerId, url]), { relativeTo: this.route, ...opt });
+    this.router.navigate(_.compact(_.flatten(['/', this.currentPartnerAlliasName, url])), { relativeTo: this.route, ...opt });
   }
 }

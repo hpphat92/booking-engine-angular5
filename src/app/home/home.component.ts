@@ -1,10 +1,11 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as data from './hotel.json';
 import * as _ from 'lodash';
 import { AuthService } from '../shared/services/auth.service';
 import AppConstant from '../app.constant';
+import set = Reflect.set;
 
 console.log(data);
 declare var $: any;
@@ -14,10 +15,12 @@ declare var $: any;
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements AfterViewInit {
-
+export class HomeComponent implements AfterViewInit, OnDestroy {
   title = 'app';
+
   public form: FormGroup;
+  public siteResources: any;
+  public subscription: any;
   public hotelList = data;
 
   constructor(public formBuilder: FormBuilder,
@@ -30,20 +33,37 @@ export class HomeComponent implements AfterViewInit {
       numberOfPax: [''],
       isTraveliingForWork: ['']
     });
+    this.siteResources = this.authService.siteResources;
+    this.subscription = this.authService.siteResource$.subscribe((newSiteResource) => {
+      this.siteResources = null;
+      setTimeout(() => {
+        this.siteResources = newSiteResource;
+        this.addSlick();
+      });
+    });
+  }
+
+  addSlick() {
+    setTimeout(() => {
+      if ($('.cover-photos')[0] && $('.cover-photos')[0].slick) {
+        $('.cover-photos').slick('unslick');
+      }
+      $('.cover-photos').slick({
+        dots: true,
+        infinite: true,
+        speed: 500,
+        autoplay: true,
+        arrows: false,
+        autoplaySpeed: 3000,
+        fade: true,
+        cssEase: 'linear',
+        appendDots: $('.dot-slider')
+      });
+    });
   }
 
   ngAfterViewInit(): void {
-    $('.cover-photos').slick({
-      dots: true,
-      infinite: true,
-      speed: 500,
-      autoplay: true,
-      arrows: false,
-      autoplaySpeed: 3000,
-      fade: true,
-      cssEase: 'linear',
-      appendDots: $('.dot-slider')
-    });
+    this.addSlick();
     $('.tabs li').on('click', function () {
       const currentEl = $(this);
       const width = $(this).outerWidth();
@@ -73,10 +93,14 @@ export class HomeComponent implements AfterViewInit {
     this.authService.search = {
       checkIn: model.checkInCheckOut.checkIn.toDate(),
       checkOut: model.checkInCheckOut.checkOut.startOf('day').toDate(),
-      numberOfPax: model.numberOfPax,
+      numberOfPax: 1 || model.numberOfPax,
       keyword: model.keyword,
       isTraveliingForWork: model.isTraveliingForWork,
     };
     this.authService.navigateByUrl('search');
+  }
+
+  ngOnDestroy(): void {
+    this.subscription && this.subscription.unsubscribe();
   }
 }

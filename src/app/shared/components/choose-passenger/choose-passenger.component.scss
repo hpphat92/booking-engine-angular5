@@ -1,0 +1,41 @@
+:host {
+  position: relative;
+  .choose-passenger-container {
+    position: absolute;
+    display: none;
+  }
+}
+
+:host(.focused) {
+  .choose-passenger-container {
+    position: absolute;
+    min-width: 200px;
+    display: block;
+    width: 100%;
+    z-index: 2;
+    top: 100%;
+    -webkit-transform: translateY(5px);
+    transform: translateY(10px);
+    border: 1px solid #ddd;
+    padding: 15px;
+    line-height: 1.5;
+    box-shadow: 2px 2px 1px 0 #000;
+    border-radius: 5px;
+    background: #fafafa;
+    .selection {
+      display: flex;
+      font-size: 17px;
+      justify-content: space-between;
+      line-height: 2.5;
+      align-items: center;
+      select {
+        appearance: none;
+        -moz-appearance: none;
+        -webkit-appearance: none;
+        background: #fff url(/assets/images/arrow.svg) no-repeat;
+        background-position: right 8px top 50%;
+        padding: 7px 20px 7px 10px;
+      }
+    }
+  }
+}

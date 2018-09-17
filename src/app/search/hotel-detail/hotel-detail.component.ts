@@ -2,8 +2,13 @@ import { AfterViewInit, Component, ElementRef } from '@angular/core';
 import { AuthService } from '../../shared/services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookingService } from '../../shared/api';
+import * as iconUrl from 'leaflet/dist/images/marker-icon.png';
+import * as shadowUrl from 'leaflet/dist/images/marker-shadow.png';
+import 'leaflet.gridlayer.googlemutant/Leaflet.GoogleMutant';
 import * as moment from 'moment';
 import * as _ from 'lodash';
+import * as L from 'leaflet';
+import { latLng , marker, icon} from 'leaflet';
 import AppConstant from '../../app.constant';
 
 @Component({
@@ -15,6 +20,15 @@ export class HotelDetailComponent {
   public subscription;
   public hotelId;
   public hotel: any = null;
+  public newMarker;
+  public layers: any = [];
+  public options = {
+    // layers: [
+    //   tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 18, attribution: '...' })
+    // ],
+    zoom: 12,
+    center: latLng(46.879966, -121.726909)
+  };
   public totalRates;
   public roomList = [];
   public carouselPhoto = {
@@ -29,6 +43,28 @@ export class HotelDetailComponent {
     loop: false,
     custom: 'banner'
   };
+  public hotelList = [
+    {
+      'photo': 'https://www.berjayahotel.com/sites/default/files/colombo_1-1.jpg',
+      'name': 'Berjaya Hotel',
+      'description': 'from $678/night'
+    },
+    {
+      'photo': 'https://q-ec.bstatic.com/images/hotel/max1280x900/468/46871800.jpg',
+      'name': 'Hotel Cezar Banja Luka',
+      'description': 'from $678/night'
+    },
+    {
+      'photo': 'https://r-ec.bstatic.com/images/hotel/max1280x900/154/154044188.jpg',
+      'name': 'President Sarajevo',
+      'description': 'from $678/night'
+    },
+    {
+      'photo': 'https://q-ec.bstatic.com/data/landmark/840x460/307/30764.jpg',
+      'name': 'Hotel Cezar',
+      'description': 'from $678/night'
+    },
+  ]
 
   constructor(public authService: AuthService,
               public router: Router,
@@ -43,6 +79,32 @@ export class HotelDetailComponent {
     });
   }
 
+  mapReady(map) {
+    (L.gridLayer as any).googleMutant({
+      maxZoom: 24,
+      type: 'roadmap'
+    }).addTo(map);
+    map.panTo(this.hotel.location);
+    map.addLayer(this.createMarker(this.hotel.location));
+  }
+  public createMarker({ lat, lng }) {
+    this.newMarker = marker([lat, lng],
+      {
+        icon: icon({
+          iconSize: [25, 41],
+          iconAnchor: [13, 41],
+          iconUrl: iconUrl,
+          shadowUrl: shadowUrl
+        }),
+        draggable: false
+      });
+    this.layers.push(this.newMarker);
+    this.newMarker.on('dragend', () => {
+      let { lat: latitude, lng: longitude } = this.newMarker.getLatLng();
+    });
+    return this.newMarker;
+  }
+
   public getPropertyDetail(id) {
     let modelSearch = this.authService.search;
     return this.bookingService.bookingDetailProperty(
@@ -52,6 +114,7 @@ export class HotelDetailComponent {
     ).map((resp) => {
       let data: any = resp.data;
       this.hotel = data;
+      this.hotel.location = latLng(this.hotel.latitude, this.hotel.longitude);
       _.forEach(this.hotel.rooms, (room) => {
         room.rateList = _.flatten(_.map(room.rateTypes, (rate) => {
           let groupRates = _.groupBy(rate.items, 'rate');
@@ -73,6 +136,10 @@ export class HotelDetailComponent {
         }));
       });
     });
+  }
+  public onTabChange(e) {
+    let { index } = e;
+    window.dispatchEvent(new Event('resize'));
   }
 
   public extractListSelectedItems(room) {

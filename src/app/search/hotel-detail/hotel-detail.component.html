@@ -5,6 +5,10 @@
       <i class="fas fa-star"></i>
       <i class="fas fa-star"></i>
     </div>
+    <div class="score-and-review">
+      <div class="score">8.2</div>
+      <div class="view-count">4,000 reviews</div>
+    </div>
     <div class="price-buttons">
       <div class="action">Map</div>
       <div class="price">{{299 | currency: '$': 'USD'}}</div>
@@ -37,8 +41,25 @@
   </div>
 </div>
 <div class="hotel-detail-info">
-  <mat-tab-group class="custom-tabs" [disableRipple]="true">
+  <mat-tab-group class="custom-tabs" (selectedIndexChange)="onTabChange($event)" [disableRipple]="true">
     <mat-tab label="Rooms">
+      <div class="filter-options">
+        <div class="header">
+          <div class="title">Filter room options</div>
+          <div class="reset">Reset</div>
+        </div>
+        <div class="criterias">
+          <mat-checkbox>Pay later</mat-checkbox>
+          <mat-checkbox>Twin bed</mat-checkbox>
+          <mat-checkbox>Non-smoking</mat-checkbox>
+          <mat-checkbox>Non-smoking</mat-checkbox>
+          <mat-checkbox>Free cancellation</mat-checkbox>
+          <mat-checkbox>Pay later</mat-checkbox>
+          <mat-checkbox>Free cancellation</mat-checkbox>
+          <mat-checkbox>Pay later</mat-checkbox>
+        </div>
+      </div>
+
       <div class="table-rooms" *ngIf="hotel">
         <table>
           <tbody *ngFor="let room of hotel.rooms">
@@ -143,7 +164,98 @@
       </div>
     </mat-tab>
     <mat-tab label="About">
+      <div class="about-container">
+        <div class="about-hotel-info">
+          <div class="star-rating">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+          </div>
+          <div class="score-and-review">
+            <div class="score">8.2</div>
+            <div class="view-count">4,000 reviews</div>
+          </div>
+          <div class="hotel-name">
+            {{hotel?.name}}
+          </div>
+          <div class="hotel-address">12, Sejong-daero 12-gil, Jung-gu, Myeong-dong, Seoul, South Korean, 04526</div>
+          <div class="tab-like-title">
+            About
+          </div>
+          <div class="description">
+            {{hotel?.description}}
+          </div>
+          <div class="tab-like-title">
+            Amenities
+          </div>
+          <div class="list-amenities">
+            <div class="facility">
+              <i class="fas fa-wifi"></i>
+              <div class="label">WiFi</div>
+            </div>
+            <div class="facility">
+              <i class="fas fa-tshirt"></i>
+              <div class="label">Laundry service</div>
+            </div>
+            <div class="facility">
+              <i class="fas fa-smoking-ban"></i>
+              <div class="label">Non-smoking</div>
+            </div>
+            <div class="facility">
+              <i class="fas fa-hdd"></i>
+              <div class="label">Safety Deposit Boxes</div>
+            </div>
+            <div class="facility">
+              <i class="fas fa-coffee"></i>
+              <div class="label">Complimentary Breakfast</div>
+            </div>
+            <div class="facility">
+              <i class="fas fa-home"></i>
+              <div class="label">Daily housekeeping</div>
+            </div>
+            <div class="facility">
+              <i class="far fa-handshake"></i>
+              <div class="label">Free cancellation</div>
+            </div>
+            <div class="facility">
+              <i class="fas fa-air-freshener"></i>
+              <div class="label">Air-Cond</div>
+            </div>
+            <div class="facility">
+              <i class="fas fa-dumbbell"></i>
+              <div class="label">Gym</div>
+            </div>
+            <div class="facility">
+              <i class="fas fa-phone-volume"></i>
+              <div class="label">Telephone</div>
+            </div>
+          </div>
+        </div>
+        <div class="map">
+          <div class="map-location-viewer"
+               *ngIf="hotel"
+               leaflet
+               [leafletCenter]="hotel.location"
+               [leafletLayers]="layers"
+               (leafletMapReady)="mapReady($event)"
+               [leafletOptions]="options">
+          </div>
+        </div>
+      </div>
     </mat-tab>
   </mat-tab-group>
 
+</div>
+<div class="related-results">
+
+  <div class="tab-like-title">
+    Related
+  </div>
+  <div class="list-related-results">
+    <app-place-viewer *ngFor="let hotel of hotelList">
+      <img [src]="hotel.photo" alt="">
+      <label name>{{hotel.name}}</label>
+      <label description>{{hotel.description}}</label>
+    </app-place-viewer>
+  </div>
 </div>

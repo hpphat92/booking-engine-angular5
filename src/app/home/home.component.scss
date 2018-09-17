@@ -550,104 +550,50 @@
     }
   }
   #contact {
-    display: flex;
-    width: 80%;
-    height: 378px;
-    margin: auto;
-    .earn-more {
-      width: 50%;
-      height: 100%;
-      position: relative;
-      img {
-        width: 100%;
+    background: url("../../assets/images/subscribe.jpg");
+    width: 100%;
+    height: 400px;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: 0 79%;
+    .header {
+      font-size: 32px;
+      text-align: center;
+      line-height: 3;
+      padding: 10px 0;
+    }
+    .input-group {
+      height: 44px;
+      margin-top: 20px;
+      text-align: center;
+      .button-submit {
         height: 100%;
-        object-fit: cover;
+        background: $main-blue;
+        width: 112px;
+        position: relative;
+        left: -4px;
+        border-radius: 0 8px 8px 0;
+        border: none;
+        color: #FFFFFF;
+        font-family: 'Nunito Sans', sans-serif;
+        font-size: 16.5px;
+        font-weight: 600;
+        cursor: pointer;
       }
-      .content {
-        position: absolute;
-        top: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        padding: 40px 0 0 0;
-        .title {
-          color: #FFFFFF;
-          font-size: 34px;
-          font-weight: 300;
-          line-height: 40px;
-          text-align: center;
-        }
-        .input-group {
-          height: 44px;
-          margin-top: 30px;
-          .button-submit {
-            height: 100%;
-            background: $main-blue;
-            width: 112px;
-            position: relative;
-            left: -4px;
-            border-radius: 0 8px 8px 0;
-            border: none;
-            color: #FFFFFF;
-            font-family: 'Nunito Sans', sans-serif;
-            font-size: 16.5px;
-            font-weight: 600;
-            cursor: pointer;
-          }
-          input {
-            height: 100%;
-            width: 270px;
-            padding: 14px 18px;
-            box-sizing: border-box;
-            font-size: 12px;
-            font-weight: 300;
-            font-family: "Nunito Sans", sans-serif;
-            border-radius: 8px 0 0 8px;
-            border: none;
-            outline: none;
-          }
-        }
+      input {
+        height: 100%;
+        width: 270px;
+        padding: 14px 18px;
+        box-sizing: border-box;
+        font-size: 12px;
+        font-weight: 300;
+        font-family: "Nunito Sans", sans-serif;
+        border-radius: 8px 0 0 8px;
+        border: none;
+        outline: none;
       }
     }
-    .maximise-earning {
-      width: 50%;
-      height: 100%;
-      position: relative;
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-      .content {
-        position: absolute;
-        top: 0;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 100%;
-        padding: 40px 0 0 0;
-        .title {
-          color: #FFFFFF;
-          font-size: 34px;
-          font-weight: 300;
-          line-height: 40px;
-          text-align: center;
-        }
-        button {
-          height: 44px;
-          width: 235px;
-          border-radius: 8px;
-          background-color: $main-green;
-          margin-top: 30px;
-          color: #FFFFFF;
-          font-family: "Nunito Sans", sans-serif;
-          font-size: 16.5px;
-          font-weight: 600;
-          line-height: 23px;
-        }
-      }
-    }
+
   }
 }
 

@@ -3,7 +3,9 @@
 @import "assets/lib/slick/slick-theme";
 @import "assets/lib/slick/slick";
 @import "~@ng-select/ng-select/themes/material.theme.css";
+@import "~leaflet/dist/leaflet.css";
 @import "var";
+
 html, body {
   font-family: 'Nunito Sans', sans-serif;
 }
@@ -29,4 +31,13 @@ mat-tab-group {
 
 .text-center {
   text-align: center;
+}
+
+.tab-like-title {
+  font-size: 18px;
+  font-weight: bold;
+  padding: 0 18px 12px 0;
+  border-bottom: 4px solid $main-blue;
+  display: inline-block;
+  margin-bottom: 10px;
 }

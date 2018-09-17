@@ -68,7 +68,7 @@
       font-size: 18px;
       background: $main-green;
     }
-    mat-form-field {
+    & > mat-form-field, & > choosePassenger {
       width: calc((100% - 650px) / 3);
       margin: 0 10px;
     }

@@ -19,24 +19,27 @@
                   </span>
   </mat-form-field>
   <mat-form-field>
-    <input matInput placeholder="Check in" [singleDatePicker]="true" type="text" ngxDaterangepickerMd
+    <input matInput placeholder="Check out" [singleDatePicker]="true" type="text" ngxDaterangepickerMd
            [autoApply]="true"
+           [minDate]=""
            [locale]="{format: 'DD-MM-YYYY'}"
            formControlName="checkOut" class="form-control"/>
     <span matSuffix>
                         <i class="far fa-calendar-alt"></i>
                   </span>
   </mat-form-field>
-  <mat-form-field>
-    <input matInput placeholder="Who" formControlName="numberOfPax">
-    <span matSuffix>
+  <choosePassenger>
+    <mat-form-field>
+      <input matInput #input placeholder="Who" formControlName="numberOfPax">
+      <span matSuffix>
                     <i class="far fa-user"></i>
                   </span>
-  </mat-form-field>
+    </mat-form-field>
+  </choosePassenger>
   <button mat-button mat-raised-button color="primary" class="search-button" (click)="search()">
     Search
   </button>
 </form>
 <div class="content-container">
-  <router-outlet></router-outlet>
+  <router-outlet #o="outlet"></router-outlet>
 </div>

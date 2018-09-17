@@ -1,14 +1,11 @@
 <section id="search-form">
-  <div class="cover-photos">
-    <img src="../assets/images/japan1.jpg" alt="">
-    <img src="../assets/images/japan2.jpg" alt="">
-    <img src="../assets/images/japan3.jpg" alt="">
+  <div class="cover-photos" *ngIf="siteResources">
+    <img [src]="p" *ngFor="let p of siteResources.carouselPhotos" alt="">
   </div>
   <div class="header-cover-container">
     <div class="header">
       <div class="super-heading">
-        Great deals are here,
-        Finally.
+        {{siteResources?.title}}
       </div>
       <div class="small-heading">
         You are a great traveller. Always does.
@@ -49,6 +46,7 @@
               <mat-form-field>
                 <input matInput placeholder="Check in - Check out" type="text" ngxDaterangepickerMd
                        [autoApply]="true"
+                       readonly
                        [locale]="{format: 'DD-MM-YYYY'}"
                        startKey="checkIn"
                        endKey="checkOut"
@@ -57,12 +55,17 @@
                   <i class="far fa-calendar-alt"></i>
                   </span>
               </mat-form-field>
-              <mat-form-field>
-                <input matInput placeholder="Adult/Infrant" formControlName="numberOfPax">
-                <span matSuffix>
+              <choosePassenger>
+                <mat-form-field>
+                  <input matInput
+                         #input
+                         readonly
+                         placeholder="Adult/Infrant" formControlName="numberOfPax">
+                  <span matSuffix>
                     <i class="far fa-user"></i>
                   </span>
-              </mat-form-field>
+                </mat-form-field>
+              </choosePassenger>
               <button mat-button mat-raised-button color="primary" class="search-button" (click)="search()">
                 Search
               </button>
@@ -132,8 +135,8 @@
   </mat-tab-group>
 </section>
 <section id="videoPreview">
-  <video controls>
-    <source id="mp4" src="https://grochtdreis.de/fuer-jsfiddle/video/sintel_trailer-480.mp4" type="video/mp4">
+  <video controls *ngIf="siteResources">
+    <source id="mp4" [src]="siteResources.mainVideo" type="video/mp4">
   </video>
   <div class="description">
     <div class="header-content">
@@ -150,24 +153,31 @@
   </div>
 </section>
 <section id="contact">
-  <div class="earn-more">
-    <img src="../../assets/images/earnmore.png" alt="">
-    <div class="content">
-      <div class="title">Earn more rewards</div>
-      <div class="input-group">
-        <input type="text" placeholder="Your email address">
-        <button mat-button mat-raised-button class="button-submit">Submit</button>
-      </div>
-    </div>
-  </div>
-  <div class="maximise-earning">
-    <img src="../../assets/images/success.jpg" alt="">
-    <div class="content">
-      <div class="title">Maximise your earnings</div>
-      <button mat-button mat-raised-button color="primary">List my room</button>
-    </div>
+  <div class="header">Subscribing to emails</div>
+  <div class="input-group">
+    <input type="text" placeholder="Your email address">
+    <button mat-button mat-raised-button class="button-submit">Submit</button>
   </div>
 </section>
+<!--<section id="contact">-->
+<!--<div class="earn-more">-->
+<!--<img src="../../assets/images/earnmore.png" alt="">-->
+<!--<div class="content">-->
+<!--<div class="title">Earn more rewards</div>-->
+<!--<div class="input-group">-->
+<!--<input type="text" placeholder="Your email address">-->
+<!--<button mat-button mat-raised-button class="button-submit">Submit</button>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<div class="maximise-earning">-->
+<!--<img src="../../assets/images/success.jpg" alt="">-->
+<!--<div class="content">-->
+<!--<div class="title">Maximise your earnings</div>-->
+<!--<button mat-button mat-raised-button color="primary">List my room</button>-->
+<!--</div>-->
+<!--</div>-->
+<!--</section>-->
 <!-- banner -->
 <!--<section id="destination-list">-->
 <!--<div class="header">Where you plan to go?</div>-->

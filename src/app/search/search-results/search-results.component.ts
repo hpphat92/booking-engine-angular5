@@ -5,6 +5,8 @@ import { BookingService } from '../../shared/api';
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import AppConstant from '../../app.constant';
+import { ModalHotelViewingDetailComponent } from '../modal-hotel-viewing-detail/modal-hotel-viewing-detail.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'app-search-results',
@@ -26,6 +28,7 @@ export class SearchResultsComponent implements OnDestroy {
 
   constructor(public authService: AuthService,
               public router: Router,
+              public dialog: MatDialog,
               public bookingService: BookingService,
               public route: ActivatedRoute) {
     this.navigationSubscription = this.router.events.subscribe((e: any) => {
@@ -62,14 +65,20 @@ export class SearchResultsComponent implements OnDestroy {
 
   public goDetail(hotel) {
     this.authService.hotelDetail = hotel;
-    this.router.navigate(['/search/detail/' + hotel.id]);
+    this.authService.navigateByUrl(['search', 'detail', hotel.id]);
   }
 
-  public toggleHotelExpanding(hotel) {
-    hotel.isExpanding = !hotel.isExpanding;
-    if (hotel.isExpanding) {
-      this.getHotelFullInfo(hotel);
-    }
+  public viewHotelDetail(hotel) {
+    const dialogRef = this.dialog.open(ModalHotelViewingDetailComponent, {
+      data: {
+        hotel
+      },
+      width: '50vw',
+      height: '60vh'
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+    });
   }
 
 

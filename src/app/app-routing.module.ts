@@ -34,7 +34,7 @@ const actualRoutes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(actualRoutes, {
-    // enableTracing: true,
+    enableTracing: true,
     preloadingStrategy: PreloadAllModules,
     onSameUrlNavigation: 'reload',
     useHash: true

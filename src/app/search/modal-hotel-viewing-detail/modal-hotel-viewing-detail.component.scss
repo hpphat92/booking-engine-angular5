@@ -1,0 +1,171 @@
+@import "../../../var";
+
+.masonry-item {
+  width: 200px;
+}
+
+:host /deep/ {
+  padding: 20px 0;
+  @include tab-group-font;
+  .mat-tab-body-content {
+    padding: 20px 10px 20px 0;
+    box-sizing: border-box;
+    overflow: auto;
+    max-height: calc(60vh - 100px);
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    .hotel-name {
+      font-size: 24px !important;
+      font-weight: bold;
+      padding: 10px 0;
+    }
+    .hotel-description {
+      color: #aaa;
+      margin-top: 10px;
+      position: relative;
+    }
+    .room-item-list {
+      .room-item {
+        padding: 20px 0;
+        border-bottom: 1px solid #ccc;
+        .room-data {
+          display: flex;
+          width: 100%;
+          img {
+            height: 120px;
+          }
+          .room-info-description {
+            padding: 0 20px 10px 20px;
+            width: 55%;
+            .name {
+              line-height: 2;
+              font-size: 18px;
+              font-weight: bold;
+            }
+            .description {
+              font-size: 14px;
+              color: #aaa;
+              line-height: 1.5;
+            }
+          }
+          .room-price {
+            text-align: center;
+            .price {
+              color: $main-blue;
+              font-size: 20px;
+              font-weight: bold;
+            }
+            .price-discount {
+              @include off-count;
+              font-weight: bold;
+              padding: 8px 12px !important;
+            }
+          }
+          .nav-icon {
+            display: flex;
+            align-items: center;
+            flex-grow: 1;
+            justify-content: center;
+            font-size: 36px;
+            color: #888;
+            * {
+              color: #aaa;
+              cursor: pointer;
+            }
+          }
+        }
+      }
+      .more-features {
+        margin-top: 15px;
+        display: flex;
+        .feature-item {
+          background: #f5f5f5;
+          color: #bbb;
+          font-size: 12px;
+          display: inline;
+          padding: 5px 12px;
+          border-radius: 16px;
+          margin: 0 5px 0 5px;
+        }
+        .more {
+          letter-spacing: 3px;
+        }
+      }
+    }
+    .location-address {
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 12px;
+    }
+    .map-location-viewer {
+      position: relative;
+      display: block;
+      height: calc(60vh - 140px);
+    }
+    .list-amenities {
+      display: flex;
+      flex-wrap: wrap;
+      line-height: 2;
+      margin-top: 10px;
+      overflow: auto;
+      .facility {
+        width: 50%;
+        color: #888;
+        line-height: 2.5;
+        display: flex;
+        align-items: center;
+        i {
+          width: 20px;
+          text-align: center;
+        }
+        .label {
+          margin-left: 12px;
+        }
+      }
+    }
+    .show-all-amennities {
+      margin-top: 20px;
+      font-size: 14px;
+      cursor: pointer;
+      color: $main-blue;
+    }
+    .review-container {
+      padding: 20px 5px 30px 0;
+      border-bottom: 1px solid #eee;
+      margin-right: 35px;
+      .star-rating {
+        color: $main-blue;
+        margin-bottom: 10px;
+      }
+      .user-info {
+        display: flex;
+        img {
+          width: 35px;
+          height: 35px;
+          margin: 0 10px;
+          border-radius: 50%;
+          border: 1px solid $main-green;
+        }
+        .reviewer-info-detail {
+          color: #aaa;
+          font-size: 14px;
+        }
+        .score {
+          @include score-box;
+          margin-left: auto;
+        }
+      }
+      .review-title {
+        font-size: 26px;
+        color: #000;
+        font-weight: bold;
+        padding: 10px 0 15px 0;
+      }
+      .review-comment {
+        font-size: 14px;
+        color: #aaa;
+      }
+    }
+  }
+}

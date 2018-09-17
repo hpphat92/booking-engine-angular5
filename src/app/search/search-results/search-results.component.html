@@ -4,9 +4,9 @@
       <div class="hotel-list">
         <div class="hotel-items" [class.expanded]="hotel.isExpanding"
              *ngFor="let hotel of hotelList, let i = index">
-          <div class="hotel-info" (click)="toggleHotelExpanding(hotel)">
+          <div class="hotel-info" (click)="viewHotelDetail(hotel)">
             <div class="photo">
-              <img [src]="hotel.image || '/assets/images/no-preview.jpg'" alt="">
+              <img [src]="(hotel.images && hotel.images[0]) || '/assets/images/no-preview.jpg'" alt="">
             </div>
             <div class="description">
               <div class="left-description">
@@ -37,70 +37,6 @@
                   <div class="price">{{hotel.minPrice | currency: '$': 'USD'}}</div>
                 </div>
               </div>
-            </div>
-          </div>
-          <div class="hotel-detail-container">
-            <div class="close-description" (click)="toggleHotelExpanding(hotel)">&times;</div>
-            <div class="hotel-detail">
-              <mat-tab-group class="custom-tabs" [disableRipple]="true">
-                <mat-tab label="Hotels">
-                  <div class="hotel-detail-info">
-                    <div class="photo">
-                      <img [src]="hotel.image || '/assets/images/no-preview.jpg'" alt="">
-                    </div>
-                    <div class="description">
-                      <div class="hotel-brief-description">
-                        <div class="left-description">
-                          <div class="star-rating">
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                            <i class="fas fa-star"></i>
-                          </div>
-                        </div>
-                        <div class="right-description">
-                          <div class="views-count">{{(hotel.viewCounts || 0).toLocaleString()}} reviews</div>
-                          <div class="score">{{hotel.score || 0}}</div>
-                        </div>
-                      </div>
-                      <div class="hotel-name">{{hotel.name}}</div>
-                      <div class="hotel-address">{{hotel.city}}, {{hotel.country}}</div>
-                      <div class="hotel-description">{{hotel.description}}</div>
-                    </div>
-                  </div>
-                  <div class="list-facilities">
-                    <i class="fas fa-wifi"></i>
-                    <i class="fas fa-shower"></i>
-                    <i class="fas fa-wifi"></i>
-                    <i class="fas fa-shower"></i>
-                    <i class="fas fa-wifi"></i>
-                    <i class="fas fa-shower"></i>
-                    <i class="fas fa-wifi"></i>
-                    <i class="fas fa-shower"></i>
-                    <i class="fas fa-wifi"></i>
-                    <i class="fas fa-shower"></i>
-                  </div>
-                </mat-tab>
-                <mat-tab label="Rooms">
-                  <div class="room-item-list">
-                    <div class="room-item" *ngFor="let room of hotel.rooms">
-                      <div class="room-data">
-                        <img src="/assets/images/no-preview.jpg" alt="">
-                        <div class="room-info-description">
-                          <div class="name">{{room.rate.name}}</div>
-                          <div class="description">{{room.rate.description || 'No description'}}</div>
-                        </div>
-                        <div class="room-price">
-                          <div class="price">{{room.rateValue | currency: '$': 'USD'}}</div>
-                          <div class="price-discount">59% off</div>
-                        </div>
-                        <div class="nav-icon">
-                          <i class="fas fa-chevron-right" (click)="goDetail(hotel)"></i>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </mat-tab>
-              </mat-tab-group>
             </div>
           </div>
         </div>
