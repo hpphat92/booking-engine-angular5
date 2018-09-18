@@ -12,6 +12,7 @@
   <mat-form-field>
     <input matInput placeholder="Check in" [singleDatePicker]="true" type="text" ngxDaterangepickerMd
            [autoApply]="true"
+           opens="left"
            [locale]="{format: 'DD-MM-YYYY'}"
            formControlName="checkIn" class="form-control"/>
     <span matSuffix>
@@ -21,6 +22,7 @@
   <mat-form-field>
     <input matInput placeholder="Check out" [singleDatePicker]="true" type="text" ngxDaterangepickerMd
            [autoApply]="true"
+           opens="left"
            [minDate]=""
            [locale]="{format: 'DD-MM-YYYY'}"
            formControlName="checkOut" class="form-control"/>
@@ -30,7 +32,7 @@
   </mat-form-field>
   <choosePassenger>
     <mat-form-field>
-      <input matInput #input placeholder="Who" formControlName="numberOfPax">
+      <input matInput readonly #input placeholder="Who" formControlName="numberOfPax">
       <span matSuffix>
                     <i class="far fa-user"></i>
                   </span>

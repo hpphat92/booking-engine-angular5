@@ -150,7 +150,7 @@
             </td>
             <td class="reserve-button-cell" [attr.rowspan]="room.rateList.length" *ngIf="first">
               <div class="content">
-                <button class="reserve-button" mat-button mat-raised-button>Reserve</button>
+                <button class="reserve-button" (click)="reserveRooms()" mat-button mat-raised-button>Reserve</button>
                 <ul class="text">
                   <li>No booking/credit card fees.</li>
                   <li>Confirmation required</li>

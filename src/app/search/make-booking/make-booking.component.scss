@@ -1,0 +1,224 @@
+@import "../../../var";
+@import "~@angular/material/theming";
+
+:host /deep/ {
+  display: flex;
+  .tab-booking-container {
+    width: 65%;
+    @include checkbox(#aaa, 16px, 16px);
+    mat-form-field {
+      width: 200px !important;
+      margin-right: 25px;
+    }
+    mat-checkbox {
+      text-align: left;
+      padding: 20px 0;
+    }
+    .address-line {
+      width: 45%;
+      &.short {
+        width: 30%;
+      }
+      mat-form-field {
+        width: 100% !important;
+      }
+    }
+    .booking-purpose {
+      mat-radio-group {
+        line-height: 3;
+        mat-radio-button {
+          margin-right: 20px;
+        }
+      }
+    }
+    .process-payment {
+      background: $main-green;
+      height: 44px;
+      color: #fff;
+      width: 260px;
+      border-radius: 8px;
+      font-size: 16.5px;
+      margin-top: 30px;
+      &[disabled] {
+        filter: grayscale(1);
+        cursor: no-drop;
+        opacity: 0.6;
+      }
+    }
+  }
+  .payment-methods-container {
+    display: flex;
+    align-items: center;
+    height: 180px;
+    width: 80%;
+    border: 1px solid #eee;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+    margin: 25px auto 15px auto;
+    .splitter {
+      width: 2px;
+      height: 55%;
+      background: #ccc;
+    }
+    .payment-method {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      width: 80%;
+      .title {
+        font-size: 14px;
+        color: #9e9e9e;
+        text-align: center;
+        padding-bottom: 20px;
+      }
+      .logo {
+        height: 80px;
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+      }
+    }
+  }
+  .more-requests {
+    background-color: #F5F5F5;
+    border-radius: 8px;
+    height: 112px;
+    width: 100%;
+    resize: none;
+    box-sizing: border-box;
+    border: none;
+    padding: 15px 21px;
+    font-family: "Nunito Sans", sans-serif;
+    line-height: 19px;
+    outline: none;
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+  .note {
+    color: #9E9E9E;
+    font-size: 14px;
+    line-height: 19px;
+  }
+  .booking-detail-container {
+    flex-grow: 1;
+    padding-left: 30px;
+    .booking-detail {
+      width: 360px;
+      margin: auto;
+      background: #fff;
+      border-radius: 4px;
+      box-shadow: 0 2px 22px 0 #DBDBDB;
+      padding: 30px;
+      box-sizing: border-box;
+      .header {
+        padding-bottom: 20px;
+        border-bottom: 1px solid #eee;
+        text-align: center;
+        line-height: 2;
+        .title {
+          font-weight: bold;
+          font-size: 18px;
+        }
+        .amount {
+          font-size: 14px;
+          color: #9E9E9E;
+        }
+      }
+      .hotel-detail {
+        padding: 20px 0;
+        border-bottom: 1px solid #eee;
+        .hotel-name {
+          font-size: 18px;
+          font-weight: bold;
+          line-height: 2;
+        }
+        .hotel-address {
+          font-size: 14px;
+          color: #9e9e9e;
+        }
+      }
+      .checking-times {
+        display: flex;
+        padding: 20px 0;
+        border-bottom: 1px solid #eee;
+
+        .check-date {
+          flex-grow: 1;
+          text-align: center;
+          .title {
+            font-size: 12px;
+            color: #9E9E9E;
+          }
+          .date {
+            font-weight: bold;
+            line-height: 1.5;
+          }
+          .sub-title {
+            font-size: 12px;
+            color: #9E9E9E;
+          }
+        }
+      }
+      .booking-detail-list-room {
+        padding: 15px 0;
+        border-bottom: 1px solid #eee;
+        .booking-room {
+          display: flex;
+          align-items: center;
+          flex-wrap: nowrap;
+          line-height: 2;
+          .name-amount {
+            font-size: 14px;
+            font-weight: bold;
+            padding-right: 10px;
+            min-width: 150px;
+          }
+          .edit {
+            font-size: 12px;
+          }
+          .cost {
+            margin-left: auto;
+            font-weight: bold;
+            color: #333;
+            font-size: 15px;
+          }
+        }
+      }
+      .sub-total {
+        line-height: 2;
+        padding: 15px 0;
+        .row-total {
+          display: flex;
+          font-weight: bold;
+          font-size: 14px;
+          .value {
+            margin-left: auto;
+          }
+          &.final {
+            color: $main-blue;
+          }
+        }
+      }
+      .enter-discount-code {
+        input {
+          height: 49px;
+          padding: 10px 20px;
+          width: 100%;
+          box-sizing: border-box;
+          background-color: #F5F5F5;
+          box-shadow: none;
+          border: none;
+          border-radius: 2px;
+          outline: none;
+          @include input-placeholder {
+            color: #9E9E9E;
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,199 @@
+<div class="tab-booking-container">
+  <mat-tab-group class="custom-tabs" #matTab [formGroup]="userInfoForm">
+    <mat-tab label="Enter your detail">
+      <mat-checkbox [disableRipple]="true" formControlName="travellingForWork">
+        I'm travelling for work
+      </mat-checkbox>
+      <div class="group-form-input-line">
+        <mat-form-field>
+          <mat-select formControlName="titleName">
+            <mat-option value="Mr.">Mr.</mat-option>
+            <mat-option value="Ms.">Ms.</mat-option>
+            <mat-option value="Mrs.">Mrs.</mat-option>
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field>
+          <input type="text" matInput placeholder="First Name" formControlName="firstName">
+
+        </mat-form-field>
+        <mat-form-field>
+          <input type="text" matInput placeholder="Last Name" formControlName="lastName" required>
+          <mat-error *ngIf="userInfoFormErrors['lastName'].required">
+            This field is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="group-form-input-line">
+        <mat-form-field>
+          <mat-select formControlName="gender" placeholder="Gender">
+            <mat-option value="" disabled>Select One</mat-option>
+            <mat-option value="Male">Male</mat-option>
+            <mat-option value="Female">Female</mat-option>
+          </mat-select>
+          <mat-error *ngIf="userInfoFormErrors['gender'].required">
+            This field is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input matInput placeholder="Birthday" [singleDatePicker]="true" type="text" ngxDaterangepickerMd
+                 formControlName="birthday"
+                 [autoApply]="true"
+                 required
+                 opens="left"
+                 [locale]="{format: 'DD-MM-YYYY'}" class="form-control"/>
+          <span matSuffix>
+                        <i class="far fa-calendar-alt"></i>
+                  </span>
+        </mat-form-field>
+        <mat-form-field>
+          <input type="text" matInput placeholder="Last name" required>
+        </mat-form-field>
+      </div>
+
+      <div class="address-line">
+        <mat-form-field>
+          <input type="text" matInput placeholder="Address (line 1)" formControlName="firstAddress">
+        </mat-form-field>
+      </div>
+      <div class="address-line">
+        <mat-form-field>
+          <input type="text" matInput placeholder="Address (line 2)" formControlName="secondAddress">
+        </mat-form-field>
+      </div>
+      <div class="group-form-input-line short">
+        <mat-form-field>
+          <input type="text" matInput placeholder="Passport" formControlName="passportNumber" required>
+          <mat-error *ngIf="userInfoFormErrors['passportNumber'].required">
+            This field is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input type="text" matInput placeholder="Postal Code" formControlName="postalCode" required>
+          <mat-error *ngIf="userInfoFormErrors['postalCode'].required">
+            This field is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div class="group-form-input-line short">
+        <mat-form-field>
+          <input type="email" matInput placeholder="Email" formControlName="email" required>
+          <mat-error *ngIf="userInfoFormErrors['email'].required">
+            This field is required
+          </mat-error>
+        </mat-form-field>
+        <mat-form-field>
+          <input type="tel" matInput placeholder="Phone" formControlName="phoneNumber" required>
+          <mat-error *ngIf="userInfoFormErrors['phoneNumber'].required">
+            This field is required
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div class="country">
+        <mat-form-field>
+          <mat-select placeholder="Country" required
+                      formControlName="nationality">
+            <mat-option value="sg">Singapore</mat-option>
+            <mat-option value="vn">Vietnam</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div class="booking-purpose">
+        <mat-radio-group formControlName="isMainGuest">
+          <mat-radio-button [disableRipple]="true" [value]="true">I'm the main guest</mat-radio-button>
+          <mat-radio-button [disableRipple]="true" [value]="false">I'm booking for someone else</mat-radio-button>
+        </mat-radio-group>
+      </div>
+      <button mat-button class="process-payment" [disabled]="userInfoForm.invalid" (click)="save()">Process to Payment
+      </button>
+    </mat-tab>
+    <mat-tab label="Payment" [disabled]="userInfoForm.invalid">
+      <div class="payment-methods-container">
+        <div class="payment-method">
+          <div class="title">
+            Pay with Stripe
+          </div>
+          <div class="logo">
+            <img src="/assets/images/stripe.jpg" alt="">
+          </div>
+        </div>
+        <div class="splitter">
+        </div>
+        <div class="payment-method">
+          <div class="title">
+            Pay with Paypal
+          </div>
+          <div class="logo">
+            <img src="/assets/images/Paypal.png" alt="">
+          </div>
+        </div>
+      </div>
+
+      <textarea placeholder="Your request(s) here" formControlName="specialRequests" class="more-requests"></textarea>
+      <div class="note">
+        Please write your requests in English that we’ll share with the property. Special request cannot be guaranteed,
+        but the property will do its best to meet your needs. You can always make a special request after your booking
+        is complete!
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>
+<div class="booking-detail-container">
+  <div class="booking-detail">
+    <div class="header">
+      <div class="title">Your booking</div>
+      <div class="amount">3 nights, 1 adult</div>
+    </div>
+    <div class="hotel-detail">
+      <div class="hotel-name">{{bookingInfo.hotel.name}}</div>
+      <div class="hotel-address">12, Sejong-daero 12-gil, Jung-gu, Myeong-dong, Seoul, South Korean, 04526</div>
+    </div>
+    <div class="checking-times">
+      <div class="check-date">
+        <div class="title">Check-in</div>
+        <div class="date">
+          {{search.checkIn | date}}
+        </div>
+        <div class="sub-title">until 10:00am</div>
+      </div>
+      <div class="check-date">
+        <div class="title">Check-out</div>
+        <div class="date">
+          {{search.checkOut | date}}
+        </div>
+        <div class="sub-title">until 10:00am</div>
+      </div>
+    </div>
+    <div class="booking-detail-list-room">
+      <div class="booking-room" *ngFor="let room of bookingDetail.list">
+        <div class="name-amount">{{room.roomName}} x {{room.amount}}</div>
+        <div class="edit">
+          <i class="fas fa-pencil-alt"></i>
+        </div>
+        <div class="cost">
+          {{room.totalRates | currency: 'USD': '$'}}
+        </div>
+      </div>
+    </div>
+    <div class="sub-total">
+      <div class="row-total">
+        <div class="name">10% VAT</div>
+        <div class="value"> {{bookingDetail.vat | currency: 'USD': '$'}}
+        </div>
+      </div>
+      <div class="row-total">
+        <div class="name">Discount</div>
+        <div class="value"> {{bookingDetail.discount | currency: 'USD': '$'}}
+        </div>
+      </div>
+      <div class="row-total final">
+        <div class="name">Total</div>
+        <div class="value"> {{bookingDetail.total | currency: 'USD': '$'}}
+        </div>
+      </div>
+    </div>
+    <div class="enter-discount-code">
+      <input type="text" placeholder="Enter discount code">
+    </div>
+  </div>
+</div>

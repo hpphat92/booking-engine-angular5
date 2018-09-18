@@ -24,6 +24,9 @@ export class RouterComponent implements OnDestroy {
   }
 
   public loadSettingsByPartnerId(partnerAlliasName) {
+    if (!partnerAlliasName) {
+      return;
+    }
     this.partnerSettingService.partnerSettingGetAllForPartnerByAlliasName(partnerAlliasName)
       .subscribe((resp) => {
         if (!resp.data || !resp.data.length) {
@@ -53,6 +56,7 @@ export class RouterComponent implements OnDestroy {
 
   ngOnDestroy(): void {
     this.authService.currentPartnerAlliasName = null;
+    this.authService.siteResources = null;
   }
 
 }

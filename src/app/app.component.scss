@@ -1,8 +1,8 @@
 @import "../var";
 
 :host /deep/ {
-  $main-page-width: 60%;
-  --main-page-width: 60%;
+  $main-page-width: 80%;
+  --main-page-width: 80%;
   .section-header-banner {
     width: $main-page-width;
     height: auto;
@@ -24,7 +24,7 @@
         .logo {
           cursor: pointer;
           img {
-            width: 250px;
+            width: auto;
             height: 64px;
             object-fit: contain;
           }
@@ -34,7 +34,7 @@
         display: flex;
         align-items: center;
         .primary-nav {
-          margin-right: 75px;
+          //margin-right: 75px;
           a {
             text-decoration: none;
             color: #2E323F;

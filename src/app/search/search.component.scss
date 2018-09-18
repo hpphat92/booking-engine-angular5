@@ -71,6 +71,9 @@
     & > mat-form-field, & > choosePassenger {
       width: calc((100% - 650px) / 3);
       margin: 0 10px;
+      mat-form-field {
+        width: 100%;
+      }
     }
   }
   .content-container {

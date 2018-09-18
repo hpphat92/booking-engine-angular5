@@ -8,7 +8,7 @@ import 'leaflet.gridlayer.googlemutant/Leaflet.GoogleMutant';
 import * as moment from 'moment';
 import * as _ from 'lodash';
 import * as L from 'leaflet';
-import { latLng , marker, icon} from 'leaflet';
+import { latLng, marker, icon } from 'leaflet';
 import AppConstant from '../../app.constant';
 
 @Component({
@@ -29,8 +29,6 @@ export class HotelDetailComponent {
     zoom: 12,
     center: latLng(46.879966, -121.726909)
   };
-  public totalRates;
-  public roomList = [];
   public carouselPhoto = {
     grid: { xs: 1, sm: 1, md: 1, lg: 1, all: 0 },
     slide: 1,
@@ -87,6 +85,7 @@ export class HotelDetailComponent {
     map.panTo(this.hotel.location);
     map.addLayer(this.createMarker(this.hotel.location));
   }
+
   public createMarker({ lat, lng }) {
     this.newMarker = marker([lat, lng],
       {
@@ -114,6 +113,9 @@ export class HotelDetailComponent {
     ).map((resp) => {
       let data: any = resp.data;
       this.hotel = data;
+      this.authService.bookingInfo = {
+        hotel: data
+      };
       this.hotel.location = latLng(this.hotel.latitude, this.hotel.longitude);
       _.forEach(this.hotel.rooms, (room) => {
         room.rateList = _.flatten(_.map(room.rateTypes, (rate) => {
@@ -137,6 +139,7 @@ export class HotelDetailComponent {
       });
     });
   }
+
   public onTabChange(e) {
     let { index } = e;
     window.dispatchEvent(new Event('resize'));
@@ -183,5 +186,26 @@ export class HotelDetailComponent {
     //     _.extend(findingRl, rl);
     //   }
     // })
+  }
+
+  public reserveRooms() {
+    let selectedItems = _.flattenDeep(_.map(this.hotel.rooms, (room) => {
+      return _.map(room.rateList, (rateList) => {
+        return _.map(rateList.selectedItemIds, (itemId) => {
+          return {
+            itemId,
+            room,
+            rateName: rateList.rate.name,
+            rateValue: rateList.rateValue
+          };
+        });
+      });
+    }));
+    // let selectedItems = _.compact(_.flatten(_.map(_.flatten(_.map(this.hotel.rooms, 'rateList')), 'selectedItemIds')));
+    this.authService.bookingInfo = {
+      ...this.authService.bookingInfo,
+      items: selectedItems
+    };
+    this.authService.navigateByUrl(['search', 'book-now']);
   }
 }

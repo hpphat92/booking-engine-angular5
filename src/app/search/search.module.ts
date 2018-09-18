@@ -6,6 +6,7 @@ import { SharedModule } from '../shared/shared.module';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { HotelDetailComponent } from './hotel-detail/hotel-detail.component';
 import { ModalHotelViewingDetailComponent } from './modal-hotel-viewing-detail/modal-hotel-viewing-detail.component';
+import { MakeBookingComponent } from './make-booking/make-booking.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,9 @@ const routes: Routes = [
       },
       {
         path: 'detail/:id', component: HotelDetailComponent
+      },
+      {
+        path: 'book-now', component: MakeBookingComponent
       },
       {
         path: '**',
@@ -31,7 +35,8 @@ const routes: Routes = [
     SearchComponent,
     SearchResultsComponent,
     HotelDetailComponent,
-    ModalHotelViewingDetailComponent
+    ModalHotelViewingDetailComponent,
+    MakeBookingComponent
   ],
   imports: [
     SharedModule,

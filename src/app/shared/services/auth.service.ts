@@ -15,8 +15,7 @@ export class AuthService {
 
   private _currentPartnerAlliasName;
 
-
-  private _siteResources = {
+  private _defaultSiteResource = {
     fromPartner: null,
     favIcon: 'favicon.png',
     name: 'Trabble | Booking Engine New Version',
@@ -26,6 +25,7 @@ export class AuthService {
     title: `Great deals are here,
             Finally.`
   };
+  private _siteResources = { ...this._defaultSiteResource };
 
   get search() {
     return { ...(this._search || this.localStorageService.get('search')) };
@@ -69,6 +69,9 @@ export class AuthService {
 
   set currentPartnerAlliasName(value) {
     this._currentPartnerAlliasName = value;
+    if (!value) {
+      this.siteResources = null;
+    }
   }
 
   get siteResources() {
@@ -76,6 +79,7 @@ export class AuthService {
   }
 
   set siteResources(value) {
+    value = value || this._defaultSiteResource;
     this._siteResources = value;
     this.siteResource$.next(value);
     this.updateSettingResoures();
