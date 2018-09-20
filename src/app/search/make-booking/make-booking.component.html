@@ -114,7 +114,7 @@
             Pay with Stripe
           </div>
           <div class="logo">
-            <img src="/assets/images/stripe.jpg" alt="">
+            <img src="/assets/images/stripe.jpg" alt="" (click)="payWithStripe()">
           </div>
         </div>
         <div class="splitter">
@@ -124,7 +124,7 @@
             Pay with Paypal
           </div>
           <div class="logo">
-            <img src="/assets/images/Paypal.png" alt="">
+            <img src="/assets/images/Paypal.png" alt="" (click)="payWithPaypal()">
           </div>
         </div>
       </div>
@@ -146,7 +146,7 @@
     </div>
     <div class="hotel-detail">
       <div class="hotel-name">{{bookingInfo.hotel.name}}</div>
-      <div class="hotel-address">12, Sejong-daero 12-gil, Jung-gu, Myeong-dong, Seoul, South Korean, 04526</div>
+      <div class="hotel-address">{{bookingInfo.hotel.address}}</div>
     </div>
     <div class="checking-times">
       <div class="check-date">

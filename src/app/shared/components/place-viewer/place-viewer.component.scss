@@ -1,4 +1,11 @@
 @import "../../../../var";
+
+@mixin nowrap {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
 :host ::ng-deep {
   display: flex;
   width: 270px;
@@ -9,6 +16,19 @@
   &:hover {
     img {
       transform: scale(1.2);
+    }
+  }
+  [icon] {
+    position: absolute;
+    left: 16px;
+    top: 16px;
+    font-size: 34px;
+    color: #D80027;
+    cursor: pointer;
+    z-index: 1;
+    transition: all .3s ease-in-out;
+    &:hover {
+      opacity: 0.8;
     }
   }
   .view-detail {
@@ -52,11 +72,13 @@
         font-family: "Nunito Sans", sans-serif;
         font-size: 14px;
         line-height: 19px;
+        @include nowrap;
       }
       &[description] {
         font-family: "Nunito Sans", sans-serif;
         font-size: 12px;
         line-height: 16px;
+        @include nowrap;
       }
     }
   }

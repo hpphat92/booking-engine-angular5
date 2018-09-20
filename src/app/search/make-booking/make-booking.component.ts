@@ -129,4 +129,12 @@ export class MakeBookingComponent implements OnDestroy {
     };
     this.matTab.selectedIndex = 1;
   }
+
+  public payWithStripe() {
+    this.authService.navigateByUrl(['search', 'booking-completed']);
+  }
+
+  public payWithPaypal() {
+    this.authService.navigateByUrl(['search', 'booking-completed']);
+  }
 }

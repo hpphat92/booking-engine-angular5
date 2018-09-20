@@ -1,3 +1,4 @@
+<ng-content select="[icon]"></ng-content>
 <div class="photo-preview">
   <ng-content select="img"></ng-content>
 </div>
@@ -5,6 +6,6 @@
   <ng-content select="[name]"></ng-content>
   <ng-content select="[description]"></ng-content>
 </div>
-<div class="view-detail">
+<div class="view-detail" *ngIf="!hideBackDrop">
   <span>View</span>
 </div>

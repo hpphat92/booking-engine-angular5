@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng build && node server",
-    "build": "ng build --progress --output-hashing=all && node deploy",
+    "build": "ng build --progress && node deploy",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",

@@ -4,6 +4,7 @@ import { AuthService } from '../shared/services/auth.service';
 import { PartnerService, PartnerSettingService } from '../shared/api';
 import * as _ from 'lodash';
 import { SettingKeyMap } from '../app.constant';
+import AppMainService from '../app.service';
 
 @Component({
   selector: 'app-router',
@@ -13,7 +14,7 @@ import { SettingKeyMap } from '../app.constant';
 export class RouterComponent implements OnDestroy {
   constructor(public router: Router,
               public route: ActivatedRoute,
-              public partnerSettingService: PartnerSettingService,
+              public appMainService: AppMainService,
               public partnerService: PartnerService,
               public authService: AuthService) {
     this.route.params.subscribe((param) => {
@@ -27,14 +28,14 @@ export class RouterComponent implements OnDestroy {
     if (!partnerAlliasName) {
       return;
     }
-    this.partnerSettingService.partnerSettingGetAllForPartnerByAlliasName(partnerAlliasName)
-      .subscribe((resp) => {
-        if (!resp.data || !resp.data.length) {
+    this.appMainService.getPartnerSettingByPartnerName(partnerAlliasName)
+      .subscribe((resp: any) => {
+        if (!resp || !resp.length) {
           // No partner found
           this.router.navigate(['']);
           return;
         }
-        let settingMap = _.fromPairs(_.map(resp.data, (x) => [x.key, x.value]));
+        let settingMap = _.fromPairs(_.map(resp, (x) => [x.key, x.value]));
         let carouselPhotos = [];
         try {
           carouselPhotos = JSON.parse(settingMap[SettingKeyMap.CarouselImages]);
@@ -42,6 +43,7 @@ export class RouterComponent implements OnDestroy {
           carouselPhotos = [];
         }
         this.authService.siteResources = {
+          fromPartnerId: resp[0].partnerId,
           fromPartner: partnerAlliasName,
           favIcon: settingMap[SettingKeyMap.FavIcon],
           name: settingMap[SettingKeyMap.Name],

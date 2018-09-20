@@ -50,7 +50,7 @@ function readFile(fileName, distFile) {
             include: ['*', '**/*'],
             exclude: [],
             remoteRoot: hosts.slice(2).join('/'),
-            deleteRemote: true
+            deleteRemote: false
           });
         } else {
           reject(new Error('File format invalid'))

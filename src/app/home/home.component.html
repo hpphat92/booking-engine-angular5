@@ -1,3 +1,4 @@
+<div id="map-temp"></div>
 <section id="search-form">
   <div class="cover-photos" *ngIf="siteResources">
     <img [src]="p" *ngFor="let p of siteResources.carouselPhotos" alt="">
@@ -105,35 +106,89 @@
       </mat-select>
     </mat-form-field>
   </div>
-  <mat-tab-group class="custom-tabs" [disableRipple]="true">
-    <mat-tab label="Switzerland">
-      <div class="list-hotel">
-        <app-place-viewer *ngFor="let hotel of hotelList">
-          <img [src]="hotel.photo" alt="">
-          <label name>{{hotel.name}}</label>
-          <label description>{{hotel.description}}</label>
+  <ng-template [ngIf]="!properties.hotelList.length">
+    No hotels
+  </ng-template>
+  <ng-template [ngIf]="properties.hotelList.length">
+    <div class="single-hotel" *ngIf="properties.hotelList.length === 1">
+      <div class="row-types" *ngFor="let type of properties.properties">
+        <div class="type-name"><span>{{type.type}}</span></div>
+        <app-place-viewer *ngFor="let p of type.properties">
+          <img [src]="p.images[0]?.imageUrl || '../../assets/images/no-preview.jpg'" alt="">
+          <label name>{{p.name}}</label>
+          <label description>{{'From 567$/person' || p.description}}</label>
         </app-place-viewer>
       </div>
-    </mat-tab>
-    <mat-tab label="Germany">
-      <div class="list-hotel">
-        <app-place-viewer *ngFor="let hotel of hotelList">
-          <img [src]="hotel.photo" alt="">
-          <label name>{{hotel.name}}</label>
-          <label description>{{hotel.description}}</label>
+    </div>
+    <div class="single-city" *ngIf="properties.hotelList.length > 1 && properties.cities.length === 1">
+      <div class="row-types" *ngFor="let type of properties.cities[0].properties">
+        <div class="type-name"><span>{{type.type}}</span></div>
+        <app-place-viewer *ngFor="let p of type.properties">
+          <img [src]="p.images[0]?.imageUrl || '../../assets/images/no-preview.jpg'" alt="">
+          <label name>{{p.name}}</label>
+          <label description>{{'From 567$/person' || p.description}}</label>
         </app-place-viewer>
       </div>
-    </mat-tab>
-    <mat-tab label="Japan">
-      <div class="list-hotel">
-        <app-place-viewer *ngFor="let hotel of hotelList">
-          <img [src]="hotel.photo" alt="">
-          <label name>{{hotel.name}}</label>
-          <label description>{{hotel.description}}</label>
-        </app-place-viewer>
+    </div>
+    <div class="multiple-city" *ngIf="properties.hotelList.length > 1 && properties.cities.length > 1">
+      <div class="lessthan3" *ngIf="properties.cities.length < 3">
+        <mat-tab-group class="custom-tabs" [disableRipple]="true">
+          <mat-tab [label]="city.name" *ngFor="let city of properties.cities">
+            <div class="row-types" *ngFor="let type of city.properties">
+              <div class="type-name"><span>{{type.type}}</span></div>
+              <app-place-viewer *ngFor="let p of type.properties">
+                <img [src]="p.images[0]?.imageUrl || '../../assets/images/no-preview.jpg'" alt="">
+                <label name>{{p.name}}</label>
+                <label description>{{'From 567$/person' || p.description}}</label>
+              </app-place-viewer>
+            </div>
+          </mat-tab>
+        </mat-tab-group>
       </div>
-    </mat-tab>
-  </mat-tab-group>
+      <div class="city-list" *ngIf="properties.cities.length >= 3">
+        <div class="tab-like-title">
+          Popular Cities
+        </div>
+        <div class="content">
+          <app-place-viewer *ngFor="let c of properties.cities" [hideBackDrop]="true">
+            <i class="fas fa-plus-circle" icon (click)="goDetail()"></i>
+            <img [src]="c.image || '../../assets/images/no-preview.jpg'" alt="">
+            <label name>{{c.name}}</label>
+            <label description>{{c.description}}</label>
+          </app-place-viewer>
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <!--<mat-tab-group class="custom-tabs" [disableRipple]="true">-->
+  <!--<mat-tab label="Switzerland">-->
+  <!--<div class="list-hotel">-->
+  <!--<app-place-viewer *ngFor="let hotel of hotelList">-->
+  <!--<img [src]="hotel.photo" alt="">-->
+  <!--<label name>{{hotel.name}}</label>-->
+  <!--<label description>{{hotel.description}}</label>-->
+  <!--</app-place-viewer>-->
+  <!--</div>-->
+  <!--</mat-tab>-->
+  <!--<mat-tab label="Germany">-->
+  <!--<div class="list-hotel">-->
+  <!--<app-place-viewer *ngFor="let hotel of hotelList">-->
+  <!--<img [src]="hotel.photo" alt="">-->
+  <!--<label name>{{hotel.name}}</label>-->
+  <!--<label description>{{hotel.description}}</label>-->
+  <!--</app-place-viewer>-->
+  <!--</div>-->
+  <!--</mat-tab>-->
+  <!--<mat-tab label="Japan">-->
+  <!--<div class="list-hotel">-->
+  <!--<app-place-viewer *ngFor="let hotel of hotelList">-->
+  <!--<img [src]="hotel.photo" alt="">-->
+  <!--<label name>{{hotel.name}}</label>-->
+  <!--<label description>{{hotel.description}}</label>-->
+  <!--</app-place-viewer>-->
+  <!--</div>-->
+  <!--</mat-tab>-->
+  <!--</mat-tab-group>-->
 </section>
 <section id="videoPreview">
   <video controls *ngIf="siteResources">

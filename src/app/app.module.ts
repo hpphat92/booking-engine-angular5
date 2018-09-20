@@ -13,6 +13,7 @@ import { ApiModule, BASE_PATH, Configuration } from './shared/api';
 import AppConstant from './app.constant';
 import './rxjs-operators';
 import { RouterComponent } from './router/router.component';
+import AppMainService from './app.service';
 
 let domain = {
   toString: () => AppConstant.domain,
@@ -37,6 +38,7 @@ let domain = {
 
   ], providers: [
     { provide: BASE_PATH, useValue: domain },
+    AppMainService
   ],
   bootstrap: [AppComponent]
 })

@@ -8,7 +8,7 @@
     <div class="hotel-description">{{hotel.description}}</div>
   </mat-tab>
   <mat-tab label="Location">
-    <div class="location-address">12, Sejong-daero 12-gil, Jung-gu, Myeong-dong, Seoul, South Korean, 04526</div>
+    <div class="location-address">{{hotel.address}}</div>
     <div class="map-location-viewer"
          leaflet
          [leafletCenter]="hotel.location"

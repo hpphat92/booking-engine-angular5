@@ -1,4 +1,4 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, Input } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -11,4 +11,6 @@ declare var $: any;
 })
 export class PlaceViewerComponent {
 
+  @Input()
+  public hideBackDrop;
 }

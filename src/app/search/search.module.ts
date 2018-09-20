@@ -7,6 +7,7 @@ import { SearchResultsComponent } from './search-results/search-results.componen
 import { HotelDetailComponent } from './hotel-detail/hotel-detail.component';
 import { ModalHotelViewingDetailComponent } from './modal-hotel-viewing-detail/modal-hotel-viewing-detail.component';
 import { MakeBookingComponent } from './make-booking/make-booking.component';
+import { BookingConfirmedComponent } from './booking-confirmed/booking-confirmed.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,9 @@ const routes: Routes = [
         path: 'book-now', component: MakeBookingComponent
       },
       {
+        path: 'booking-completed', component: BookingConfirmedComponent
+      },
+      {
         path: '**',
         redirectTo: 'results'
       }
@@ -36,7 +40,8 @@ const routes: Routes = [
     SearchResultsComponent,
     HotelDetailComponent,
     ModalHotelViewingDetailComponent,
-    MakeBookingComponent
+    MakeBookingComponent,
+    BookingConfirmedComponent
   ],
   imports: [
     SharedModule,
