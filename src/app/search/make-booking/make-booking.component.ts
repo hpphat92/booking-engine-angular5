@@ -1,13 +1,14 @@
 import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
 import { AuthService } from '../../shared/services/auth.service';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { BookingService } from '../../shared/api';
+import { BookingService, InventoryBooking } from '../../shared/api';
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import AppConstant from '../../app.constant';
 import { ModalHotelViewingDetailComponent } from '../modal-hotel-viewing-detail/modal-hotel-viewing-detail.component';
 import { MatDialog, MatTabGroup } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import BookingSourceEnum = InventoryBooking.BookingSourceEnum;
 
 @Component({
   selector: 'app-make-booking',
@@ -55,13 +56,14 @@ export class MakeBookingComponent implements OnDestroy {
               public route: ActivatedRoute) {
     this.bookingInfo = this.authService.bookingInfo;
     this.bookingDetail = {
-      discount: 1,
+      discount: 0,
       list: _.map(_.groupBy(this.bookingInfo.items, (x) => x.rateName + '_' + x.rateValue), (roomList, k) => {
         let [roomName, rateValue] = k.split('_');
         return {
           ratePerItem: rateValue,
           roomName,
           amount: roomList.length,
+          list: roomList,
           totalRates: rateValue * roomList.length
         };
       })
@@ -77,7 +79,7 @@ export class MakeBookingComponent implements OnDestroy {
       travellingForWork: [true, [Validators.required]],
       isMainGuest: [true, [Validators.required]],
       firstName: [''],
-      specialRequests: [''],
+      remarks: [''],
       lastName: ['', [Validators.required]],
       email: ['', [Validators.email, Validators.required]],
       nationality: ['', [Validators.required]],
@@ -119,6 +121,10 @@ export class MakeBookingComponent implements OnDestroy {
     }
   }
 
+  public goBackToSelectRooms() {
+    this.authService.navigateByUrl(['search', 'detail', this.bookingInfo.hotel.id]);
+  }
+
   ngOnDestroy() {
   }
 
@@ -130,11 +136,43 @@ export class MakeBookingComponent implements OnDestroy {
     this.matTab.selectedIndex = 1;
   }
 
+  public createBooking() {
+    let { bookingInfo, search } = this.authService;
+    let userInfo = this.userInfoForm.getRawValue();
+    return this.bookingService.bookingReserve(bookingInfo.hotel.id, {
+      checkIn: moment(search.checkIn).format(AppConstant.typeFormat.date),
+      checkOut: moment(search.checkOut).format(AppConstant.typeFormat.date),
+      bookingSource: BookingSourceEnum.Manual,
+      remarks: userInfo.remarks,
+      addOns: [],
+      reservationItems: _.map(_.flatten(_.map(this.bookingDetail.list, 'list')), (r) => {
+        return {
+          rateTypeId: r.rateTypeId,
+          itemId: r.itemId
+        };
+      }),
+      // reservationItems: _.flatten(_.map(this.authService.bookingInfo.roomList, (room) => {
+      //   return _.map(room.rooms, (itemId) => {
+      //     return {
+      //       rateTypeId: room.rateType.id,
+      //       itemId
+      //     }
+      //   });
+      // })),
+      arrivalTime: '',
+      user: userInfo
+    });
+  }
+
   public payWithStripe() {
-    this.authService.navigateByUrl(['search', 'booking-completed']);
+    this.createBooking().subscribe(() => {
+      this.authService.navigateByUrl(['search', 'booking-completed']);
+    })
   }
 
   public payWithPaypal() {
-    this.authService.navigateByUrl(['search', 'booking-completed']);
+    this.createBooking().subscribe(() => {
+      this.authService.navigateByUrl(['search', 'booking-completed']);
+    })
   }
 }

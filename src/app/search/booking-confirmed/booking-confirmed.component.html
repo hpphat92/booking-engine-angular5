@@ -1,261 +1,109 @@
-<div class="hotel-general-info">
-  <div class="info">
-    <div class="star-rating">
-      <i class="fas fa-star"></i>
-      <i class="fas fa-star"></i>
-      <i class="fas fa-star"></i>
+<div class="booking-confirmed-content-container">
+  <div class="booking-confirm-title">
+    <div class="title">Booking is confirmed.
+      Thank you.
     </div>
-    <div class="score-and-review">
-      <div class="score">8.2</div>
-      <div class="view-count">4,000 reviews</div>
-    </div>
-    <div class="price-buttons">
-      <div class="action">Map</div>
-      <div class="price">{{299 | currency: '$': 'USD'}}</div>
-    </div>
-    <div class="hotel-name">
-      {{hotel?.name}}
-    </div>
-    <div class="hotel-nationality"> {{hotel?.country}}
+    <div class="booking-id">Booking ID: 311082896</div>
+  </div>
+  <div class="next-todo">
+    <div class="title">Next to do:</div>
+    <div class="contents">
+      <div class="left content">
+        <div class="content-title">Make another booking</div>
+        <button>New booking</button>
+      </div>
+      <div class="splitter"></div>
+      <div class="right content">
+        <div class="content-title">Find your property</div>
+        <button>Directions</button>
+      </div>
     </div>
   </div>
-  <div class="photo">
-    <ngu-carousel
-      #myCarousel
-      class="carousel"
-      [inputs]="carouselPhoto">
-      <ngu-item NguCarouselItem
-                *ngFor="let img of ((hotel?.images?.length)? hotel.images : [])">
-        <img [src]="img" alt="">
-      </ngu-item>
-      <div NguCarouselPrev class="nav-button left" [class.hidden]="myCarousel.data.isFirst && myCarousel.data.isLast"
-           [class.disabled]="myCarousel.data.isFirst">
-        <mat-icon>chevron_left</mat-icon>
+
+  <div class="more-options">
+    <div class="option">
+      <div class="option-container">
+        <div class="group-title">
+          <div class="small-title">Need a ride to Airport?</div>
+          <div class="main-title">We cater for it</div>
+        </div>
+        <div class="button-option">
+          <button>Book a ride</button>
+        </div>
       </div>
-      <div NguCarouselNext class="nav-button right" [class.hidden]="myCarousel.data.isFirst && myCarousel.data.isLast"
-           [class.disabled]="myCarousel.data.isLast ">
-        <mat-icon>chevron_right</mat-icon>
+    </div>
+    <div class="option">
+      <div class="option-container">
+        <div class="group-title">
+          <div class="small-title">Exciting about the new offers around?</div>
+          <div class="main-title">We cater for it</div>
+        </div>
+        <div class="button-option">
+          <button>Explore Offers</button>
+        </div>
       </div>
-    </ngu-carousel>
-    <!--<img [src]="i" *ngFor="let i of hotel.images" alt="">-->
+    </div>
+  </div>
+  <div class="bottom-remarks">
+    <div>Any cancellation received within 7 days prior to arrival date will incur the full period charge.</div>
+    <div>
+      Failure to arrive at your hotel or property will be treated as a No-Show and no refund will be given (Property
+      Policy).
+    </div>
   </div>
 </div>
-<div class="hotel-detail-info">
-  <mat-tab-group class="custom-tabs" (selectedIndexChange)="onTabChange($event)" [disableRipple]="true">
-    <mat-tab label="Rooms">
-      <div class="filter-options">
-        <div class="header">
-          <div class="title">Filter room options</div>
-          <div class="reset">Reset</div>
+<div class="booking-detail-container">
+  <div class="booking-detail">
+    <div class="header">
+      <div class="title">Your booking</div>
+      <div class="amount">3 nights, 1 adult</div>
+      <div class="status">Paid</div>
+    </div>
+    <div class="hotel-detail">
+      <div class="hotel-name">{{bookingInfo.hotel.name}}</div>
+      <div class="hotel-address">{{bookingInfo.hotel.address}}</div>
+    </div>
+    <div class="checking-times">
+      <div class="check-date">
+        <div class="title">Check-in</div>
+        <div class="date">
+          {{search.checkIn | date}}
         </div>
-        <div class="criterias">
-          <mat-checkbox>Pay later</mat-checkbox>
-          <mat-checkbox>Twin bed</mat-checkbox>
-          <mat-checkbox>Non-smoking</mat-checkbox>
-          <mat-checkbox>Non-smoking</mat-checkbox>
-          <mat-checkbox>Free cancellation</mat-checkbox>
-          <mat-checkbox>Pay later</mat-checkbox>
-          <mat-checkbox>Free cancellation</mat-checkbox>
-          <mat-checkbox>Pay later</mat-checkbox>
+        <div class="sub-title">until 10:00am</div>
+      </div>
+      <div class="check-date">
+        <div class="title">Check-out</div>
+        <div class="date">
+          {{search.checkOut | date}}
+        </div>
+        <div class="sub-title">until 10:00am</div>
+      </div>
+    </div>
+    <div class="booking-detail-list-room">
+      <div class="booking-room" *ngFor="let room of bookingDetail.list">
+        <div class="name-amount">{{room.roomName}} x {{room.amount}}</div>
+        <div class="cost">
+          {{room.totalRates | currency: 'USD': '$'}}
         </div>
       </div>
-
-      <div class="table-rooms" *ngIf="hotel">
-        <table>
-          <tbody *ngFor="let room of hotel.rooms">
-          <tr class="header">
-            <td class="room-name-col">Room Type</td>
-            <td class="text-center">Today's Price</td>
-            <td class="text-center room-capacity-col">Sleeps</td>
-            <td class="text-center">Select Rooms</td>
-            <td></td>
-          </tr>
-          <tr class="row-data" *ngFor="let rate of room.rateList, let i = index, let first = first">
-            <td class="room-info-description" [attr.rowspan]="room.rateList.length" *ngIf="first">
-              <div class="room-name">
-                {{room.name}}
-              </div>
-              <div class="room-image">
-                <ngu-carousel
-                  #myCarousel
-                  class="carousel"
-                  [inputs]="carouselPhoto">
-                  <ngu-item NguCarouselItem
-                            *ngFor="let img of ((hotel?.images?.length)? hotel.images : [])">
-                    <img [src]="img" alt="">
-                  </ngu-item>
-                  <div NguCarouselPrev class="nav-button left"
-                       [class.hidden]="myCarousel.data.isFirst && myCarousel.data.isLast"
-                       [class.disabled]="myCarousel.data.isFirst">
-                    <mat-icon>chevron_left</mat-icon>
-                  </div>
-                  <div NguCarouselNext class="nav-button right"
-                       [class.hidden]="myCarousel.data.isFirst && myCarousel.data.isLast"
-                       [class.disabled]="myCarousel.data.isLast ">
-                    <mat-icon>chevron_right</mat-icon>
-                  </div>
-                </ngu-carousel>
-              </div>
-              <div class="room-description">
-                {{room.description}}
-              </div>
-              <div class="facilities">
-                <i class="fas fa-bed"></i>
-                <i class="fas fa-tv"></i>
-                <i class="fas fa-wifi"></i>
-                <i class="fas fa-utensils"></i>
-                <i class="fas fa-shower"></i>
-                <div class="more">+12</div>
-              </div>
-              <div class="more-features">
-                <div class="feature-item">Free cancellation</div>
-                <div class="feature-item">Pay later</div>
-                <div class="feature-item more">•••</div>
-              </div>
-            </td>
-            <td class="rate-info">
-              <div class="rate-value">
-                {{rate.rateValue | currency: 'USD':'$'}}
-              </div>
-              <div class="rate-type">
-                {{rate.rate.name}}
-              </div>
-              <div class="off-count">59% off</div>
-            </td>
-            <td class="capacity-count">
-              <i class="far fa-user"></i> x 2
-            </td>
-            <td class="select-room-ddl">
-              <ng-select [clearable]="true"
-                         bindLabel="items"
-                         [disabled]="!rate.options || !rate.options.length"
-                         [(ngModel)]="rate.selectedItemIds"
-                         (change)="extractListSelectedItems(room)"
-                         appendTo="body"
-                         [searchable]="false"
-                         [markFirst]="false"
-                         placeholder="Choose Amount">
-                <ng-option *ngFor="let val of rate.options" [value]="val">
-                  <!--[disabled]="(bookingRecordDetail.maxPaxAllowed + (bookingRecordDetail.selectedRooms[room.room.id + '_'+ room.rateType.id] || 0) * (room.rateType.capability || 1) < bookingRecordDetail.amountPAXSelected + val * (room.rateType.capability || 1)) && (bookingRecordDetail.maxPaxAllowed <= bookingRecordDetail.amountPAXSelected) || room.rateType.capability<val">-->
-                  {{val.length}} Room<span *ngIf="val.length<2">s</span>
-                </ng-option>
-                <ng-template ng-label-tmp let-item="item">
-                  {{item.length}} Room<span *ngIf="item.length<2">s</span>
-                </ng-template>
-                <ng-template ng-option-tmp let-item="item" let-index="index">
-                  {{item.length}} <span><b
-                  *ngIf="item"> {{(item.length * rate.rateValue) | currency: 'USD':'$'}}</b></span>
-                </ng-template>
-              </ng-select>
-            </td>
-            <td class="reserve-button-cell" [attr.rowspan]="room.rateList.length" *ngIf="first">
-              <div class="content">
-                <button class="reserve-button" (click)="reserveRooms()" mat-button mat-raised-button>Reserve</button>
-                <ul class="text">
-                  <li>No booking/credit card fees.</li>
-                  <li>Confirmation required</li>
-                  <li>No registration required</li>
-                </ul>
-              </div>
-            </td>
-          </tr>
-          </tbody>
-        </table>
-      </div>
-    </mat-tab>
-    <mat-tab label="About">
-      <div class="about-container">
-        <div class="about-hotel-info">
-          <div class="star-rating">
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-            <i class="fas fa-star"></i>
-          </div>
-          <div class="score-and-review">
-            <div class="score">8.2</div>
-            <div class="view-count">4,000 reviews</div>
-          </div>
-          <div class="hotel-name">
-            {{hotel?.name}}
-          </div>
-          <div class="hotel-address">{{hotel?.address}}</div>
-          <div class="tab-like-title">
-            About
-          </div>
-          <div class="description">
-            {{hotel?.description}}
-          </div>
-          <div class="tab-like-title">
-            Amenities
-          </div>
-          <div class="list-amenities">
-            <div class="facility">
-              <i class="fas fa-wifi"></i>
-              <div class="label">WiFi</div>
-            </div>
-            <div class="facility">
-              <i class="fas fa-tshirt"></i>
-              <div class="label">Laundry service</div>
-            </div>
-            <div class="facility">
-              <i class="fas fa-smoking-ban"></i>
-              <div class="label">Non-smoking</div>
-            </div>
-            <div class="facility">
-              <i class="fas fa-hdd"></i>
-              <div class="label">Safety Deposit Boxes</div>
-            </div>
-            <div class="facility">
-              <i class="fas fa-coffee"></i>
-              <div class="label">Complimentary Breakfast</div>
-            </div>
-            <div class="facility">
-              <i class="fas fa-home"></i>
-              <div class="label">Daily housekeeping</div>
-            </div>
-            <div class="facility">
-              <i class="far fa-handshake"></i>
-              <div class="label">Free cancellation</div>
-            </div>
-            <div class="facility">
-              <i class="fas fa-air-freshener"></i>
-              <div class="label">Air-Cond</div>
-            </div>
-            <div class="facility">
-              <i class="fas fa-dumbbell"></i>
-              <div class="label">Gym</div>
-            </div>
-            <div class="facility">
-              <i class="fas fa-phone-volume"></i>
-              <div class="label">Telephone</div>
-            </div>
-          </div>
-        </div>
-        <div class="map">
-          <div class="map-location-viewer"
-               *ngIf="hotel"
-               leaflet
-               [leafletCenter]="hotel.location"
-               [leafletLayers]="layers"
-               (leafletMapReady)="mapReady($event)"
-               [leafletOptions]="options">
-          </div>
+    </div>
+    <div class="sub-total">
+      <div class="row-total">
+        <div class="name">10% VAT</div>
+        <div class="value"> {{bookingDetail.vat | currency: 'USD': '$'}}
         </div>
       </div>
-    </mat-tab>
-  </mat-tab-group>
-
-</div>
-<div class="related-results">
-
-  <div class="tab-like-title">
-    Related
-  </div>
-  <div class="list-related-results">
-    <app-place-viewer *ngFor="let hotel of hotelList">
-      <img [src]="hotel.photo" alt="">
-      <label name>{{hotel.name}}</label>
-      <label description>{{hotel.description}}</label>
-    </app-place-viewer>
+      <div class="row-total">
+        <div class="name">Discount</div>
+        <div class="value"> {{bookingDetail.discount | currency: 'USD': '$'}}
+        </div>
+      </div>
+      <div class="row-total final">
+        <div class="name">Total</div>
+        <div class="value"> {{bookingDetail.totalAfterVat | currency: 'USD': '$'}}
+        </div>
+      </div>
+    </div>
+    <div class="manage-booking"></div>
   </div>
 </div>

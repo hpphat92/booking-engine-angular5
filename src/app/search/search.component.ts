@@ -1,9 +1,10 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import AppConstant from '../app.constant';
 import { AuthService } from '../shared/services/auth.service';
 import * as moment from 'moment';
 import { Router } from '@angular/router';
+import { DaterangepickerDirective } from 'ngx-daterangepicker-material';
 
 declare var $: any;
 
@@ -18,6 +19,10 @@ export class SearchComponent implements AfterViewInit {
   title = 'app';
   public form: FormGroup;
 
+
+  @ViewChild('checkOut')
+  public checkOut: DaterangepickerDirective;
+
   constructor(public formBuilder: FormBuilder,
               public router: Router,
               public authService: AuthService) {
@@ -28,14 +33,16 @@ export class SearchComponent implements AfterViewInit {
       numberOfPax: [''],
     });
     let searchModel = this.authService.search;
-    searchModel.checkIn = {
-      startDate: moment(searchModel.checkIn),
-      endDate: moment(searchModel.checkIn).add(1, 'days').add(-1, 'seconds')
-    };
-    searchModel.checkOut = {
-      startDate: moment(searchModel.checkOut),
-      endDate: moment(searchModel.checkOut).add(1, 'days').add(-1, 'seconds')
-    };
+    if(searchModel.checkIn && searchModel.checkOut){
+      searchModel.checkIn = {
+        startDate: moment(searchModel.checkIn),
+        endDate: moment(searchModel.checkIn).add(1, 'days').add(-1, 'seconds')
+      };
+      searchModel.checkOut = {
+        startDate: moment(searchModel.checkOut),
+        endDate: moment(searchModel.checkOut).add(1, 'days').add(-1, 'seconds')
+      };
+    }
     this.form.patchValue(searchModel);
   }
 

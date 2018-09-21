@@ -10,6 +10,7 @@ import * as _ from 'lodash';
 import * as L from 'leaflet';
 import { latLng, marker, icon } from 'leaflet';
 import AppConstant from '../../app.constant';
+import { AppMainService } from '../../app.service';
 
 @Component({
   selector: 'app-hotel-detail',
@@ -21,6 +22,7 @@ export class HotelDetailComponent {
   public hotelId;
   public hotel: any = null;
   public newMarker;
+  public selectedIds: any = [];
   public layers: any = [];
   public options = {
     // layers: [
@@ -67,6 +69,7 @@ export class HotelDetailComponent {
   constructor(public authService: AuthService,
               public router: Router,
               public route: ActivatedRoute,
+              public appMainService: AppMainService,
               public elementRef: ElementRef,
               public bookingService: BookingService) {
     // this.numberOfSelectAmounts = _.times(this.userSearch.numberOfPAX, x => x + 1);
@@ -106,38 +109,60 @@ export class HotelDetailComponent {
 
   public getPropertyDetail(id) {
     let modelSearch = this.authService.search;
-    return this.bookingService.bookingDetailProperty(
-      this.hotelId,
-      moment(modelSearch.checkIn).format(AppConstant.typeFormat.date),
-      moment(modelSearch.checkOut).format(AppConstant.typeFormat.date),
-    ).map((resp) => {
-      let data: any = resp.data;
-      this.hotel = data;
-      this.authService.bookingInfo = {
-        hotel: data
-      };
-      this.hotel.location = latLng(this.hotel.latitude, this.hotel.longitude);
-      _.forEach(this.hotel.rooms, (room) => {
-        room.rateList = _.flatten(_.map(room.rateTypes, (rate) => {
-          let groupRates = _.groupBy(rate.items, 'rate');
-          return _.map(_.toPairs(groupRates), ([rateValue, items]) => {
-            let listItemIds = _.map(items, 'id');
-            let options = _.reduce(listItemIds, (acc, currentId) => {
-              let lastItem = acc.slice(-1)[0] || [];
-              acc.push([...lastItem, currentId]);
-              return acc;
-            }, []);
-            return {
-              tempId: `${rate.id}_${rateValue}`,
-              rate,
-              rateValue: +rateValue,
-              options: options,
-              allItems: listItemIds
-            };
-          });
-        }));
+    if (modelSearch.checkIn && modelSearch.checkOut) {
+      return this.bookingService.bookingDetailProperty(
+        this.hotelId,
+        moment(modelSearch.checkIn).format(AppConstant.typeFormat.date),
+        moment(modelSearch.checkOut).format(AppConstant.typeFormat.date),
+      ).map((resp) => {
+        let data: any = resp.data;
+        this.hotel = data;
+        this.authService.bookingInfo = {
+          ...this.authService.bookingInfo,
+          hotel: data
+        };
+        this.hotel.location = latLng(this.hotel.latitude, this.hotel.longitude);
+        _.forEach(this.hotel.rooms, (room) => {
+          room.rateList = _.flatten(_.map(room.rateTypes, (rate) => {
+            let groupRates = _.groupBy(rate.items, 'rate');
+            return _.map(_.toPairs(groupRates), ([rateValue, items]) => {
+              let listItemIds = _.map(items, 'id');
+              let options = _.reduce(listItemIds, (acc, currentId) => {
+                let lastItem = acc.slice(-1)[0] || [];
+                acc.push([...lastItem, currentId]);
+                return acc;
+              }, []);
+              let tempId = `${rate.id}_${rateValue}`;
+              return {
+                tempId,
+                rate,
+                rateValue: +rateValue,
+                options: options,
+                allItems: listItemIds,
+                selectedItemIds: _.map(_.filter(this.authService.bookingInfo.items, { tempId }), 'itemId'),
+              };
+            });
+          }));
+          this.extractListSelectedItems(room);
+        });
       });
-    });
+    }
+    // Should search detail
+    return this.appMainService.getInventoryTemplatesDetail(this.hotelId)
+      .map((resp: any) => {
+        let data: any = resp.data;
+        data.images = _.map(data.images, 'imageUrl');
+        this.hotel = data;
+        this.hotel.location = latLng(this.hotel.latitude, this.hotel.longitude);
+        this.authService.bookingInfo = {
+          ...this.authService.bookingInfo,
+          hotel: data
+        };
+        this.appMainService.searchProperties(this.authService.siteResources.fromPartnerId || '', this.hotel.id)
+          .subscribe((r: any) => {
+            this.hotel.templates = r.data;
+          });
+      });
   }
 
   public onTabChange(e) {
@@ -157,6 +182,7 @@ export class HotelDetailComponent {
         return acc;
       }, []);
     });
+    this.selectedIds = selectedIds;
     // let newRateList = _.flatten(_.map(room.rateTypes, (rate) => {
     //   let groupRates = _.groupBy(rate.items, 'rate');
     //   return _.map(_.toPairs(groupRates), ([rateValue, items]) => {
@@ -195,7 +221,9 @@ export class HotelDetailComponent {
           return {
             itemId,
             room,
+            tempId: rateList.tempId,
             rateName: rateList.rate.name,
+            rateTypeId: rateList.rate.id,
             rateValue: rateList.rateValue
           };
         });

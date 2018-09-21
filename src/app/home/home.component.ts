@@ -4,7 +4,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import * as _ from 'lodash';
 import { AuthService } from '../shared/services/auth.service';
 
-import AppMainService from '../app.service';
+import { AppMainService } from '../app.service';
 
 declare var $: any;
 
@@ -27,16 +27,19 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
   public mapSearch;
   public inventoryTypes;
   public selected;
+  public subscriptionGetInventory;
 
   // public properties = data;
 
   public set siteResources(val) {
     this._siteResources = val;
     if (this._siteResources) {
-      this.getInventoryTypes().subscribe((resp: any) => {
+      this.subscriptionGetInventory && this.subscriptionGetInventory.unsubscribe();
+      this.subscriptionGetInventory = this.getInventoryTypes().subscribe((resp: any) => {
         this.inventoryTypes = resp.data;
         this.loadProperties(this._siteResources.fromPartnerId);
       });
+
     }
   }
 
@@ -56,6 +59,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
       isTraveliingForWork: ['']
     });
     this.siteResources = this.authService.siteResources;
+    this.authService.search = {};
     this.subscription = this.authService.siteResource$.subscribe((newSiteResource) => {
       this.siteResources = null;
       setTimeout(() => {
@@ -201,7 +205,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
       }, (result, status) => {
         if (status === 'OK') {
           let photos = result[0].photos;
-          if (photos.length) {
+          if (photos && photos.length) {
             resolve(photos[0].getUrl());
           } else {
             resolve();
@@ -213,8 +217,9 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     });
   }
 
-  public goDetail() {
-    console.log(this);
+  public goDetail(hotel) {
+    this.authService.hotelDetail = hotel;
+    this.authService.navigateByUrl(['search', 'detail', hotel.id]);
   }
 
   public initSearch() {

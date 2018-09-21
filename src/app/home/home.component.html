@@ -113,7 +113,7 @@
     <div class="single-hotel" *ngIf="properties.hotelList.length === 1">
       <div class="row-types" *ngFor="let type of properties.properties">
         <div class="type-name"><span>{{type.type}}</span></div>
-        <app-place-viewer *ngFor="let p of type.properties">
+        <app-place-viewer *ngFor="let p of type.properties" (click)="goDetail(properties.hotelList[0])">
           <img [src]="p.images[0]?.imageUrl || '../../assets/images/no-preview.jpg'" alt="">
           <label name>{{p.name}}</label>
           <label description>{{'From 567$/person' || p.description}}</label>
@@ -123,7 +123,7 @@
     <div class="single-city" *ngIf="properties.hotelList.length > 1 && properties.cities.length === 1">
       <div class="row-types" *ngFor="let type of properties.cities[0].properties">
         <div class="type-name"><span>{{type.type}}</span></div>
-        <app-place-viewer *ngFor="let p of type.properties">
+        <app-place-viewer *ngFor="let p of type.properties" (click)="goDetail(p)">
           <img [src]="p.images[0]?.imageUrl || '../../assets/images/no-preview.jpg'" alt="">
           <label name>{{p.name}}</label>
           <label description>{{'From 567$/person' || p.description}}</label>
@@ -136,7 +136,7 @@
           <mat-tab [label]="city.name" *ngFor="let city of properties.cities">
             <div class="row-types" *ngFor="let type of city.properties">
               <div class="type-name"><span>{{type.type}}</span></div>
-              <app-place-viewer *ngFor="let p of type.properties">
+              <app-place-viewer *ngFor="let p of type.properties" (click)="goDetail(p)">
                 <img [src]="p.images[0]?.imageUrl || '../../assets/images/no-preview.jpg'" alt="">
                 <label name>{{p.name}}</label>
                 <label description>{{'From 567$/person' || p.description}}</label>

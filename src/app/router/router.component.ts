@@ -4,7 +4,7 @@ import { AuthService } from '../shared/services/auth.service';
 import { PartnerService, PartnerSettingService } from '../shared/api';
 import * as _ from 'lodash';
 import { SettingKeyMap } from '../app.constant';
-import AppMainService from '../app.service';
+import { AppMainService} from '../app.service';
 
 @Component({
   selector: 'app-router',

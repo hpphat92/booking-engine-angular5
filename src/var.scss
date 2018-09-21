@@ -168,3 +168,136 @@ $main-blue: #1486FF;
     }
   }
 }
+
+@mixin booking-billing-list {
+  .booking-detail-container {
+    flex-grow: 1;
+    padding-left: 30px;
+    .booking-detail {
+      width: 360px;
+      margin: auto;
+      background: #fff;
+      border-radius: 4px;
+      box-shadow: 0 2px 22px 0 #DBDBDB;
+      padding: 30px;
+      box-sizing: border-box;
+      .header {
+        padding-bottom: 20px;
+        border-bottom: 1px solid #eee;
+        text-align: center;
+        line-height: 2;
+        .title {
+          font-weight: bold;
+          font-size: 18px;
+        }
+        .amount {
+          font-size: 14px;
+          color: #9E9E9E;
+        }
+        .status {
+          padding: 5px 20px;
+          display: inline-block;
+          background: $main-blue;
+          color: #fff;
+          font-weight: bold;
+          border-radius: 6px;
+          margin: 10px 0 10px 0;
+        }
+      }
+      .hotel-detail {
+        padding: 20px 0;
+        border-bottom: 1px solid #eee;
+        .hotel-name {
+          font-size: 18px;
+          font-weight: bold;
+          line-height: 2;
+        }
+        .hotel-address {
+          font-size: 14px;
+          color: #9e9e9e;
+        }
+      }
+      .checking-times {
+        display: flex;
+        padding: 20px 0;
+        border-bottom: 1px solid #eee;
+
+        .check-date {
+          flex-grow: 1;
+          text-align: center;
+          .title {
+            font-size: 12px;
+            color: #9E9E9E;
+          }
+          .date {
+            font-weight: bold;
+            line-height: 1.5;
+          }
+          .sub-title {
+            font-size: 12px;
+            color: #9E9E9E;
+          }
+        }
+      }
+      .booking-detail-list-room {
+        padding: 15px 0;
+        border-bottom: 1px solid #eee;
+        .booking-room {
+          display: flex;
+          align-items: center;
+          flex-wrap: nowrap;
+          line-height: 2;
+          .name-amount {
+            font-size: 14px;
+            font-weight: bold;
+            padding-right: 10px;
+            min-width: 150px;
+          }
+          .edit {
+            font-size: 12px;
+            cursor: pointer;
+          }
+          .cost {
+            margin-left: auto;
+            font-weight: bold;
+            color: #333;
+            font-size: 15px;
+          }
+        }
+      }
+      .sub-total {
+        line-height: 2;
+        padding: 15px 0;
+        .row-total {
+          display: flex;
+          font-weight: bold;
+          font-size: 14px;
+          .value {
+            margin-left: auto;
+          }
+          &.final {
+            color: $main-blue;
+          }
+        }
+      }
+      .enter-discount-code {
+        input {
+          height: 49px;
+          padding: 10px 20px;
+          width: 100%;
+          box-sizing: border-box;
+          background-color: #F5F5F5;
+          box-shadow: none;
+          border: none;
+          border-radius: 2px;
+          outline: none;
+          @include input-placeholder {
+            color: #9E9E9E;
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+  @content;
+}

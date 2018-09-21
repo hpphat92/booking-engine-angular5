@@ -21,6 +21,12 @@ var SearchPropertiesbyPartnerId = (partnerId, parentId = '') => ({
   headers: reqHeader,
   json: true
 });
+var getInventoryTemplateDetail = (id) => ({
+  url: `${apiDomain}/api/inventory-templates/${id}`,
+  method: "GET",
+  headers: reqHeader,
+  json: true
+});
 var getInventoryTypes = {
   url: `${apiDomain}/api/inventory-types`,
   method: "GET",
@@ -45,6 +51,11 @@ router.get('/search', (req, res) => {
 
 router.get('/inventory-types', (req, res) => {
   request(getInventoryTypes, function (error, response, body) {
+    res.status(200).json(response.body);
+  })
+});
+router.get('/inventory-templates/:id', (req, res) => {
+  request(getInventoryTemplateDetail(req.params.id), function (error, response, body) {
     res.status(200).json(response.body);
   })
 });

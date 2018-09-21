@@ -13,6 +13,7 @@
     <input matInput placeholder="Check in" [singleDatePicker]="true" type="text" ngxDaterangepickerMd
            [autoApply]="true"
            opens="left"
+           [maxDate]="form.controls['checkOut'].value.startDate? form.controls['checkOut'].value.startDate.clone().add(-1,'day'): null"
            [locale]="{format: 'DD-MM-YYYY'}"
            formControlName="checkIn" class="form-control"/>
     <span matSuffix>
@@ -23,7 +24,8 @@
     <input matInput placeholder="Check out" [singleDatePicker]="true" type="text" ngxDaterangepickerMd
            [autoApply]="true"
            opens="left"
-           [minDate]=""
+           [minDate]="form.controls['checkIn'].value.startDate?form.controls['checkIn'].value.startDate.clone().add(1,'day'): null"
+
            [locale]="{format: 'DD-MM-YYYY'}"
            formControlName="checkOut" class="form-control"/>
     <span matSuffix>
@@ -38,7 +40,7 @@
                   </span>
     </mat-form-field>
   </choosePassenger>
-  <button mat-button mat-raised-button color="primary" class="search-button" (click)="search()">
+  <button mat-button mat-raised-button color="primary" class="search-button" [disabled]="form.invalid" (click)="search()">
     Search
   </button>
 </form>

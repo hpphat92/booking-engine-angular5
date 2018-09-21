@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { HomeComponent } from './home.component';
 import { RouterModule, Routes } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
-import AppMainService from '../app.service';
+import { AppMainService} from '../app.service';
 
 
 const routes: Routes = [

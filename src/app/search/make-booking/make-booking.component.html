@@ -45,9 +45,6 @@
                         <i class="far fa-calendar-alt"></i>
                   </span>
         </mat-form-field>
-        <mat-form-field>
-          <input type="text" matInput placeholder="Last name" required>
-        </mat-form-field>
       </div>
 
       <div class="address-line">
@@ -129,7 +126,7 @@
         </div>
       </div>
 
-      <textarea placeholder="Your request(s) here" formControlName="specialRequests" class="more-requests"></textarea>
+      <textarea placeholder="Your request(s) here" formControlName="remarks" class="more-requests"></textarea>
       <div class="note">
         Please write your requests in English that we’ll share with the property. Special request cannot be guaranteed,
         but the property will do its best to meet your needs. You can always make a special request after your booking
@@ -167,7 +164,7 @@
     <div class="booking-detail-list-room">
       <div class="booking-room" *ngFor="let room of bookingDetail.list">
         <div class="name-amount">{{room.roomName}} x {{room.amount}}</div>
-        <div class="edit">
+        <div class="edit" (click)="goBackToSelectRooms()">
           <i class="fas fa-pencil-alt"></i>
         </div>
         <div class="cost">
@@ -188,7 +185,7 @@
       </div>
       <div class="row-total final">
         <div class="name">Total</div>
-        <div class="value"> {{bookingDetail.total | currency: 'USD': '$'}}
+        <div class="value"> {{bookingDetail.totalAfterVat | currency: 'USD': '$'}}
         </div>
       </div>
     </div>

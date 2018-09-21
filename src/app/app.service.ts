@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()
-export default class AppMainService {
+export class AppMainService {
 
   constructor(private http: HttpClient) {
 
@@ -18,5 +18,9 @@ export default class AppMainService {
 
   public searchInventoryTypes() {
     return this.http.get(`/api/inventory-types`);
+  }
+
+  public getInventoryTemplatesDetail(id) {
+    return this.http.get(`/api/inventory-templates/${id}`);
   }
 }
