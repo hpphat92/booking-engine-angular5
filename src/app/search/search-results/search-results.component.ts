@@ -48,6 +48,7 @@ export class SearchResultsComponent implements OnDestroy {
       moment(model.checkIn).format(AppConstant.typeFormat.date),
       moment(model.checkOut).format(AppConstant.typeFormat.date),
       model.numberOfPax,
+      this.authService.siteResources.fromPartnerId,
       '',
       '0',
       true,
@@ -69,16 +70,18 @@ export class SearchResultsComponent implements OnDestroy {
   }
 
   public viewHotelDetail(hotel) {
-    const dialogRef = this.dialog.open(ModalHotelViewingDetailComponent, {
-      data: {
-        hotel
-      },
-      width: '50vw',
-      height: '60vh'
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-    });
+    this.authService.hotelDetail = hotel;
+    this.authService.navigateByUrl(['search', 'detail', hotel.id]);
+    // const dialogRef = this.dialog.open(ModalHotelViewingDetailComponent, {
+    //   data: {
+    //     hotel
+    //   },
+    //   width: '50vw',
+    //   height: '60vh'
+    // });
+    //
+    // dialogRef.afterClosed().subscribe(result => {
+    // });
   }
 
 

@@ -1,11 +1,10 @@
-import { AfterViewInit, Component, OnDestroy, ViewChild } from '@angular/core';
+import { Component, OnDestroy, ViewChild } from '@angular/core';
 import { AuthService } from '../../shared/services/auth.service';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BookingService, InventoryBooking } from '../../shared/api';
 import * as _ from 'lodash';
 import * as moment from 'moment';
 import AppConstant from '../../app.constant';
-import { ModalHotelViewingDetailComponent } from '../modal-hotel-viewing-detail/modal-hotel-viewing-detail.component';
 import { MatDialog, MatTabGroup } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import BookingSourceEnum = InventoryBooking.BookingSourceEnum;
@@ -164,15 +163,17 @@ export class MakeBookingComponent implements OnDestroy {
     });
   }
 
-  public payWithStripe() {
+  public doCreateBooking() {
     this.createBooking().subscribe(() => {
       this.authService.navigateByUrl(['search', 'booking-completed']);
     })
   }
 
+  public payWithStripe() {
+    this.doCreateBooking();
+  }
+
   public payWithPaypal() {
-    this.createBooking().subscribe(() => {
-      this.authService.navigateByUrl(['search', 'booking-completed']);
-    })
+    this.doCreateBooking();
   }
 }

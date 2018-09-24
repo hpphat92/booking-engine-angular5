@@ -126,6 +126,19 @@
         </div>
       </div>
 
+      <div class="more-payment-option">
+        <div class="payment-option" (click)="doCreateBooking()">
+          <span>Pay Now</span>
+          <i class="fas fa-chevron-right"></i>
+        </div>
+        <div class="splitter"></div>
+        <div class="payment-option" (click)="doCreateBooking()">
+          <span>
+          Pay at Property
+        </span>
+          <i class="fas fa-chevron-right"></i>
+        </div>
+      </div>
       <textarea placeholder="Your request(s) here" formControlName="remarks" class="more-requests"></textarea>
       <div class="note">
         Please write your requests in English that we’ll share with the property. Special request cannot be guaranteed,

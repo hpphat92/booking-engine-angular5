@@ -16,7 +16,7 @@ export class AuthService {
   private _currentPartnerAlliasName;
 
   private _defaultSiteResource = {
-    fromPartnerId: null,
+    fromPartnerId: '',
     fromPartner: null,
     favIcon: 'favicon.png',
     name: 'Trabble | Booking Engine New Version',

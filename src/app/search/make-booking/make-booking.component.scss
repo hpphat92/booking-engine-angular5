@@ -83,6 +83,27 @@
       }
     }
   }
+  .more-payment-option {
+    margin-bottom: 20px;
+    .payment-option {
+      line-height: 3;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: #aaa;
+      padding-right: 10px;
+      cursor: pointer;
+      &:hover {
+        opacity: 0.8;
+      }
+    }
+    .splitter {
+      width: 100%;
+      height: 1px;
+      background: #ccc;
+      margin: 10px 0;
+    }
+  }
   .more-requests {
     background-color: #F5F5F5;
     border-radius: 8px;

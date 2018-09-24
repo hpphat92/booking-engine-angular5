@@ -31,6 +31,36 @@ export class HotelDetailComponent {
     zoom: 12,
     center: latLng(46.879966, -121.726909)
   };
+  public reviews = [
+    {
+      name: 'Stella Yep',
+      location: 'Solo Traveller, Malaysia',
+      title: 'Excellent service ever',
+      reviewScore: 9.2,
+      comment: 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.'
+    },
+    {
+      name: 'Stella Yep',
+      location: 'Solo Traveller, Malaysia',
+      title: 'Excellent service ever',
+      reviewScore: 9.2,
+      comment: 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.'
+    },
+    {
+      name: 'Stella Yep',
+      location: 'Solo Traveller, Malaysia',
+      title: 'Excellent service ever',
+      reviewScore: 9.2,
+      comment: 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.'
+    },
+    {
+      name: 'Stella Yep',
+      location: 'Solo Traveller, Malaysia',
+      title: 'Excellent service ever',
+      reviewScore: 9.2,
+      comment: 'Contrary to popular belief, Lorem Ipsum is not simply random text. It has roots in a piece of classical Latin literature from 45 BC, making it over 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, "Lorem ipsum dolor sit amet..", comes from a line in section 1.10.32.'
+    }
+  ];
   public carouselPhoto = {
     grid: { xs: 1, sm: 1, md: 1, lg: 1, all: 0 },
     slide: 1,
@@ -114,9 +144,11 @@ export class HotelDetailComponent {
         this.hotelId,
         moment(modelSearch.checkIn).format(AppConstant.typeFormat.date),
         moment(modelSearch.checkOut).format(AppConstant.typeFormat.date),
+        modelSearch.numberOfPax
       ).map((resp) => {
         let data: any = resp.data;
         this.hotel = data;
+        this.hotel.location = latLng(this.hotel.latitude, this.hotel.longitude);
         this.authService.bookingInfo = {
           ...this.authService.bookingInfo,
           hotel: data
@@ -143,7 +175,7 @@ export class HotelDetailComponent {
               };
             });
           }));
-          this.extractListSelectedItems(room);
+          this.extractListSelectedItems(this.hotel, room);
         });
       });
     }
@@ -170,8 +202,8 @@ export class HotelDetailComponent {
     window.dispatchEvent(new Event('resize'));
   }
 
-  public extractListSelectedItems(room) {
-    let selectedIds = _.flatten(_.map(room.rateList, 'selectedItemIds'));
+  public extractListSelectedItems(hotel, room) {
+    let selectedIds = _.compact(_.flatten(_.map(_.flatten(_.map(hotel.rooms, 'rateList')), 'selectedItemIds')));
     _.forEach(room.rateList, (rl) => {
       let selectedItems = rl.selectedItemIds || [];
       let allItems = rl.allItems;

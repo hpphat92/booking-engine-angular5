@@ -130,7 +130,7 @@
                          bindLabel="items"
                          [disabled]="!rate.options || !rate.options.length"
                          [(ngModel)]="rate.selectedItemIds"
-                         (change)="extractListSelectedItems(room)"
+                         (change)="extractListSelectedItems(hotel, room)"
                          appendTo="body"
                          [searchable]="false"
                          [markFirst]="false"
@@ -301,14 +301,153 @@
             </div>
           </div>
         </div>
-        <div class="map">
-          <div class="map-location-viewer"
-               *ngIf="hotel"
-               leaflet
-               [leafletCenter]="hotel.location"
-               [leafletLayers]="layers"
-               (leafletMapReady)="mapReady($event)"
-               [leafletOptions]="options">
+      </div>
+    </mat-tab>
+    <mat-tab label="Location">
+      <div class="map-location-viewer"
+           *ngIf="hotel"
+           leaflet
+           [leafletCenter]="hotel.location"
+           [leafletLayers]="layers"
+           (leafletMapReady)="mapReady($event)"
+           [leafletOptions]="options">
+      </div>
+    </mat-tab>
+    <mat-tab label="Amenities">
+      <div class="list-amenities">
+        <div class="facility">
+          <i class="fas fa-wifi"></i>
+          <div class="label">WiFi</div>
+        </div>
+        <div class="facility">
+          <i class="fas fa-tshirt"></i>
+          <div class="label">Laundry service</div>
+        </div>
+        <div class="facility">
+          <i class="fas fa-smoking-ban"></i>
+          <div class="label">Non-smoking</div>
+        </div>
+        <div class="facility">
+          <i class="fas fa-hdd"></i>
+          <div class="label">Safety Deposit Boxes</div>
+        </div>
+        <div class="facility">
+          <i class="fas fa-coffee"></i>
+          <div class="label">Complimentary Breakfast</div>
+        </div>
+        <div class="facility">
+          <i class="fas fa-home"></i>
+          <div class="label">Daily housekeeping</div>
+        </div>
+        <div class="facility">
+          <i class="far fa-handshake"></i>
+          <div class="label">Free cancellation</div>
+        </div>
+        <div class="facility">
+          <i class="fas fa-air-freshener"></i>
+          <div class="label">Air-Cond</div>
+        </div>
+        <div class="facility">
+          <i class="fas fa-dumbbell"></i>
+          <div class="label">Gym</div>
+        </div>
+        <div class="facility">
+          <i class="fas fa-phone-volume"></i>
+          <div class="label">Telephone</div>
+        </div>
+      </div>
+    </mat-tab>
+    <mat-tab label="Reviews">
+      <div class="reviews-header">
+        <div class="review-scores-container">
+          <div class="score-and-review">
+            <div class="score">8.2</div>
+            <div class="view-count">4,000 reviews</div>
+          </div>
+        </div>
+        <div class="review-score-detail">
+          <div class="score">
+            <div class="score-description">
+              <div class="score-value">8.4</div>
+              <div class="text">Cleanliness</div>
+            </div>
+            <div class="bar-score">
+              <div class="progress" style="width: 84%"></div>
+            </div>
+          </div>
+          <div class="score">
+            <div class="score-description">
+              <div class="score-value">7.0</div>
+              <div class="text">Location</div>
+            </div>
+            <div class="bar-score">
+              <div class="progress" style="width: 70%"></div>
+            </div>
+          </div>
+          <div class="score">
+            <div class="score-description">
+              <div class="score-value">8.6</div>
+              <div class="text">Service</div>
+            </div>
+            <div class="bar-score">
+              <div class="progress" style="width: 86%"></div>
+            </div>
+          </div>
+
+          <div class="score">
+            <div class="score-description">
+              <div class="score-value">8.4</div>
+              <div class="text">Facilities</div>
+            </div>
+            <div class="bar-score">
+              <div class="progress" style="width: 84%"></div>
+            </div>
+          </div>
+          <div class="score">
+            <div class="score-description">
+              <div class="score-value">2.3</div>
+              <div class="text">Rooms</div>
+            </div>
+            <div class="bar-score">
+              <div class="progress" style="width: 23%"></div>
+            </div>
+          </div>
+          <div class="score">
+            <div class="score-description">
+              <div class="score-value">9.0</div>
+              <div class="text">Value</div>
+            </div>
+            <div class="bar-score">
+              <div class="progress" style="width: 90%"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="review-filter">
+        <div class="sort-by">
+          <mat-form-field>
+            <mat-select [(ngModel)]="selected">
+              <mat-option value="">Sort by: Popularity</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+      <div class="review-list">
+        <div class="review-container" *ngFor="let r of reviews">
+          <div class="review-content">
+            <div class="review-title">
+              <div class="score">{{r.reviewScore}}</div>
+              <div class="title">{{r.title}}</div>
+            </div>
+            <div class="review-description">{{r.comment}}</div>
+          </div>
+          <div class="review-reply">Thank you!</div>
+          <div class="review-owner">
+            <img src="../../../assets/images/useravatar.jpeg" alt="">
+            <div class="reviewer-info-detail">
+              <div class="name">{{r.name}}</div>
+              <div class="location">{{r.location}}</div>
+            </div>
           </div>
         </div>
       </div>
