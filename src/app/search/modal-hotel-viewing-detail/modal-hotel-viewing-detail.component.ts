@@ -1,6 +1,5 @@
 import { AfterViewInit, Component, ElementRef, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { IMasonryGalleryImage } from 'ngx-masonry-gallery';
 import { icon, LatLng, latLng, Marker, marker } from 'leaflet';
 import * as L from 'leaflet';
 import * as iconUrl from 'leaflet/dist/images/marker-icon.png';
@@ -65,11 +64,11 @@ export class ModalHotelViewingDetailComponent {
               @Inject(MAT_DIALOG_DATA) public data: any) {
     this.hotel = {
       ...this.data.hotel,
-      get listImages() {
-        return data.hotel.images.map(m => <IMasonryGalleryImage>{
-          imageUrl: m
-        });
-      }
+      // get listImages() {
+        // return data.hotel.images.map(m => <IMasonryGalleryImage>{
+        //   imageUrl: m
+        // });
+      // }
     };
     this.hotel.location = latLng(this.hotel.latitude, this.hotel.longitude);
     this.getHotelFullInfo(this.hotel);

@@ -1,0 +1,29 @@
+@import "../../../var";
+@import '~@angular/material/theming';
+
+:host /deep/ {
+  .form-search-booking {
+    width: 100%;
+    .title {
+      font-weight: bold;
+    }
+    .search-form {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      width: 100%;
+      padding: 10px;
+      margin: 20px 0;
+      mat-form-field {
+        width: 200px;
+        margin-right: 20px;
+      }
+      .search-button {
+        button {
+          @include main-button;
+          width: 150px;
+        }
+      }
+    }
+  }
+}

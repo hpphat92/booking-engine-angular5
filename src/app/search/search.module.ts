@@ -8,6 +8,7 @@ import { HotelDetailComponent } from './hotel-detail/hotel-detail.component';
 import { ModalHotelViewingDetailComponent } from './modal-hotel-viewing-detail/modal-hotel-viewing-detail.component';
 import { MakeBookingComponent } from './make-booking/make-booking.component';
 import { BookingConfirmedComponent } from './booking-confirmed/booking-confirmed.component';
+import { ManageBookingComponent } from './manage-booking/manage-booking.component';
 
 
 const routes: Routes = [
@@ -27,6 +28,9 @@ const routes: Routes = [
         path: 'booking-completed', component: BookingConfirmedComponent
       },
       {
+        path: 'manage-booking', component: ManageBookingComponent
+      },
+      {
         path: '**',
         redirectTo: 'results'
       }
@@ -41,7 +45,8 @@ const routes: Routes = [
     HotelDetailComponent,
     ModalHotelViewingDetailComponent,
     MakeBookingComponent,
-    BookingConfirmedComponent
+    BookingConfirmedComponent,
+    ManageBookingComponent
   ],
   imports: [
     SharedModule,

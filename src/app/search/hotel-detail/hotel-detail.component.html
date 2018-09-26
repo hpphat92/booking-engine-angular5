@@ -6,7 +6,7 @@
       <i class="fas fa-star"></i>
     </div>
     <div class="score-and-review">
-      <div class="score">8.2</div>
+      <div class="score">{{hotel?.rates || 0}}</div>
       <div class="view-count">4,000 reviews</div>
     </div>
     <div class="price-buttons">
@@ -41,7 +41,8 @@
   </div>
 </div>
 <div class="hotel-detail-info">
-  <mat-tab-group class="custom-tabs" (selectedIndexChange)="onTabChange($event)" [disableRipple]="true">
+  <mat-tab-group class="custom-tabs" [(selectedIndex)]="currentSelectedTab" (selectedIndexChange)="onTabChange($event)"
+                 [disableRipple]="true">
     <mat-tab label="Rooms">
       <div class="filter-options">
         <div class="header">
@@ -242,7 +243,7 @@
             <i class="fas fa-star"></i>
           </div>
           <div class="score-and-review">
-            <div class="score">8.2</div>
+            <div class="score">{{hotel?.rates || 0}}</div>
             <div class="view-count">4,000 reviews</div>
           </div>
           <div class="hotel-name">
@@ -254,6 +255,20 @@
           </div>
           <div class="description">
             {{hotel?.description}}
+          </div>
+          <div class="photos" *ngIf="hotel && hotel.images && currentSelectedTab == 1">
+            <ngx-masonry [options]="{ 	transitionDuration: '0.2s',
+                                        gutter: 10,
+                                        resize: true,
+                                        initLayout: true,
+                                        fitWidth: true }"
+                         [useImagesLoaded]="true"
+                         class="mansory-container">
+              <ngxMasonryItem class="masonry-item" [attr.content]="last?'View All 55 Photos':''"
+                              *ngFor="let item of hotel.images | slice: 0: 10, let last = last" [class.last]="last">
+                <img [src]="item" alt="">
+              </ngxMasonryItem>
+            </ngx-masonry>
           </div>
           <div class="tab-like-title">
             Amenities
@@ -361,7 +376,7 @@
       <div class="reviews-header">
         <div class="review-scores-container">
           <div class="score-and-review">
-            <div class="score">8.2</div>
+            <div class="score">{{hotel?.rates}}</div>
             <div class="view-count">4,000 reviews</div>
           </div>
         </div>
@@ -433,20 +448,23 @@
         </div>
       </div>
       <div class="review-list">
-        <div class="review-container" *ngFor="let r of reviews">
+        <div class="review-container" *ngFor="let r of hotel?.reviews">
           <div class="review-content">
             <div class="review-title">
-              <div class="score">{{r.reviewScore}}</div>
-              <div class="title">{{r.title}}</div>
+              <div class="score">{{r.rating}}</div>
+              <div class="title">
+                {{r.title}}
+                <div class="sub-title">{{r.relative_time_description}}</div>
+              </div>
             </div>
-            <div class="review-description">{{r.comment}}</div>
+            <div class="review-description">{{r.text}}</div>
           </div>
           <div class="review-reply">Thank you!</div>
           <div class="review-owner">
-            <img src="../../../assets/images/useravatar.jpeg" alt="">
+            <img [src]="r.profile_photo_url" alt="">
             <div class="reviewer-info-detail">
-              <div class="name">{{r.name}}</div>
-              <div class="location">{{r.location}}</div>
+              <div class="name">{{r.author_name}}</div>
+              <!--<div class="location">{{r.relative_time_description}}</div>-->
             </div>
           </div>
         </div>

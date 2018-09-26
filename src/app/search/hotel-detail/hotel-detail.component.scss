@@ -283,17 +283,7 @@
               padding: 25px;
               vertical-align: top;
               button {
-                background: $main-green;
-                height: 44px;
-                font-size: 16px;
-                border-radius: 5px;
-                width: 100%;
-                color: #fff;
-                &[disabled] {
-                  filter: grayscale(0.5);
-                  opacity: 0.6;
-                  cursor: not-allowed;
-                }
+                @include main-button;
               }
               .text {
                 list-style-type: disc;
@@ -316,11 +306,47 @@
         }
       }
     }
+    .mansory-container {
+      margin: auto;
+      .masonry-item {
+        //width: 250px;
+        margin-bottom: 10px;
+        max-width: 400px;
+        overflow: hidden;
+        &.last {
+          cursor: pointer;
+          &:hover {
+            img {
+              transform: scale(1.2);
+            }
+          }
+        }
+        img {
+          transition: all .3s ease-in-out;
+          width: 100%;
+        }
+        &.last:after {
+          pointer-events: none;
+          content: attr(content);
+          position: absolute;
+          width: 100%;
+          height: 100%;
+          top: 0;
+          color: #fff;
+          background: #00000057;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 1.5rem;
+          font-weight: bold;
+        }
+      }
+    }
   }
   .about-container {
     display: flex;
     .about-hotel-info {
-      width: 55%;
+      width: 100%;
       flex-shrink: 0;
       padding-top: 30px;
       @include star-rating($main-blue);
@@ -512,6 +538,13 @@
             color: #333;
             letter-spacing: 0.5px;
             margin-left: 20px;
+            .sub-title {
+              display: block;
+              font-size: 12px;
+              font-weight: normal;
+              color: #222;
+              letter-spacing: unset;
+            }
           }
         }
         .review-description {

@@ -43,4 +43,8 @@ export class BookingConfirmedComponent {
     this.bookingDetail.vat = this.bookingDetail.total / 10;
     this.bookingDetail.totalAfterVat = this.bookingDetail.total + this.bookingDetail.vat;
   }
+
+  public manageBooking() {
+    this.authService.navigateByUrl('search', 'manage-booking');
+  }
 }

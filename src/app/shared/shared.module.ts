@@ -12,8 +12,8 @@ import { AuthService } from './services/auth.service';
 import { NguCarouselModule } from '@ngu/carousel';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ChoosePassengerComponent } from './components/choose-passenger/choose-passenger.component';
-import { MasonryGalleryModule } from 'ngx-masonry-gallery';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
+import { NgxMasonryModule } from 'ngx-masonry';
 
 const modules = [
   MaterialModule,
@@ -24,7 +24,7 @@ const modules = [
   HttpClientModule,
   NguCarouselModule,
   NgSelectModule,
-  MasonryGalleryModule
+  NgxMasonryModule
 ];
 const components = [
   PlaceViewerComponent,

@@ -1,0 +1,23 @@
+<div class="form-search-booking">
+  <div class="title">Retrieve Booking</div>
+
+  <div class="search-form" [formGroup]="form">
+    <mat-form-field>
+      <input type="text" formControlName="bookingId" matInput placeholder="Booking Id" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input type="email" formControlName="email" matInput placeholder="Email" required>
+    </mat-form-field>
+    <mat-form-field>
+      <input type="text" formControlName="lastName" matInput placeholder="Last Name">
+    </mat-form-field>
+    <div class="search-button">
+      <button [disabled]="form.invalid" (click)="searchBooking()">Search</button>
+    </div>
+  </div>
+  <div class="booking-search-results">
+    <div class="booking-item" *ngFor="let b of bookingDetails">
+
+    </div>
+  </div>
+</div>
