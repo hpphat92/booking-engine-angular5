@@ -1,9 +1,9 @@
 <div class="left-list-details">
   <mat-tab-group class="custom-tabs" [disableRipple]="true">
-    <mat-tab label="Hotels">
+    <mat-tab *ngFor="let type of resultList" [label]="type.type">
       <div class="hotel-list">
         <div class="hotel-items" [class.expanded]="hotel.isExpanding"
-             *ngFor="let hotel of hotelList, let i = index">
+             *ngFor="let hotel of type.list, let i = index">
           <div class="hotel-info" (click)="viewHotelDetail(hotel)">
             <div class="photo">
               <img [src]="(hotel.images && hotel.images[0]) || '/assets/images/no-preview.jpg'" alt="">
@@ -42,9 +42,51 @@
         </div>
       </div>
     </mat-tab>
-    <mat-tab label="Activities">
-      Activities goes here
-    </mat-tab>
+    <!--<mat-tab label="Hotels">-->
+    <!--<div class="hotel-list">-->
+    <!--<div class="hotel-items" [class.expanded]="hotel.isExpanding"-->
+    <!--*ngFor="let hotel of resultList, let i = index">-->
+    <!--<div class="hotel-info" (click)="viewHotelDetail(hotel)">-->
+    <!--<div class="photo">-->
+    <!--<img [src]="(hotel.images && hotel.images[0]) || '/assets/images/no-preview.jpg'" alt="">-->
+    <!--</div>-->
+    <!--<div class="description">-->
+    <!--<div class="left-description">-->
+    <!--<div class="star-rating">-->
+    <!--<i class="fas fa-star"></i>-->
+    <!--<i class="fas fa-star"></i>-->
+    <!--<i class="fas fa-star"></i>-->
+    <!--</div>-->
+    <!--<div class="hotel-name">{{hotel.name}}</div>-->
+    <!--<div class="hotel-address">{{hotel.city}}, {{hotel.country}}</div>-->
+    <!--<div class="facilities">-->
+    <!--<i class="fas fa-wifi"></i>-->
+    <!--<i class="fas fa-shower"></i>-->
+    <!--<div class="more">+12</div>-->
+    <!--</div>-->
+    <!--<div class="more-features">-->
+    <!--<div class="feature">Free cancellation</div>-->
+    <!--<div class="feature">Pay later</div>-->
+    <!--<div class="feature more">•••</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--<div class="right-description">-->
+    <!--<div class="score">{{hotel.score || 0}}</div>-->
+    <!--<div class="views-count">{{(hotel.viewCounts || 0).toLocaleString()}} reviews</div>-->
+
+    <!--<div class="price-buttons">-->
+    <!--<div class="off-count">59% off</div>-->
+    <!--<div class="price">{{hotel.minPrice | currency: '$': 'USD'}}</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</div>-->
+    <!--</mat-tab>-->
+    <!--<mat-tab label="Activities">-->
+    <!--Activities goes here-->
+    <!--</mat-tab>-->
   </mat-tab-group>
 </div>
 <div class="right-searching-box">

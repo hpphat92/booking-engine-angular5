@@ -15,17 +15,22 @@
     <div class="form-search">
       <div class="tabs">
 
-        <input type="radio" id="tab1" name="tab-control" checked>
-        <input type="radio" id="tab2" name="tab-control">
-        <input type="radio" id="tab3" name="tab-control">
-        <input type="radio" id="tab4" name="tab-control">
+        <input type="radio" [attr.id]="'tab'+idx" name="tab-control" [checked]="currentActive === idx"
+               *ngFor="let i of inventoryTypes, let idx = index">
+        <!--<input type="radio" id="tab2" name="tab-control">-->
+        <!--<input type="radio" id="tab3" name="tab-control">-->
+        <!--<input type="radio" id="tab4" name="tab-control">-->
         <ul class="dragscroll">
-          <li title="Rooms" class="active"><label for="tab1" role="button"><span>Rooms</span></label></li>
-          <li title="Activities"><label for="tab2" role="button"><span>Activities</span></label></li>
-          <li title="Flights"><label for="tab3" role="button">
-            <span>Flights</span></label></li>
-          <li title="Rentals"><label for="tab4" role="button">
-            <span>Rentals</span></label></li>
+          <li [title]="i.name" [class.active]="currentActive === idx" (click)="currentActive = idx"
+              *ngFor="let i of inventoryTypes, let idx = index">
+            <label [attr.for]="'tab'+idx" role="button"><span>{{i.name}}</span></label>
+          </li>
+          <!--<li title="Rooms"><label for="tab1" role="button"><span>Rooms</span></label></li>-->
+          <!--<li title="Activities"><label for="tab2" role="button"><span>Activities</span></label></li>-->
+          <!--<li title="Flights"><label for="tab3" role="button">-->
+          <!--<span>Flights</span></label></li>-->
+          <!--<li title="Rentals"><label for="tab4" role="button">-->
+          <!--<span>Rentals</span></label></li>-->
         </ul>
 
         <!--<div class="slider">-->
@@ -74,23 +79,6 @@
               <mat-checkbox [disableRipple]="true" formControlName="isTraveliingForWork">I'm travelling for work
               </mat-checkbox>
             </form>
-          </section>
-          <section>
-            <h2>Delivery Contents</h2>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Autem quas adipisci a accusantium eius ut
-            voluptatibus ad impedit nulla, ipsa qui. Quasi temporibus eos commodi aliquid impedit amet, similique
-            nulla.
-          </section>
-          <section>
-            <h2>Shipping</h2>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quam nemo ducimus eius, magnam error quisquam
-            sunt voluptate labore, excepturi numquam! Alias libero optio sed harum debitis! Veniam, quia in eum.
-          </section>
-          <section>
-            <h2>Returns</h2>
-            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa dicta vero rerum? Eaque repudiandae
-            architecto libero reprehenderit aliquam magnam ratione quidem? Nobis doloribus molestiae enim deserunt
-            necessitatibus eaque quidem incidunt.
           </section>
         </div>
       </div>

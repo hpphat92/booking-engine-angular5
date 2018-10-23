@@ -16,6 +16,7 @@ declare var $: any;
 export class HomeComponent implements AfterViewInit, OnDestroy {
   title = 'app';
 
+  public currentActive = 0;
   public form: FormGroup;
   private _siteResources: any;
   public subscription: any;
@@ -123,6 +124,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
       numberOfPax: 1 || model.numberOfPax,
       keyword: model.keyword,
       isTraveliingForWork: model.isTraveliingForWork,
+      typeId: this.inventoryTypes[this.currentActive] ? this.inventoryTypes[this.currentActive].id : '',
     };
     this.authService.navigateByUrl('search');
   }
@@ -140,16 +142,10 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
 
   public processData(partnerId, data) {
     // group by city
-    _.forEach(data, (row) => {
-      row.type = _.find(this.inventoryTypes, { id: row.typeId });
-    });
     this.properties.hotelList = data;
     if (this.properties.hotelList.length === 1) {
       this.appMainService.searchProperties(partnerId, this.properties.hotelList[0].id)
         .subscribe((resp: any) => {
-          _.forEach(resp.data, (row) => {
-            row.type = _.find(this.inventoryTypes, { id: row.typeId });
-          });
           this.properties.properties = _.filter(_.map(_.toPairs(_.groupBy(resp.data, 'type.name')), ([type, properties]) => {
             return { type, properties };
           }), (x) => {

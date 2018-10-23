@@ -1,6 +1,5 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import AppConstant from '../app.constant';
 import { AuthService } from '../shared/services/auth.service';
 import * as moment from 'moment';
 import { Router } from '@angular/router';

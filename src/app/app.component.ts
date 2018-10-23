@@ -7,12 +7,14 @@ import { AuthService } from './shared/services/auth.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
-export class AppComponent implements OnDestroy{
+export class AppComponent implements OnDestroy {
   title = 'app';
   public form: FormGroup;
+  public isShowLoading = false;
 
   public siteResources: any;
   public subscription: any;
+
   constructor(public formBuilder: FormBuilder,
               public authService: AuthService) {
     this.form = this.formBuilder.group({
@@ -22,8 +24,13 @@ export class AppComponent implements OnDestroy{
       isTraveliingForWork: ['']
     });
     this.siteResources = this.authService.siteResources;
-    this.subscription = this.authService.siteResource$.subscribe((newSiteResource)=>{
+    this.subscription = this.authService.siteResource$.subscribe((newSiteResource) => {
       this.siteResources = newSiteResource;
+    });
+    this.authService.showLoading$.subscribe((isShow) => {
+      setTimeout(() => {
+        this.isShowLoading = isShow;
+      });
     });
   }
 

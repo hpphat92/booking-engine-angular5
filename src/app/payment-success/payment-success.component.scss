@@ -1,0 +1,10 @@
+@import "../../var";
+
+:host {
+  .link {
+    text-align: center;
+    display: block;
+    cursor: pointer;
+    color: $main-blue;
+  }
+}

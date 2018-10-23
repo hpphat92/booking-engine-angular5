@@ -5,7 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { ApiModule } from './api';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { PlaceViewerComponent } from './components/place-viewer/place-viewer.component';
 import { LocalStorageModule } from 'angular-2-local-storage';
 import { AuthService } from './services/auth.service';
@@ -14,6 +14,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { ChoosePassengerComponent } from './components/choose-passenger/choose-passenger.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { NgxMasonryModule } from 'ngx-masonry';
+import { AuthInterceptor } from './interceptors';
 
 const modules = [
   MaterialModule,
@@ -48,6 +49,13 @@ const services: Provider[] = [
     ...modules,
     ...components,
     LeafletModule
+  ],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true,
+    },
   ]
 })
 export class SharedModule {

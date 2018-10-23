@@ -12,6 +12,7 @@ export class AuthService {
   private _hotelDetail;
   private _bookingInfo;
   private _userInfo;
+  public showLoading$: Subject<boolean> = new Subject<boolean>();
 
   private _currentPartnerAlliasName;
 

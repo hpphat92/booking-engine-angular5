@@ -4,7 +4,7 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { BookingService } from '../../shared/api';
 import * as _ from 'lodash';
 import * as moment from 'moment';
-import AppConstant from '../../app.constant';
+import { AppConstant } from '../../app.constant';
 import { ModalHotelViewingDetailComponent } from '../modal-hotel-viewing-detail/modal-hotel-viewing-detail.component';
 import { MatDialog } from '@angular/material';
 
@@ -14,7 +14,7 @@ import { MatDialog } from '@angular/material';
   styleUrls: ['./search-results.component.scss']
 })
 export class SearchResultsComponent implements OnDestroy {
-  public hotelList: any = [];
+  public resultList: any = [];
   public total = 0;
   public paging = {
     pageIndex: 0,
@@ -49,7 +49,7 @@ export class SearchResultsComponent implements OnDestroy {
       moment(model.checkOut).format(AppConstant.typeFormat.date),
       model.numberOfPax,
       this.authService.siteResources.fromPartnerId,
-      '',
+      model.typeId,
       '0',
       true,
       this.paging.pageIndex + 1,
@@ -58,7 +58,13 @@ export class SearchResultsComponent implements OnDestroy {
       .map((resp: any) => {
         this.searchInfo.searching = false;
         this.total = resp.data.length;
-        this.hotelList = resp.data;
+        this.resultList = _.map(_.toPairs(_.groupBy(resp.data, 'type')), ([type, list]) => {
+          return {
+            type,
+            list
+          }
+        });
+
         return resp.data.entities;
       }, () => {
       });

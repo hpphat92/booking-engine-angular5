@@ -28,7 +28,7 @@ var getInventoryTemplateDetail = (id) => ({
   json: true
 });
 var getInventoryTypes = {
-  url: `${apiDomain}/api/inventory-types`,
+  url: `${apiDomain}/api/inventory-types/search?isBookable=true`,
   method: "GET",
   headers: reqHeader,
   json: true

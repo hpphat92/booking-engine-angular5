@@ -46,7 +46,7 @@ const routes: Routes = [
     ModalHotelViewingDetailComponent,
     MakeBookingComponent,
     BookingConfirmedComponent,
-    ManageBookingComponent
+    ManageBookingComponent,
   ],
   imports: [
     SharedModule,

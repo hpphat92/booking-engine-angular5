@@ -10,10 +10,13 @@ import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
 import { ApiModule, BASE_PATH, Configuration } from './shared/api';
-import AppConstant from './app.constant';
+import {AppConstant} from './app.constant';
 import './rxjs-operators';
 import { RouterComponent } from './router/router.component';
-import { AppMainService} from './app.service';
+import { AppMainService } from './app.service';
+import { PaymentSuccessComponent } from './payment-success/payment-success.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './shared/interceptors';
 
 let domain = {
   toString: () => AppConstant.domain,
@@ -23,7 +26,8 @@ let domain = {
 @NgModule({
   declarations: [
     AppComponent,
-    RouterComponent
+    RouterComponent,
+    PaymentSuccessComponent
   ],
   imports: [
     ApiModule.forRoot((): Configuration => {

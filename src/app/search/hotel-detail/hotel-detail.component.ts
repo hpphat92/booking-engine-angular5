@@ -9,7 +9,7 @@ import * as moment from 'moment';
 import * as _ from 'lodash';
 import * as L from 'leaflet';
 import { latLng, marker, icon } from 'leaflet';
-import AppConstant from '../../app.constant';
+import { AppConstant} from '../../app.constant';
 import { AppMainService } from '../../app.service';
 
 @Component({

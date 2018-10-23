@@ -1,4 +1,4 @@
-export default class AppConstant {
+export class AppConstant {
   // public static domain = 'https://trabbletestapp.azurewebsites.net';
   public static domain = 'http://localhost:50018';
   // public static domain = 'https://trabble-admin.azurewebsites.net';

@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
 import { HomeModule } from './home/home.module';
 import { RouterComponent } from './router/router.component';
+import { PaymentSuccessComponent } from './payment-success/payment-success.component';
 
 const routes: Routes = [
   {
@@ -15,6 +16,10 @@ const routes: Routes = [
 ];
 const actualRoutes: Routes = [
   ...routes,
+  {
+    path: 'payment-success',
+    component: PaymentSuccessComponent
+  },
   {
     path: ':id',
     component: RouterComponent,
@@ -34,9 +39,9 @@ const actualRoutes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(actualRoutes, {
-    enableTracing: true,
+    enableTracing: false,
     preloadingStrategy: PreloadAllModules,
-    onSameUrlNavigation: 'reload',
+    // onSameUrlNavigation: 'reload',
     useHash: true
   })],
   exports: [RouterModule]

@@ -6,7 +6,7 @@ import * as iconUrl from 'leaflet/dist/images/marker-icon.png';
 import * as shadowUrl from 'leaflet/dist/images/marker-shadow.png';
 import 'leaflet.gridlayer.googlemutant/Leaflet.GoogleMutant';
 import { AuthService } from '../../shared/services/auth.service';
-import AppConstant from '../../app.constant';
+import { AppConstant} from '../../app.constant';
 import * as moment from 'moment';
 import * as _ from 'lodash';
 import { BookingService } from '../../shared/api';

@@ -1,13 +1,14 @@
 import { Component, OnDestroy, ViewChild } from '@angular/core';
 import { AuthService } from '../../shared/services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BookingService, InventoryBooking } from '../../shared/api';
+import { BookingService, InventoryBooking, ReserveModel } from '../../shared/api';
 import * as _ from 'lodash';
 import * as moment from 'moment';
-import AppConstant from '../../app.constant';
+import { AppConstant} from '../../app.constant';
 import { MatDialog, MatTabGroup } from '@angular/material';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import BookingSourceEnum = InventoryBooking.BookingSourceEnum;
+import PaymentMethodEnum = ReserveModel.PaymentMethodEnum;
 
 @Component({
   selector: 'app-make-booking',
@@ -135,7 +136,7 @@ export class MakeBookingComponent implements OnDestroy {
     this.matTab.selectedIndex = 1;
   }
 
-  public createBooking() {
+  public createBooking(paymentMethod?) {
     let { bookingInfo, search } = this.authService;
     let userInfo = this.userInfoForm.getRawValue();
     return this.bookingService.bookingReserve(bookingInfo.hotel.id, {
@@ -143,6 +144,7 @@ export class MakeBookingComponent implements OnDestroy {
       checkOut: moment(search.checkOut).format(AppConstant.typeFormat.date),
       bookingSource: BookingSourceEnum.Manual,
       remarks: userInfo.remarks,
+      paymentMethod: paymentMethod || PaymentMethodEnum.Cash,
       addOns: [],
       reservationItems: _.map(_.flatten(_.map(this.bookingDetail.list, 'list')), (r) => {
         return {
@@ -170,10 +172,48 @@ export class MakeBookingComponent implements OnDestroy {
   }
 
   public payWithStripe() {
-    this.doCreateBooking();
+    this.createBooking(PaymentMethodEnum.CreditCard).subscribe((resp: any) => {
+      this.bookingService.bookingCreateStripe(resp.data.id)
+        .subscribe((r) => {
+          var handler = StripeCheckout.configure({
+            key: r.data.stripePublishKey,
+            image: 'https://trabbleteststorage.blob.core.windows.net/mycontainer/trabble_31cd3b5aa31147ceae4c7d8d25f87258.png',
+            locale: 'auto',
+            token: (token) => {
+              let person = {
+                email: token.email,
+                tokenId: token.id,
+                bookingId: resp.data.id
+              };
+              this.bookingService.bookingApproveStripe(person)
+                .subscribe(() => {
+                  this.router.navigate(['booking-completed'], {
+                    queryParams: {
+                      bookingId: resp.data.id
+                    }
+                  });
+                });
+            }
+          });
+
+          // Open Checkout with further options:
+          handler.open({
+            name: 'Trabble',
+            description: 'Payment by stripe',
+            amount: r.data.amount,
+            currency: r.data.currency,
+          });
+        });
+    });
+    // this.doCreateBooking();
   }
 
   public payWithPaypal() {
-    this.doCreateBooking();
+    this.createBooking(PaymentMethodEnum.Paypal).subscribe((resp: any) => {
+      this.bookingService.bookingCreatePaypal(resp.data.id)
+        .subscribe((r) => {
+          location.replace(r.data);
+        });
+    });
   }
 }
