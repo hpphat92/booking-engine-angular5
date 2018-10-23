@@ -121,7 +121,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     this.authService.search = {
       checkIn: model.checkInCheckOut.checkIn.toDate(),
       checkOut: model.checkInCheckOut.checkOut.startOf('day').toDate(),
-      numberOfPax: 1 || model.numberOfPax,
+      numberOfPax: +model.numberOfPax.adults,
       keyword: model.keyword,
       isTraveliingForWork: model.isTraveliingForWork,
       typeId: this.inventoryTypes[this.currentActive] ? this.inventoryTypes[this.currentActive].id : '',

@@ -54,7 +54,7 @@ export class SearchComponent implements AfterViewInit {
     this.authService.search = {
       checkIn: model.checkIn.startDate.toDate(),
       checkOut: model.checkOut.startDate.toDate(),
-      numberOfPax: 1 || model.numberOfPax,
+      numberOfPax: +model.numberOfPax.adults,
       keyword: model.keyword,
       isTraveliingForWork: model.isTraveliingForWork,
     };
