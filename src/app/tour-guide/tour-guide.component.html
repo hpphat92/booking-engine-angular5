@@ -1,81 +1,38 @@
-<div class="header" [class.header-sticky]="isScrolled">
-    <div class="landing-page">
-
-        <!-- Logo -->
-        <div class="sidebar-logo" [routerLink]="['./home-section']">
-            <img src="../../assets/landing-page-imgs/trabble-main-logo.svg" alt="">
-            <div class="name-logo">TRABBLE</div>
+<div class="tg-wrapper">
+    <div class="tg-header">
+        <div class="tg-header__menu">
+            <ul>
+                <li><a class="active">Home</a></li>
+                <li><a>About Me</a></li>
+                <li><a>Tours, Tickets & Packages</a></li>
+            </ul>
         </div>
-
-        <!-- Nav -->
-        <div class="navbar nav-transparent">
-            <div [class.active]="isOpenedMenu" class="main-nav nav navbar-nav navbar-right">
-                <div class="item" [routerLink]="['./home-section']" (click)="onOpenOrCloseMenu(!isOpenedMenu)"
-                    routerLinkActive="active">Home</div>
-                <div class="item" [routerLink]="['./about-section']" (click)="onOpenOrCloseMenu(!isOpenedMenu)"
-                    routerLinkActive="active">About</div>
-                <div class="item" [routerLink]="['./features-section']" (click)="onOpenOrCloseMenu(!isOpenedMenu)"
-                    routerLinkActive="active">Features</div>
-                <div class="item" [routerLink]="['./pricing-section']" (click)="onOpenOrCloseMenu(!isOpenedMenu)"
-                    routerLinkActive="active">Pricing</div>
-                <div class="item" *ngIf="!isAuthenticated" [routerLink]="['/portal']">Login</div>
-                <div class="item" *ngIf="isAuthenticated" [routerLink]="['/auth']">Portal</div>
-                <div class="item free-trial" *ngIf="!isAuthenticated" [routerLink]="['/auth']">Free Trial</div>
-            </div>
+        <div class="tg-header__info">
+            <div class="tour-guide">Tour Guide</div>
+            <div class="title">Selina Gonardo</div>
+            <div class="trabble-co">selina@trabble.co | +65 3688 8888</div>
         </div>
-
-        <div class="navbar-toggle" (click)="onOpenOrCloseMenu(!isOpenedMenu)">
-            <img [src]="isOpenedMenu ? '../../assets/landing-page-imgs/cross.png' : '../../assets/landing-page-imgs/menu.png'"
-                alt="">
-        </div>
-
-    </div>
-</div>
-
-<div >
-    <router-outlet></router-outlet>
-</div>
-
-<div class="footer">
-    <div class="join-us-today">
-        <div class="landing-page">
-            <div class="text">Join us today.</div>
-            <div class="free-trial" *ngIf="isAuthenticated === false" [routerLink]="['/auth']">Free Trial</div>
+        <div class="tg-header__avatar">
+            <img src="../../assets/images/useravatar.jpeg" alt="" width="250" height="250">
         </div>
     </div>
-    <div class="root">
-        <div class="landing-page">
-            <div class="menu-items">
-                <div class="items">
-                    <div class="item" [routerLink]="['./home-section']">Home</div>
-                    <div class="item" [routerLink]="['./features-section']">Feature</div>
-                    <div class="item" *ngIf="!isAuthenticated" [routerLink]="['/portal/login']">Login</div>
-                    <div class="item" *ngIf="isAuthenticated" [routerLink]="['/auth']">Portal</div>
-                    <div class="item" [routerLink]="['./about-section']">About</div>
-                    <div class="item" [routerLink]="['./pricing-section']">Pricing</div>
-                </div>
-            </div>
-            <div class="trabble-socials">
-                <div class="trabble-icon">
-                    <img src="../../assets/landing-page-imgs/trabble-landing-page-white.svg" alt="">
+    <div class="tg-content mb-2">
+        <router-outlet></router-outlet>
+    </div>
+    <div class="tg-footer">
+        <div class="tg-footer__logo">
+            <div class="flex-start">
+                <small>Built by</small>
+                <div class="sidebar-logo" [routerLink]="['./home-section']">
+                    <img src="../../assets/images/trabble-main-logo.svg" alt="" width="60" height="60">
                     <div class="name-logo">TRABBLE</div>
                 </div>
-                <div class="socials-network">
-                    <div class="img">
-                        <a href="https://www.instagram.com/asktrabble/" target="blank">
-                            <img src="../../assets/landing-page-imgs/instagram.png" alt="">
-                        </a>
-                    </div>
-                    <div class="img">
-                        <a href="https://www.facebook.com/asktrabble/" target="blank">
-                            <img src="../../assets/landing-page-imgs/facebook-logo.png" alt="">
-                        </a>
-                    </div>
-                    <div class="img">
-                        <a href="mailto:hello@trabble.co" target="blank">
-                            <img src="../../assets/landing-page-imgs/message-closed-envelope.png" alt="">
-                        </a>
-                    </div>
+            </div>
+            <div class="flex-end">
+                <img class="fb" src="../../assets/images/facebook-logo.png" alt="" width="24" height="24">
+                <div class="sidebar-logo" [routerLink]="['./home-section']">
+                    <img src="../../assets/images/trabble-main-logo.svg" alt="" width="36" height="36">
+                    <div class="name-logo">www.trabble.co</div>
                 </div>
             </div>
         </div>

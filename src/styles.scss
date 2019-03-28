@@ -5,53 +5,97 @@
 @import "~@ng-select/ng-select/themes/material.theme.css";
 @import "~leaflet/dist/leaflet.css";
 @import "var";
+@import "assets/css/flex-column.scss";
+@import url('https://fonts.googleapis.com/css?family=Hind+Madurai');
+@import url('https://fonts.googleapis.com/css?family=Arapey');
 
-html, body {
-  height: 100%;
-  min-height: 100%;
-  font-family: 'Nunito Sans', sans-serif;
+html,
+body {
+    height: 100%;
+    min-height: 100%;
+    font-family: 'Nunito Sans', sans-serif;
 }
 
 body {
-  margin: 0;
+    margin: 0;
 }
 
 ::-webkit-scrollbar-track {
-  background-color: transparent;
+    background-color: transparent;
 }
 
 ::-webkit-scrollbar {
-  width: 6px;
-  height: 5px;
-  background-color: #F5F5F5;
+    width: 6px;
+    height: 5px;
+    background-color: #F5F5F5;
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: $main-blue;
-  border: none;
+    background-color: $main-blue;
+    border: none;
 }
 
 mat-tab-group {
-  font-family: 'Nunito Sans', sans-serif !important;
+    font-family: 'Nunito Sans', sans-serif !important;
 }
 
 .text-center {
-  text-align: center;
+    text-align: center;
 }
 
 .tab-like-title {
-  font-size: 18px;
-  font-weight: bold;
-  padding: 0 18px 12px 0;
-  border-bottom: 4px solid $main-blue;
-  display: inline-block;
-  margin-bottom: 10px;
+    font-size: 18px;
+    font-weight: bold;
+    padding: 0 18px 12px 0;
+    border-bottom: 4px solid $main-blue;
+    display: inline-block;
+    margin-bottom: 10px;
 }
 
 .mat-form-field-underline {
-  background: #0000001c;
+    background: #0000001c;
 }
 
-router-outlet ~ * {
-  flex-grow: 1;
+router-outlet~* {
+    flex-grow: 1;
+}
+
+.mb-1 {
+    margin-bottom: 1em;
+}
+
+.mb-2 {
+    margin-bottom: 2em;
+}
+
+.mt-1 {
+    margin-top: 1em;
+}
+
+.mt-2 {
+    margin-top: 2em;
+}
+
+.pl-5 {
+    padding-left: 5em;
+}
+
+.spot-ul {
+    list-style-type: circle;
+    color: #63798F;
+    font-size: 14px;
+    line-height: 20px;
+
+    li {
+        list-style: disc;
+    }
+}
+
+.img-oval {
+    border-radius: 50%;
+}
+
+.img-75 {
+    width: 75px;
+    height: 75px;
 }
