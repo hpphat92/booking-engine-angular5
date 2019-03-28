@@ -34,13 +34,12 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
 
   public set siteResources(val) {
     this._siteResources = val;
-    if (this._siteResources) {
+    if (this._siteResources && this._siteResources.fromPartnerId) {
       this.subscriptionGetInventory && this.subscriptionGetInventory.unsubscribe();
       this.subscriptionGetInventory = this.getInventoryTypes().subscribe((resp: any) => {
         this.inventoryTypes = resp.data;
         this.loadProperties(this._siteResources.fromPartnerId);
       });
-
     }
   }
 

@@ -6,6 +6,7 @@ import { AppMainService } from '../app.service';
 import { TourGuideHomeComponent } from './tour-guide-home/tour-guide-home.component';
 import { TourGuideAboutComponent } from './tour-guide-about/tour-guide-about.component';
 import { TourGuideComponent } from './tour-guide.component';
+import { RouterComponent } from '../router/router.component';
 
 const routes: Routes = [
   {
@@ -28,15 +29,24 @@ const routes: Routes = [
   }
 ]
 
+const actualRoutes: Routes = [
+  ...routes,
+  {
+    path: ':id',
+    redirectTo: 'home-section', pathMatch: 'full'
+  },
+];
+
+
 @NgModule({
   declarations: [
     TourGuideComponent,
     TourGuideHomeComponent,
-    TourGuideAboutComponent
+    TourGuideAboutComponent,
   ],
   imports: [
     SharedModule,
-    RouterModule.forChild(routes),
+    RouterModule.forChild(actualRoutes),
   ],
   providers: [
     AppMainService

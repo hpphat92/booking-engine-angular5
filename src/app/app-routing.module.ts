@@ -5,10 +5,10 @@ import { PaymentSuccessComponent } from './payment-success/payment-success.compo
 import { BlankComponent } from './blank/blank.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    component: BlankComponent
-  },
+  // {
+  //   path: '',
+  //   component: BlankComponent
+  // },
   {
     path: 'home',
     loadChildren: './hotel/hotel.module#HotelModule'
@@ -38,6 +38,10 @@ const actualRoutes: Routes = [
         redirectTo: 'home'
       }
     ],
+  },
+  {
+    path: ':id/tour-guide',
+    loadChildren: './tour-guide/tour-guide.module#TourGuideModule'
   },
   {
     path: '**',

@@ -1,7 +1,7 @@
-import { AfterViewInit, Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../shared/services/auth.service';
-import { PartnerService, PartnerSettingService } from '../shared/api';
+import { PartnerService } from '../shared/api';
 import * as _ from 'lodash';
 import { SettingKeyMap, BookingEngineType } from '../app.constant';
 import { AppMainService } from '../app.service';
@@ -20,20 +20,8 @@ export class RouterComponent implements OnDestroy {
     this.route.params.subscribe((param) => {
       let { id: partnerAlliasName } = param;
       this.authService.currentPartnerAlliasName = partnerAlliasName;
-      this.getBookingEngineType(partnerAlliasName);
+      this.loadSettingsByPartnerId(partnerAlliasName);
     });
-  }
-
-  public getBookingEngineType(partnerAlliasName: string) {
-    this.appMainService.getBookingEngineTypeByAlias(partnerAlliasName)
-      .subscribe((resp: any) => {
-        if (resp.data && resp.data === BookingEngineType.TourGuide) {
-          this.router.navigateByUrl('/tour-guide');
-        } else {
-          this.router.navigateByUrl('/home');
-        }
-        // this.loadSettingsByPartnerId(partnerAlliasName);
-      });
   }
 
   public loadSettingsByPartnerId(partnerAlliasName) {
@@ -64,9 +52,20 @@ export class RouterComponent implements OnDestroy {
           carouselPhotos: carouselPhotos,
           title: settingMap[SettingKeyMap.Title],
         };
+
+        this.getBookingEngineType(partnerAlliasName);
       });
   }
 
+  public getBookingEngineType(partnerAlliasName: string) {
+    this.appMainService.getBookingEngineTypeByAlias(partnerAlliasName)
+      .subscribe((resp: any) => {
+        if (resp.data && resp.data === BookingEngineType.TourGuide) {
+          debugger
+          this.router.navigateByUrl(`${partnerAlliasName}/tour-guide/home-section`);
+        }
+      });
+  }
 
   ngOnDestroy(): void {
     this.authService.currentPartnerAlliasName = null;
