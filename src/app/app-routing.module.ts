@@ -7,20 +7,20 @@ import { BlankComponent } from './blank/blank.component';
 const routes: Routes = [
   {
     path: '',
-    component: BlankComponent,
+    component: BlankComponent
   },
   {
     path: 'home',
-    loadChildren: './home/home.module#HomeModule'
+    loadChildren: './hotel/hotel.module#HotelModule'
   },
   {
     path: 'tour-guide',
     loadChildren: './tour-guide/tour-guide.module#TourGuideModule'
   },
-  {
-    path: 'search',
-    loadChildren: './search/search.module#SearchModule'
-  },
+  // {
+  //   path: 'search',
+  //   loadChildren: './search/search.module#SearchModule'
+  // },
 ];
 const actualRoutes: Routes = [
   ...routes,
