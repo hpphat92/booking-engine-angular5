@@ -6,8 +6,8 @@ var reqHeader = {
   'X-TRABBLE-APP-SECRET': 'B4B757A1-65C3-43C0-AD0B-B75D55CE8430'
 };
 
-// var apiDomain = 'https://trabbletestapp.azurewebsites.net';
-var apiDomain = 'http://localhost:55646';
+var apiDomain = 'https://trabble-development.azurewebsites.net';
+// var apiDomain = 'http://localhost:55646';
 
 var LoadSettingByPartnerAlliasName = (partnerName) => ({
   url: `${apiDomain}/api/partner/get-by-allias-name/` + partnerName,

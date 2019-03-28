@@ -1,10 +1,10 @@
-import { Component, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AuthService } from '../shared/services/auth.service';
-import { PartnerService } from '../shared/api';
+import {Component, OnDestroy} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {AuthService} from '../shared/services/auth.service';
+import {PartnerService} from '../shared/api';
 import * as _ from 'lodash';
-import { SettingKeyMap, BookingEngineType } from '../app.constant';
-import { AppMainService } from '../app.service';
+import {SettingKeyMap, BookingEngineType} from '../app.constant';
+import {AppMainService} from '../app.service';
 
 @Component({
   selector: 'app-router',
@@ -13,12 +13,12 @@ import { AppMainService } from '../app.service';
 })
 export class RouterComponent implements OnDestroy {
   constructor(public router: Router,
-    public route: ActivatedRoute,
-    public appMainService: AppMainService,
-    public partnerService: PartnerService,
-    public authService: AuthService) {
+              public route: ActivatedRoute,
+              public appMainService: AppMainService,
+              public partnerService: PartnerService,
+              public authService: AuthService) {
     this.route.params.subscribe((param) => {
-      let { id: partnerAlliasName } = param;
+      let {id: partnerAlliasName} = param;
       this.authService.currentPartnerAlliasName = partnerAlliasName;
       this.loadSettingsByPartnerId(partnerAlliasName);
     });
@@ -50,7 +50,7 @@ export class RouterComponent implements OnDestroy {
           mainLogo: settingMap[SettingKeyMap.MainLogo],
           mainVideo: settingMap[SettingKeyMap.PreviewVideo],
           carouselPhotos: carouselPhotos,
-          title: settingMap[SettingKeyMap.Title],
+          title: settingMap[SettingKeyMap.Title]
         };
 
         this.getBookingEngineType(partnerAlliasName);
@@ -60,9 +60,8 @@ export class RouterComponent implements OnDestroy {
   public getBookingEngineType(partnerAlliasName: string) {
     this.appMainService.getBookingEngineTypeByAlias(partnerAlliasName)
       .subscribe((resp: any) => {
-        if (resp.data && resp.data === BookingEngineType.TourGuide) {
-          debugger
-          this.router.navigateByUrl(`${partnerAlliasName}/tour-guide/home-section`);
+        if (resp.data  === BookingEngineType.TourGuide) {
+          this.router.navigateByUrl(partnerAlliasName + '/tour-guide');
         }
       });
   }

@@ -1,8 +1,8 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
-import { RouterComponent } from './router/router.component';
-import { PaymentSuccessComponent } from './payment-success/payment-success.component';
-import { BlankComponent } from './blank/blank.component';
+import {NgModule} from '@angular/core';
+import {Routes, RouterModule, PreloadAllModules} from '@angular/router';
+import {RouterComponent} from './router/router.component';
+import {PaymentSuccessComponent} from './payment-success/payment-success.component';
+import {BlankComponent} from './blank/blank.component';
 
 const routes: Routes = [
   // {
@@ -11,19 +11,22 @@ const routes: Routes = [
   // },
   {
     path: 'home',
-    loadChildren: './hotel/hotel.module#HotelModule'
+    loadChildren: './home/home.module#HomeModule'
   },
   {
     path: 'tour-guide',
     loadChildren: './tour-guide/tour-guide.module#TourGuideModule'
   },
-  // {
-  //   path: 'search',
-  //   loadChildren: './search/search.module#SearchModule'
-  // },
+  {
+    path: 'search',
+    loadChildren: './search/search.module#SearchModule'
+  },
 ];
 const actualRoutes: Routes = [
-  ...routes,
+  {
+    path: 'home',
+    loadChildren: './home/home.module#HomeModule'
+  },
   {
     path: 'payment-success',
     component: PaymentSuccessComponent
@@ -37,11 +40,7 @@ const actualRoutes: Routes = [
         path: '**',
         redirectTo: 'home'
       }
-    ],
-  },
-  {
-    path: ':id/tour-guide',
-    loadChildren: './tour-guide/tour-guide.module#TourGuideModule'
+    ]
   },
   {
     path: '**',
