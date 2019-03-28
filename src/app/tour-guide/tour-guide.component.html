@@ -1,0 +1,83 @@
+<div class="header" [class.header-sticky]="isScrolled">
+    <div class="landing-page">
+
+        <!-- Logo -->
+        <div class="sidebar-logo" [routerLink]="['./home-section']">
+            <img src="../../assets/landing-page-imgs/trabble-main-logo.svg" alt="">
+            <div class="name-logo">TRABBLE</div>
+        </div>
+
+        <!-- Nav -->
+        <div class="navbar nav-transparent">
+            <div [class.active]="isOpenedMenu" class="main-nav nav navbar-nav navbar-right">
+                <div class="item" [routerLink]="['./home-section']" (click)="onOpenOrCloseMenu(!isOpenedMenu)"
+                    routerLinkActive="active">Home</div>
+                <div class="item" [routerLink]="['./about-section']" (click)="onOpenOrCloseMenu(!isOpenedMenu)"
+                    routerLinkActive="active">About</div>
+                <div class="item" [routerLink]="['./features-section']" (click)="onOpenOrCloseMenu(!isOpenedMenu)"
+                    routerLinkActive="active">Features</div>
+                <div class="item" [routerLink]="['./pricing-section']" (click)="onOpenOrCloseMenu(!isOpenedMenu)"
+                    routerLinkActive="active">Pricing</div>
+                <div class="item" *ngIf="!isAuthenticated" [routerLink]="['/portal']">Login</div>
+                <div class="item" *ngIf="isAuthenticated" [routerLink]="['/auth']">Portal</div>
+                <div class="item free-trial" *ngIf="!isAuthenticated" [routerLink]="['/auth']">Free Trial</div>
+            </div>
+        </div>
+
+        <div class="navbar-toggle" (click)="onOpenOrCloseMenu(!isOpenedMenu)">
+            <img [src]="isOpenedMenu ? '../../assets/landing-page-imgs/cross.png' : '../../assets/landing-page-imgs/menu.png'"
+                alt="">
+        </div>
+
+    </div>
+</div>
+
+<div >
+    <router-outlet></router-outlet>
+</div>
+
+<div class="footer">
+    <div class="join-us-today">
+        <div class="landing-page">
+            <div class="text">Join us today.</div>
+            <div class="free-trial" *ngIf="isAuthenticated === false" [routerLink]="['/auth']">Free Trial</div>
+        </div>
+    </div>
+    <div class="root">
+        <div class="landing-page">
+            <div class="menu-items">
+                <div class="items">
+                    <div class="item" [routerLink]="['./home-section']">Home</div>
+                    <div class="item" [routerLink]="['./features-section']">Feature</div>
+                    <div class="item" *ngIf="!isAuthenticated" [routerLink]="['/portal/login']">Login</div>
+                    <div class="item" *ngIf="isAuthenticated" [routerLink]="['/auth']">Portal</div>
+                    <div class="item" [routerLink]="['./about-section']">About</div>
+                    <div class="item" [routerLink]="['./pricing-section']">Pricing</div>
+                </div>
+            </div>
+            <div class="trabble-socials">
+                <div class="trabble-icon">
+                    <img src="../../assets/landing-page-imgs/trabble-landing-page-white.svg" alt="">
+                    <div class="name-logo">TRABBLE</div>
+                </div>
+                <div class="socials-network">
+                    <div class="img">
+                        <a href="https://www.instagram.com/asktrabble/" target="blank">
+                            <img src="../../assets/landing-page-imgs/instagram.png" alt="">
+                        </a>
+                    </div>
+                    <div class="img">
+                        <a href="https://www.facebook.com/asktrabble/" target="blank">
+                            <img src="../../assets/landing-page-imgs/facebook-logo.png" alt="">
+                        </a>
+                    </div>
+                    <div class="img">
+                        <a href="mailto:hello@trabble.co" target="blank">
+                            <img src="../../assets/landing-page-imgs/message-closed-envelope.png" alt="">
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

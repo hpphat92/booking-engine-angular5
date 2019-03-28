@@ -5,18 +5,15 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MaterialModule } from './shared/material.module';
-import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from './shared/shared.module';
 import { ApiModule, BASE_PATH, Configuration } from './shared/api';
-import {AppConstant} from './app.constant';
+import { AppConstant } from './app.constant';
 import './rxjs-operators';
 import { RouterComponent } from './router/router.component';
 import { AppMainService } from './app.service';
 import { PaymentSuccessComponent } from './payment-success/payment-success.component';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthInterceptor } from './shared/interceptors';
+import { BlankComponent } from './blank/blank.component';
+import { TourGuideModule } from './tour-guide/tour-guide.module';
 
 let domain = {
   toString: () => AppConstant.domain,
@@ -27,7 +24,8 @@ let domain = {
   declarations: [
     AppComponent,
     RouterComponent,
-    PaymentSuccessComponent
+    PaymentSuccessComponent,
+    BlankComponent
   ],
   imports: [
     ApiModule.forRoot((): Configuration => {
@@ -39,7 +37,7 @@ let domain = {
     BrowserModule,
     SharedModule.forRoot(),
     AppRoutingModule,
-
+    TourGuideModule
   ], providers: [
     { provide: BASE_PATH, useValue: domain },
     AppMainService

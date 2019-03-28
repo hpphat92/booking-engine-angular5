@@ -12,6 +12,10 @@ export class AppMainService {
     return this.http.get(`/api/settings/` + partnerName);
   }
 
+  public getBookingEngineTypeByAlias(partnerName) {
+    return this.http.get(`/api/booking-engine-type/` + partnerName);
+  }
+
   public searchProperties(partnerId, parentId = '') {
     return this.http.get(`/api/search?partner=${partnerId}&parent=${parentId}`);
   }

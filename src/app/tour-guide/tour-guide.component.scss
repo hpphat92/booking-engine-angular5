@@ -1,0 +1,364 @@
+@import "../../var.scss";
+
+:host/deep/ {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  scroll-behavior: smooth;
+  // height: 100%;
+
+  h2 {
+    line-height: 44px;
+    font-size: 34px;
+    font-weight: unset;
+    margin: 0;
+  }
+
+  p {
+    margin-top: 0;
+  }
+
+  @mixin trabble {
+    font-family: "Arial";
+    font-size: 16px;
+    font-weight: 900;
+    letter-spacing: 2.13px;
+  }
+
+  @include font-family-landing-page;
+
+  .landing-page {
+    width: 83%;
+    margin: 0 auto;
+  }
+
+  iframe {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    z-index: 1000;
+    border: unset;
+    height: 450px;
+  }
+
+  .header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: $background-main-color;
+    margin-top: 35px;
+    &.header-sticky {
+      box-shadow: $custom-box-shadow;
+    }
+    .landing-page {
+      display: flex;
+      justify-content: space-between;
+      position: relative;
+      .navbar-toggle {
+        cursor: pointer;
+        outline: none;
+        position: absolute;
+        top: 26px;
+        right: 0px;
+        display: none;
+      }
+      .sidebar-logo {
+        width: 75px;
+        display: flex;
+        align-items: center;
+        cursor: pointer;
+        outline: none;
+        margin-left: -14px;
+        .name-logo {
+          @include trabble;
+          color: $landing-page-orange;
+        }
+      }
+      .navbar {
+        display: flex;
+        align-items: center;
+        .main-nav {
+          display: flex;
+          align-items: center;
+          .item {
+            color: $landing-page-text-color;
+            cursor: pointer;
+            font-family: "Hind Madurai";
+            font-size: 14px;
+            line-height: 20px;
+            margin: 0 25px;
+            padding: 5px 0;
+            outline: none;
+            &.free-trial {
+              @include trial-try-it-btn;
+              margin-right: 0;
+            }
+            &.active {
+              font-weight: 600;
+              color: $landing-page-purple;
+              border-bottom: 4px solid $landing-page-purple;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .content {
+    flex-grow: 1;
+    .home-box-4 {
+      margin-top: 30px;
+      margin-bottom: 80px;
+      position: relative;
+      z-index: 10;
+      .landing-page {
+        flex-direction: column;
+        .box-4-1 {
+          display: flex;
+          justify-content: space-between;
+          margin-bottom: 20px;
+          .show-more-text {
+            font-size: 14px;
+          }
+        }
+        .box-4-2 {
+          border-radius: 33.52px;
+          background-color: $background-main-color;
+          box-shadow: 0 0 22px 0 rgba(218, 218, 218, 0.5);
+          padding: 40px 40px 10px 40px;
+          ngx-slick {
+            position: unset;
+            .slick-prev,
+            .slick-next {
+              display: none;
+            }
+            .slick-list {
+              .slick-track {
+                .slide {
+                  display: flex;
+                  width: 100%;
+                  flex-wrap: wrap;
+                  .image {
+                    width: calc(100% / 4 - 11px);
+                    height: 125px;
+                    padding: 30px 5px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-right: 1px solid #f5f5f5;
+                    &:nth-child(4),
+                    &:nth-child(8) {
+                      border-right: unset;
+                    }
+                    &:nth-child(1),
+                    &:nth-child(2),
+                    &:nth-child(3),
+                    &:nth-child(4) {
+                      border-bottom: 1px solid #f5f5f5;
+                    }
+                  }
+                }
+              }
+            }
+            .slick-dots {
+              display: flex;
+              left: 0;
+              bottom: -50px;
+              justify-content: center;
+              align-items: center;
+              li {
+                button:before {
+                  font-size: 15px;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .footer {
+    z-index: 10;
+    .join-us-today {
+      height: 163px;
+      background: linear-gradient(230.47deg, #d40000 0%, #6000b9 100%);
+      .landing-page {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 100%;
+        .text {
+          color: $background-main-color;
+          font-size: 34px;
+          line-height: 44px;
+        }
+        .free-trial {
+          @include trial-try-it-btn;
+          height: 58px;
+          width: 200px;
+          font-size: 25px;
+        }
+      }
+    }
+    .root {
+      height: 162px;
+      background-color: $purple;
+      padding: 10px 0;
+      display: flex;
+      .landing-page {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .menu-items {
+          flex-grow: 1;
+          .items {
+            display: flex;
+            flex-wrap: wrap;
+            align-content: space-between;
+            height: 65px;
+            .item {
+              width: calc(100% / 3);
+              cursor: pointer;
+              outline: none;
+              color: $background-main-color;
+              font-size: 18px;
+              line-height: 20px;
+              font-weight: unset;
+            }
+          }
+        }
+        .trabble-socials {
+          flex-grow: 1;
+          display: flex;
+          flex-direction: column;
+          text-align: -webkit-right;
+          .trabble-icon {
+            display: flex;
+            justify-content: flex-end;
+            .name-logo {
+              @include trabble;
+              font-size: 22px;
+              color: $background-main-color;
+              display: flex;
+              align-items: center;
+            }
+            img {
+              width: 75px;
+              height: 75px;
+            }
+          }
+          .socials-network {
+            display: flex;
+            justify-content: flex-end;
+            .img:nth-child(2) {
+              margin: 0 20px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1441px) {
+  .landing-page {
+    width: 66%;
+  }
+}
+
+@media screen and (max-width: 992px) {
+  .header {
+    .landing-page {
+      flex-direction: column;
+      .navbar {
+        .main-nav {
+          flex-direction: column;
+          width: 100%;
+          display: none;
+          box-shadow: $custom-box-shadow;
+          padding: 5px 10px;
+          &.active {
+            display: block;
+          }
+          .item {
+            padding: 5px 0;
+            margin: 10px 0;
+          }
+        }
+      }
+      .navbar-toggle {
+        display: block;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 925px) {
+  :host/deep/ {
+    .home-box-4 {
+      .box-4-2 {
+        ngx-slick {
+          .slick-list {
+            .slick-track {
+              .slide {
+                .image {
+                  width: calc(100% / 2 - 11px) !important;
+                  &:nth-child(2n + 0) {
+                    border-right: unset !important;
+                  }
+                  &:nth-child(5),
+                  &:nth-child(6) {
+                    border-bottom: 1px solid #f5f5f5;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 715px) {
+  .root {
+    .landing-page {
+      flex-direction: column;
+      .menu-items {
+        width: 100%;
+        margin: 10px 0;
+        .items {
+          .item {
+            display: flex;
+            justify-content: center;
+          }
+        }
+      }
+      .trabble-socials {
+        width: 100%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 624px) {
+  :host/deep/ {
+    .home-box-4 {
+      .box-4-2 {
+        ngx-slick {
+          .slick-list {
+            .slick-track {
+              .slide {
+                .image {
+                  width: calc(100% - 11px) !important;
+                  border-right: unset !important;
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

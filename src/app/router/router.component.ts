@@ -3,8 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../shared/services/auth.service';
 import { PartnerService, PartnerSettingService } from '../shared/api';
 import * as _ from 'lodash';
-import { SettingKeyMap } from '../app.constant';
-import { AppMainService} from '../app.service';
+import { SettingKeyMap, BookingEngineType } from '../app.constant';
+import { AppMainService } from '../app.service';
 
 @Component({
   selector: 'app-router',
@@ -13,15 +13,27 @@ import { AppMainService} from '../app.service';
 })
 export class RouterComponent implements OnDestroy {
   constructor(public router: Router,
-              public route: ActivatedRoute,
-              public appMainService: AppMainService,
-              public partnerService: PartnerService,
-              public authService: AuthService) {
+    public route: ActivatedRoute,
+    public appMainService: AppMainService,
+    public partnerService: PartnerService,
+    public authService: AuthService) {
     this.route.params.subscribe((param) => {
       let { id: partnerAlliasName } = param;
       this.authService.currentPartnerAlliasName = partnerAlliasName;
-      this.loadSettingsByPartnerId(partnerAlliasName);
+      this.getBookingEngineType(partnerAlliasName);
     });
+  }
+
+  public getBookingEngineType(partnerAlliasName: string) {
+    this.appMainService.getBookingEngineTypeByAlias(partnerAlliasName)
+      .subscribe((resp: any) => {
+        if (resp.data && resp.data === BookingEngineType.TourGuide) {
+          this.router.navigateByUrl('/tour-guide');
+        } else {
+          this.router.navigateByUrl('/home');
+        }
+        // this.loadSettingsByPartnerId(partnerAlliasName);
+      });
   }
 
   public loadSettingsByPartnerId(partnerAlliasName) {

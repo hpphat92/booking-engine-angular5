@@ -1,5 +1,37 @@
 $main-green: #11c2a1;
 $main-blue: #1486FF;
+$background-main-color: #fff;
+$custom-box-shadow: 0 0 22px 0 rgba(220, 233, 231, 0.5);
+$landing-page-purple: #6000b9;
+$landing-page-orange: #ff4e00;
+$landing-page-text-color: #63798f;
+$purple: #5c177a;
+
+@mixin trial-try-it-btn {
+  color: $background-main-color;
+  height: 48px;
+  width: 165px;
+  margin-left: 10px;
+  border-radius: 8px;
+  background-color: $landing-page-orange;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.55px;
+  line-height: 25px;
+  cursor: pointer;
+  outline: none;
+}
+
+@mixin font-family-landing-page {
+  font-family: "Hind Madurai";
+  color: $landing-page-text-color;
+  font-size: 18px;
+  line-height: 25px;
+  font-weight: 500;
+}
 
 @mixin off-count {
   display: inline-block;

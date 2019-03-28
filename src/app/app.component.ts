@@ -16,7 +16,7 @@ export class AppComponent implements OnDestroy {
   public subscription: any;
 
   constructor(public formBuilder: FormBuilder,
-              public authService: AuthService) {
+    public authService: AuthService) {
     this.form = this.formBuilder.group({
       keyword: [''],
       checkInCheckOut: ['', Validators.required],

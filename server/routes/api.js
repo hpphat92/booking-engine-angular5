@@ -7,7 +7,7 @@ var reqHeader = {
 };
 
 // var apiDomain = 'https://trabbletestapp.azurewebsites.net';
-var apiDomain = 'http://localhost:50018';
+var apiDomain = 'http://localhost:55646';
 
 var LoadSettingByPartnerAlliasName = (partnerName) => ({
   url: `${apiDomain}/api/partner/get-by-allias-name/` + partnerName,
@@ -15,18 +15,21 @@ var LoadSettingByPartnerAlliasName = (partnerName) => ({
   headers: reqHeader,
   json: true
 });
+
 var SearchPropertiesbyPartnerId = (partnerId, parentId = '') => ({
   url: `${apiDomain}/api/inventory-templates/search?partnerId=${partnerId}&parentId=${parentId}`,
   method: "GET",
   headers: reqHeader,
   json: true
 });
+
 var getInventoryTemplateDetail = (id) => ({
   url: `${apiDomain}/api/inventory-templates/${id}`,
   method: "GET",
   headers: reqHeader,
   json: true
 });
+
 var getInventoryTypes = {
   url: `${apiDomain}/api/inventory-types/search?isBookable=true`,
   method: "GET",
@@ -34,12 +37,26 @@ var getInventoryTypes = {
   json: true
 };
 
+var getBookingEngineTypeByAlias = (partnerName) => ({
+  url: `${apiDomain}/api/partner/${partnerName}/get-booking-engine-type`,
+  method: "GET",
+  headers: reqHeader,
+  json: true
+});
+
 router.get('/', (req, res) => {
   res.send('api works');
 });
+
 router.get('/settings/:partnerAlliasName', (req, res) => {
   request(LoadSettingByPartnerAlliasName(req.params.partnerAlliasName), function (error, response, body) {
     res.status(200).json(response.body.result);
+  })
+})
+
+router.get('/booking-engine-type/:partnerAlliasName', (req, res) => {
+  request(getBookingEngineTypeByAlias(req.params.partnerAlliasName), function (error, response, body) {
+    res.status(200).json(response.body);
   })
 })
 
@@ -54,11 +71,17 @@ router.get('/inventory-types', (req, res) => {
     res.status(200).json(response.body);
   })
 });
+
 router.get('/inventory-templates/:id', (req, res) => {
   request(getInventoryTemplateDetail(req.params.id), function (error, response, body) {
     res.status(200).json(response.body);
   })
 });
 
+router.get('/inventory-templates/:id', (req, res) => {
+  request(getInventoryTemplateDetail(req.params.id), function (error, response, body) {
+    res.status(200).json(response.body);
+  })
+});
 
 module.exports = router;
