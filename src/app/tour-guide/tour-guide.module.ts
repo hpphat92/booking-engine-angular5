@@ -14,16 +14,16 @@ const routes: Routes = [
     component: TourGuideComponent,
     children: [
       {
-        path: '', redirectTo: 'home-section', pathMatch: 'full'
+        path: '', redirectTo: 'home', pathMatch: 'full'
       },
       {
-        path: 'home-section', component: TourGuideHomeComponent
+        path: 'home', component: TourGuideHomeComponent
       },
       {
-        path: 'about-section', component: TourGuideAboutComponent
+        path: 'about', component: TourGuideAboutComponent
       },
       {
-        path: '**', redirectTo: 'home-section'
+        path: '**', redirectTo: 'home'
       },
     ]
   }
@@ -33,7 +33,7 @@ const actualRoutes: Routes = [
   ...routes,
   {
     path: ':id',
-    redirectTo: 'home-section', pathMatch: 'full'
+    redirectTo: 'home', pathMatch: 'full'
   },
 ];
 

@@ -37,7 +37,6 @@ let domain = {
     BrowserModule,
     SharedModule.forRoot(),
     AppRoutingModule,
-    TourGuideModule,
   ], providers: [
     { provide: BASE_PATH, useValue: domain },
     AppMainService

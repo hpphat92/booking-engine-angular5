@@ -26,7 +26,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     properties: []
   };
   public mapSearch;
-  public inventoryTypes;
+  public inventoryTypes = [];
   public selected;
   public subscriptionGetInventory;
 
