@@ -14,6 +14,8 @@ export class TourGuideComponent {
   number: string;
 
   constructor(public authService: AuthService) {
+    this.tourguideResources = this.authService.tourguideResources;
+    this.setTourGuideResources();
     this.subscription = this.authService.tourguideResource$.subscribe((newTourGuideResources) => {
       this.tourguideResources = newTourGuideResources;
       this.setTourGuideResources();

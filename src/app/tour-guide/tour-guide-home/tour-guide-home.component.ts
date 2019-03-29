@@ -15,11 +15,12 @@ export class TourGuideHomeComponent {
   aboutDescription: string;
   images: any;
   affiliationsRecognitions: any;
-  actualAffiliationsRecognitions: any;
   languages: any;
   specializations: any;
 
   constructor(public authService: AuthService) {
+    this.tourguideResources = this.authService.tourguideResources;
+    this.setTourGuideResources();
     this.subscription = this.authService.tourguideResource$.subscribe((newTourGuideResources) => {
       this.tourguideResources = newTourGuideResources;
       this.setTourGuideResources();
@@ -27,15 +28,6 @@ export class TourGuideHomeComponent {
   }
 
   setTourGuideResources() {
-    var tes = [
-      {
-        image: '',
-        title: '',
-        shortDescription: ''
-      }
-    ];
-    console.log(JSON.stringify(tes));
-
     if (this.tourguideResources) {
       this.shortSelfDescription = this.tourguideResources.seftDescription;
       this.aboutTitle = this.tourguideResources.aboutTitle;
@@ -44,9 +36,6 @@ export class TourGuideHomeComponent {
       this.specializations = JSON.parse(this.tourguideResources.specializations);
       this.images = JSON.parse(this.tourguideResources.images);
       this.affiliationsRecognitions = JSON.parse(this.tourguideResources.affiliationsRecognition);
-      // if (this.affiliationsRecognitions && this.affiliationsRecognitions.length > 0) {
-      //   this.actualAffiliationsRecognitions = this.affiliationsRecognitions.slice(0, 6)
-      // }
     }
   }
 }
