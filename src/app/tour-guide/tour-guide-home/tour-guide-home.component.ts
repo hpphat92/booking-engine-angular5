@@ -19,7 +19,7 @@ export class TourGuideHomeComponent {
   galleryImages: NgxGalleryImage[];
   constructor(public authService: AuthService) {
     this.galleryOptions = [
-      { 'image': false, 'thumbnailsRemainingCount': true, 'height': '410px', 'width': '100%', 'thumbnailsColumns': 3 },
+      { 'image': false, 'thumbnailsRemainingCount': true, 'height': '410px', 'width': '100%', 'thumbnailsColumns': 3, 'previewCloseOnEsc': true },
       { 'breakpoint': 500, 'width': '100%', 'thumbnailsColumns': 1 }
     ];
     this.tourguideResources = this.authService.tourguideResources;
