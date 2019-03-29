@@ -28,6 +28,7 @@ export class AuthService {
             Finally.`
   };
   private _siteResources = { ...this._defaultSiteResource };
+  private _tourguideResources;
 
   get search() {
     return { ...(this._search || this.localStorageService.get('search')) };
@@ -87,12 +88,22 @@ export class AuthService {
     this.updateSettingResoures();
   }
 
+  get tourguideResources() {
+    return this._tourguideResources;
+  }
+
+  set tourguideResources(value) {
+    this._tourguideResources = value;
+    this.tourguideResource$.next(value);
+  }
+
   public siteResource$: Subject<any> = new Subject<any>();
+  public tourguideResource$: Subject<any> = new Subject<any>();
 
   constructor(public localStorageService: LocalStorageService,
-              public router: Router,
-              private titleService: Title,
-              public route: ActivatedRoute) {
+    public router: Router,
+    private titleService: Title,
+    public route: ActivatedRoute) {
     this.updateSettingResoures();
   }
 

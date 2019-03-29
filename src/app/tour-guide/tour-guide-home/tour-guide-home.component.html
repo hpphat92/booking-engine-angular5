@@ -32,8 +32,8 @@
             <div class="mini-title mt-2">
                 Affiliations & Recognition
             </div>
-            <div class="flow-row d-table">
-                <div class="flex-col-4 inline-flex flex-center" *ngFor="let affiliationsRecognition of affiliationsRecognitions;">
+            <div class="flow-row d-table" *ngIf="affiliationsRecognitions && affiliationsRecognitions.length > 0">
+                <div class="flex-col-4 inline-flex flex-center" *ngFor="let affiliationsRecognition of affiliationsRecognitions.slice(0, 6);">
                     <div class="oval-item">
                         <img [src]="affiliationsRecognition.image" alt="" class="img-75 img-oval">
                         <div class="name">{{affiliationsRecognition.title}}</div>
@@ -41,7 +41,7 @@
                     </div>
                 </div>
             </div>
-            <div class="more flex-center mt-1">+120 more</div>
+            <div class="more flex-center mt-1" *ngIf="affiliationsRecognitions && (affiliationsRecognitions.length - 6) > 0">+{{affiliationsRecognitions.length - 6}} more</div>
         </div>
     </div>
 </div>
