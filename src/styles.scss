@@ -85,6 +85,7 @@ router-outlet~* {
     color: #63798F;
     font-size: 14px;
     line-height: 20px;
+    margin-left: 20px;
 
     li {
         list-style: disc;
@@ -98,4 +99,18 @@ router-outlet~* {
 .img-75 {
     width: 75px;
     height: 75px;
+}
+
+.img-150 {
+    width: 150px;
+    height: 150px;
+}
+
+.img-300 {
+    width: 300px;
+    height: 300px;
+}
+
+.f-left {
+    float: left;
 }
