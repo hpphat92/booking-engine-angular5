@@ -7,13 +7,13 @@
 <div class="mini-title mb-2">
     About
 </div>
-<div class="flex-row">
-    <div class="flex-col-6">
+<div class="flex-row mb-1">
+    <div class="flex-col-6 flex-col-mb-12">
         <div class="title-2 mb-1">{{aboutTitle}}</div>
         <div class="description" [innerHTML]="aboutDescription">
         </div>
     </div>
-    <div class="flex-col-6">
+    <div class="flex-col-6 flex-col-mb-12">
         <div class="pl-5">
             <div class="flex-row">
                 <div class="flex-col-6">
@@ -32,16 +32,42 @@
             <div class="mini-title mt-2">
                 Affiliations & Recognition
             </div>
-            <div class="flow-row d-table" *ngIf="affiliationsRecognitions && affiliationsRecognitions.length > 0">
-                <div class="flex-col-4 inline-flex flex-center" *ngFor="let affiliationsRecognition of affiliationsRecognitions.slice(0, 6);">
-                    <div class="oval-item">
-                        <img [src]="affiliationsRecognition.image" alt="" class="img-75 img-oval">
-                        <div class="name">{{affiliationsRecognition.title}}</div>
-                        <small class="time">{{affiliationsRecognition.shortDescription}}</small>
+            <div class="mh-305">
+                <div class="flow-row" *ngIf="affiliationsRecognitions && affiliationsRecognitions.length > 0">
+                    <div class="flex-col-4 flex-center f-left" *ngFor="let affiliationsRecognition of affiliationsRecognitions.slice(0, 6);">
+                     <div class="oval-item">
+                         <img [src]="affiliationsRecognition.image" alt="" class="img-75 img-oval">
+                           <div class="name">{{affiliationsRecognition.title}}</div>
+                           <small class="time">{{affiliationsRecognition.shortDescription}}</small>
+                        </div>
+
                     </div>
                 </div>
             </div>
             <div class="more flex-center mt-1" *ngIf="affiliationsRecognitions && (affiliationsRecognitions.length - 6) > 0">+{{affiliationsRecognitions.length - 6}} more</div>
         </div>
     </div>
+</div>
+<div class="mb-1">
+    <input style="height:64px;width:100%" />
+</div>
+<div class="bg-group mb-2">
+    <div class="flex-row">
+        <div class="flex-col-6">1</div>
+        <div class="flex-col-6">
+        </div>
+    </div>
+</div>
+<div class="mini-title mb-1">
+    Other upcoming activities
+</div>
+<div class="mb-2" style="width:100%;height:250px;">
+    &nbsp;
+</div>
+<div class="mini-title mb-1">
+    Testimonials
+</div>
+<div class="mb-2">
+    <h2>“Super friendly, humour and kind.”</h2>
+
 </div>
