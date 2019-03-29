@@ -2,6 +2,10 @@
 $height-page:5224;
 
 :host/deep/ {
+    div {
+        font-family: $font-family;
+    }
+
     .tg-wrapper {
         max-width: 1440px;
         margin: auto;
@@ -17,21 +21,21 @@ $height-page:5224;
         background: #ffffff;
         /* Old browsers */
         background: -moz-linear-gradient(bottom,
-            #6000b9 0%, #6000b9 475px,
+            $header-bg 0%, $header-bg 475px,
             #EFF0F0 475px, #EFF0F0 1100px,
             #ffffff 1100px, #ffffff 100%);
         /* FF3.6-15 */
         background: -webkit-linear-gradient(bottom,
-            #6000b9 0%, #6000b9 475px,
+            $header-bg 0%, $header-bg 475px,
             #EFF0F0 475px, #EFF0F0 1100px,
             #ffffff 1100px, #ffffff 100%);
         /* Chrome10-25,Safari5.1-6 */
         background: linear-gradient(to bottom,
-            #6000b9 0%, #6000b9 475px,
+            $header-bg 0%, $header-bg 475px,
             #EFF0F0 475px, #EFF0F0 1100px,
             #ffffff 1100px, #ffffff 100%);
         /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#6000b9', endColorstr='#ffffff', GradientType=0);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#6000B9', endColorstr='#ffffff', GradientType=0);
         /* IE6-9 */
     }
 
@@ -169,7 +173,7 @@ $height-page:5224;
                 color: #000000;
                 font-family: $font-family;
                 font-size: 100%;
-                font-weight: 500;
+                font-weight: 600;
                 line-height: 25px;
             }
 
@@ -178,6 +182,122 @@ $height-page:5224;
                 font-family: $font-family;
                 font-size: 80%;
                 line-height: 20px;
+            }
+        }
+
+        .review-item {
+            &.has-boder {
+                border-bottom: 1px solid #E8EBEE;
+            }
+
+            .rating {
+                display: flex;
+                color: #63798F;
+                font-weight: 600;
+
+                .checked,
+                .score {
+                    color: $header-bg;
+                }
+            }
+
+            .title,
+            .large-title {
+                color: #63798F;
+                font-size: 18px;
+                font-weight: 500;
+                line-height: 25px;
+            }
+
+            .large-title {
+                font-size: 50px;
+                line-height: 69px;
+            }
+
+            .description {
+                color: #6D8196;
+                text-align: justify;
+                font-size: 14px;
+                line-height: 20px;
+            }
+
+            .purple-title {
+                color: $header-bg;
+                font-weight: 600;
+            }
+
+            .more,
+            .detail {
+                color: $header-bg;
+                text-align: left;
+                font-size: 14px;
+                line-height: 20px;
+                font-weight: 600;
+            }
+        }
+
+        .all-reviews {
+            text-align: right;
+            color: #6000B9;
+            font-size: 18px;
+            font-weight: 600;
+            line-height: 25px;
+        }
+
+        .input-shadown-container {
+            border-radius: 4.56px;
+            background-color: #FFFFFF;
+            box-shadow: 0 0 22px 0 #DCE9E7;
+
+            .mat-form-field:first-child {
+                border-right: 1px solid #DCE9E7;
+            }
+
+            .mat-form-field:last-child {
+                border-left: 1px solid #DCE9E7;
+            }
+
+            .mat-input-underline,
+            .mat-input-ripple {
+                display: none;
+            }
+        }
+
+        .h-55 {
+            height: 55px;
+        }
+
+        .horizontal-img {
+            white-space: nowrap;
+            overflow: auto;
+            margin: -10px;
+
+            .img-item {
+                display: inline-block;
+                vertical-align: middle;
+                position: relative;
+                padding: 10px;
+                height: 310px;
+                width: 260px;
+
+                img {
+                    height: 310px;
+                    width: 260px;
+                }
+
+                div {
+                    position: absolute;
+                    bottom: 30px;
+                    width: calc(100% - 20px);
+                    text-align: center;
+                    color: white;
+                }
+
+                div.has-bg {
+                    background-color: $header-bg + bf;
+                    line-height: 50px;
+                    bottom: 10px;
+                }
             }
         }
     }
@@ -236,7 +356,7 @@ $height-page:5224;
     }
 
     .more {
-        color: #6000B9;
+        color: $header-bg;
         font-family: $font-family;
         font-size: 18px;
         font-weight: 500;
@@ -265,6 +385,16 @@ $height-page:5224;
         .tg-content {
             .fun-outgoing-and-a {
                 width: 100%;
+            }
+
+            .input-shadown-container {
+                .mat-form-field:first-child {
+                    border-right: none;
+                }
+
+                .mat-form-field:last-child {
+                    border-left: none;
+                }
             }
         }
 

@@ -4,7 +4,7 @@
 @import "assets/lib/slick/slick";
 @import "~@ng-select/ng-select/themes/material.theme.css";
 @import "~leaflet/dist/leaflet.css";
-@import "var";
+@import "var.scss";
 @import "assets/css/flex-column.scss";
 @import url('https://fonts.googleapis.com/css?family=Hind+Madurai');
 @import url('https://fonts.googleapis.com/css?family=Arapey');
@@ -60,6 +60,10 @@ router-outlet~* {
     flex-grow: 1;
 }
 
+.m-0 {
+    margin: 0;
+}
+
 .mb-1 {
     margin-bottom: 1em;
 }
@@ -78,6 +82,14 @@ router-outlet~* {
 
 .pl-5 {
     padding-left: 5em;
+}
+
+.p-2 {
+    padding: 2em;
+}
+
+.pr-1 {
+    padding-right: 1em;
 }
 
 .spot-ul {
@@ -113,4 +125,30 @@ router-outlet~* {
 
 .f-left {
     float: left;
+}
+
+.d-mid-end {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.d-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.flat-btn {
+    background-color: transparent;
+    border: 1px solid $header-bg;
+    padding: 10px;
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 25px;
+    color: $header-bg;
+
+    &:hover {
+        background-color: #6000b924;
+    }
 }
