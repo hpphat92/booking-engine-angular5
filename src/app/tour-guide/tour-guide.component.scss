@@ -2,6 +2,10 @@
 $height-page:5224;
 
 :host/deep/ {
+    .underline-link{
+        text-decoration: none;
+    }
+
     div {
         font-family: $font-family;
     }
@@ -299,6 +303,9 @@ $height-page:5224;
                     bottom: 10px;
                 }
             }
+        }
+        .ngx-gallery-thumbnail{
+            border-radius: 20px;
         }
     }
 
