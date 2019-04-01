@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../shared/services/auth.service';
 
 @Component({
   selector: 'tour-guide',
@@ -6,6 +7,25 @@ import { Component } from '@angular/core';
   styleUrls: ['./tour-guide.component.scss']
 })
 export class TourGuideComponent {
-  constructor() {
+  tourguideResources: any;
+  subscription: any;
+
+  email: string;
+  number: string;
+
+  constructor(public authService: AuthService) {
+    this.tourguideResources = this.authService.tourguideResources;
+    this.setTourGuideResources();
+    this.subscription = this.authService.tourguideResource$.subscribe((newTourGuideResources) => {
+      this.tourguideResources = newTourGuideResources;
+      this.setTourGuideResources();
+    });
+  }
+
+  setTourGuideResources() {
+    if (this.tourguideResources) {
+      this.email = this.tourguideResources.email;
+      this.number = this.tourguideResources.phone;
+    }
   }
 }

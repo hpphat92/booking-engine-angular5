@@ -7,6 +7,7 @@ import { TourGuideHomeComponent } from './tour-guide-home/tour-guide-home.compon
 import { TourGuideAboutComponent } from './tour-guide-about/tour-guide-about.component';
 import { TourGuideComponent } from './tour-guide.component';
 import { RouterComponent } from '../router/router.component';
+import { NgxGalleryModule } from 'ngx-gallery';
 
 const routes: Routes = [
   {
@@ -36,6 +37,7 @@ const routes: Routes = [
     TourGuideAboutComponent,
   ],
   imports: [
+    NgxGalleryModule,
     SharedModule,
     RouterModule.forChild(routes),
   ],

@@ -11,17 +11,28 @@ export class AppConstant {
   };
 }
 export class SettingKeyMap {
-  public static AlliasName  = 'allias-name';
-  public static CarouselImages  = 'carousel-images-site';
-  public static FavIcon  = 'favicon-site';
-  public static MainLogo  = 'main-logo-site';
-  public static Title  = 'title-site';
-  public static Name  = 'name-site';
-  public static PreviewVideo  = 'video-preview-site';
+  public static AlliasName = 'allias-name';
+  public static CarouselImages = 'carousel-images-site';
+  public static FavIcon = 'favicon-site';
+  public static MainLogo = 'main-logo-site';
+  public static Title = 'title-site';
+  public static Name = 'name-site';
+  public static PreviewVideo = 'video-preview-site';
+
+  public static TourGuideEmail = 'email';
+  public static TourGuidePhone = 'phone_number';
+  public static TourGuideSeftDescription = 'short_self_description';
+  public static TourGuideLanguages = 'languages_list';
+  public static TourGuideSpecializations = 'specializations_list';
+  public static TourGuideImages = 'Images';
+  public static TourGuideAffiliationsRecognition = 'affiliations_and_recognition';
+  public static TourGuideTitle = 'title';
+  public static TourGuideAboutTitle = 'about_title';
+  public static TourGuideAboutDescription = 'about_description';
 }
 
 
 export class BookingEngineType {
-  public static Hotel  = 'Hotel';
-  public static TourGuide  = 'TourGuide';
+  public static Hotel = 'Hotel';
+  public static TourGuide = 'TourGuide';
 }

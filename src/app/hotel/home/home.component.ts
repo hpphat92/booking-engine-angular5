@@ -29,6 +29,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
   public inventoryTypes = [];
   public selected;
   public subscriptionGetInventory;
+  public isShowLoading = false;
 
   // public properties = data;
 
@@ -60,6 +61,13 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
     });
     this.siteResources = this.authService.siteResources;
     this.authService.search = {};
+    
+    this.authService.showLoading$.subscribe((isShow) => {
+      setTimeout(() => {
+        this.isShowLoading = isShow;
+      });
+    });
+    
     this.subscription = this.authService.siteResource$.subscribe((newSiteResource) => {
       this.siteResources = null;
       setTimeout(() => {
