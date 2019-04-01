@@ -1,6 +1,6 @@
 export class AppConstant {
   // public static domain = 'https://trabbletestapp.azurewebsites.net';
-  public static domain = 'http://localhost:55646';
+  public static domain = 'https://trabble.azurewebsites.net';
   // public static domain = 'https://trabble-admin.azurewebsites.net';
   // public static facebookAppId = '213907339154330';
   public static googleAppId = '423471082105-c120dp1cda4cs61ribljdgkbgmiihdhc';
