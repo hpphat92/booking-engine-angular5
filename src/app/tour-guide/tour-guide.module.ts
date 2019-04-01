@@ -7,7 +7,7 @@ import { TourGuideHomeComponent } from './tour-guide-home/tour-guide-home.compon
 import { TourGuideAboutComponent } from './tour-guide-about/tour-guide-about.component';
 import { TourGuideComponent } from './tour-guide.component';
 import { RouterComponent } from '../router/router.component';
-import { NgxGalleryModule } from 'ngx-gallery';
+import {NgxGalleryModule} from 'ngx-gallery';
 
 const routes: Routes = [
   {
@@ -15,16 +15,13 @@ const routes: Routes = [
     component: TourGuideComponent,
     children: [
       {
-        path: '', redirectTo: 'home', pathMatch: 'full'
-      },
-      {
-        path: 'home', component: TourGuideHomeComponent
+        path: '', component: TourGuideHomeComponent, pathMatch: 'full'
       },
       {
         path: 'about', component: TourGuideAboutComponent
       },
       {
-        path: '**', redirectTo: 'home'
+        path: '**', redirectTo: ''
       },
     ]
   }
@@ -37,9 +34,9 @@ const routes: Routes = [
     TourGuideAboutComponent,
   ],
   imports: [
-    NgxGalleryModule,
     SharedModule,
     RouterModule.forChild(routes),
+    NgxGalleryModule
   ],
   providers: [
     AppMainService
