@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 
-import { RouterModule, Routes, PreloadAllModules } from '@angular/router';
-import { HotelComponent } from './hotel.component';
-import { PaymentSuccessComponent } from '../payment-success/payment-success.component';
-import { RouterComponent } from '../router/router.component';
+import {RouterModule, Routes, PreloadAllModules} from '@angular/router';
+import {HotelComponent} from './hotel.component';
+import {PaymentSuccessComponent} from '../payment-success/payment-success.component';
+import {RouterComponent} from '../router/router.component';
 
 const routes: Routes = [
   {
@@ -11,51 +11,33 @@ const routes: Routes = [
     component: HotelComponent,
     children: [
       {
-        path: '', redirectTo: 'home-section', pathMatch: 'full'
+        path: '',
+        loadChildren: './home/home.module#HomeModule', pathMatch: 'full'
       },
       {
-        path: 'home-section',
-        loadChildren: '../home/home.module#HomeModule'
+        path: 'search',
+        loadChildren: './search/search.module#SearchModule'
       },
+      {
+        path: '**',
+        redirectTo: ''
+      }
     ]
-  }
-]
-
-const actualRoutes: Routes = [
-  ...routes,
-  // {
-  //   path: 'payment-success',
-  //   component: PaymentSuccessComponent
-  // },
-  // {
-  //   path: ':id',
-  //   component: RouterComponent,
-  //   children: [
-  //     ...routes,
-  //     {
-  //       path: '**',
-  //       redirectTo: 'home'
-  //     }
-  //   ],
-  // },
-  {
-    path: '**',
-    redirectTo: 'home'
   }
 ];
 
 @NgModule({
 
   declarations: [
-    HotelComponent,
+    HotelComponent
   ],
   imports: [
     // SharedModule,
-    RouterModule.forChild(actualRoutes),
+    RouterModule.forChild(routes)
   ],
   providers: [
     // AppMainService
-  ],
+  ]
 
   // imports: [RouterModule.forRoot(actualRoutes, {
   //   enableTracing: false,
@@ -66,7 +48,7 @@ const actualRoutes: Routes = [
   // exports: [RouterModule],
   // declarations: [
   //   HotelComponent,
-  //   // PaymentSuccessComponent, 
+  //   // PaymentSuccessComponent,
   //   // RouterComponent
   // ],
 })

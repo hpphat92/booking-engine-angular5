@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { SearchComponent } from './search.component';
 import { RouterModule, Routes } from '@angular/router';
-import { SharedModule } from '../shared/shared.module';
+import { SharedModule } from '../../shared/shared.module';
 import { SearchResultsComponent } from './search-results/search-results.component';
 import { HotelDetailComponent } from './hotel-detail/hotel-detail.component';
 import { ModalHotelViewingDetailComponent } from './modal-hotel-viewing-detail/modal-hotel-viewing-detail.component';

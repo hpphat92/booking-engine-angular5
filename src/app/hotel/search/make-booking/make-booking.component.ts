@@ -1,12 +1,12 @@
-import { Component, OnDestroy, ViewChild } from '@angular/core';
-import { AuthService } from '../../shared/services/auth.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { BookingService, InventoryBooking, ReserveModel } from '../../shared/api';
+import {Component, OnDestroy, ViewChild} from '@angular/core';
+import {AuthService} from '../../../shared/services/auth.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {BookingService, InventoryBooking, ReserveModel} from '../../../shared/api';
 import * as _ from 'lodash';
 import * as moment from 'moment';
-import { AppConstant} from '../../app.constant';
-import { MatDialog, MatTabGroup } from '@angular/material';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import {AppConstant} from '../../../app.constant';
+import {MatDialog, MatTabGroup} from '@angular/material';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import BookingSourceEnum = InventoryBooking.BookingSourceEnum;
 import PaymentMethodEnum = ReserveModel.PaymentMethodEnum;
 
@@ -45,7 +45,7 @@ export class MakeBookingComponent implements OnDestroy {
     birthday: {},
     gender: {},
     passportNumber: {},
-    postalCode: {},
+    postalCode: {}
   };
 
   constructor(public authService: AuthService,
@@ -93,7 +93,7 @@ export class MakeBookingComponent implements OnDestroy {
       cardNumber: [''],
       cardType: ['Visa'],
       expiringMonth: [''],
-      expiringYear: [''],
+      expiringYear: ['']
     });
     if (this.bookingInfo.user) {
       this.userInfoForm.patchValue(this.bookingInfo.user);
@@ -122,7 +122,7 @@ export class MakeBookingComponent implements OnDestroy {
   }
 
   public goBackToSelectRooms() {
-    this.authService.navigateByUrl(['search', 'detail', this.bookingInfo.hotel.id]);
+    this.authService.navigateByUrl(['home', 'search', 'detail', this.bookingInfo.hotel.id]);
   }
 
   ngOnDestroy() {
@@ -137,7 +137,7 @@ export class MakeBookingComponent implements OnDestroy {
   }
 
   public createBooking(paymentMethod?) {
-    let { bookingInfo, search } = this.authService;
+    let {bookingInfo, search} = this.authService;
     let userInfo = this.userInfoForm.getRawValue();
     return this.bookingService.bookingReserve(bookingInfo.hotel.id, {
       checkIn: moment(search.checkIn).format(AppConstant.typeFormat.date),
@@ -167,8 +167,8 @@ export class MakeBookingComponent implements OnDestroy {
 
   public doCreateBooking() {
     this.createBooking().subscribe(() => {
-      this.authService.navigateByUrl(['search', 'booking-completed']);
-    })
+      this.authService.navigateByUrl(['home', 'search', 'booking-completed']);
+    });
   }
 
   public payWithStripe() {
@@ -201,7 +201,7 @@ export class MakeBookingComponent implements OnDestroy {
             name: 'Trabble',
             description: 'Payment by stripe',
             amount: r.data.amount,
-            currency: r.data.currency,
+            currency: r.data.currency
           });
         });
     });

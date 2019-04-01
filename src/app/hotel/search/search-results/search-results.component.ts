@@ -1,12 +1,12 @@
-import { AfterViewInit, Component, OnDestroy } from '@angular/core';
-import { AuthService } from '../../shared/services/auth.service';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { BookingService } from '../../shared/api';
+import {AfterViewInit, Component, OnDestroy} from '@angular/core';
+import {AuthService} from '../../../shared/services/auth.service';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
+import {BookingService} from '../../../shared/api';
 import * as _ from 'lodash';
 import * as moment from 'moment';
-import { AppConstant } from '../../app.constant';
-import { ModalHotelViewingDetailComponent } from '../modal-hotel-viewing-detail/modal-hotel-viewing-detail.component';
-import { MatDialog } from '@angular/material';
+import {AppConstant} from '../../../app.constant';
+import {ModalHotelViewingDetailComponent} from '../modal-hotel-viewing-detail/modal-hotel-viewing-detail.component';
+import {MatDialog} from '@angular/material';
 
 @Component({
   selector: 'app-search-results',
@@ -18,11 +18,11 @@ export class SearchResultsComponent implements OnDestroy {
   public total = 0;
   public paging = {
     pageIndex: 0,
-    pageSize: 10,
+    pageSize: 10
   };
   public searchInfo = {
-    searching: false,
-  }
+    searching: false
+  };
   public navigationSubscription;
   public storedSearchValue;
 
@@ -62,7 +62,7 @@ export class SearchResultsComponent implements OnDestroy {
           return {
             type,
             list
-          }
+          };
         });
 
         return resp.data.entities;
@@ -72,12 +72,12 @@ export class SearchResultsComponent implements OnDestroy {
 
   public goDetail(hotel) {
     this.authService.hotelDetail = hotel;
-    this.authService.navigateByUrl(['search', 'detail', hotel.id]);
+    this.authService.navigateByUrl(['home', 'search', 'detail', hotel.id]);
   }
 
   public viewHotelDetail(hotel) {
     this.authService.hotelDetail = hotel;
-    this.authService.navigateByUrl(['search', 'detail', hotel.id]);
+    this.authService.navigateByUrl(['home', 'search', 'detail', hotel.id]);
     // const dialogRef = this.dialog.open(ModalHotelViewingDetailComponent, {
     //   data: {
     //     hotel
@@ -100,7 +100,7 @@ export class SearchResultsComponent implements OnDestroy {
     this.bookingService.bookingDetailProperty(
       hotel.id,
       moment(modelSearch.checkIn).format(AppConstant.typeFormat.date),
-      moment(modelSearch.checkOut).format(AppConstant.typeFormat.date),
+      moment(modelSearch.checkOut).format(AppConstant.typeFormat.date)
     ).subscribe((resp) => {
       let data: any = resp.data;
       hotel.rooms = _.flatten(_.map(data.rooms, (room) => {
@@ -109,7 +109,7 @@ export class SearchResultsComponent implements OnDestroy {
           return _.map(_.toPairs(groupRates), ([rateValue, items]) => {
             return {
               rate,
-              rateValue: +rateValue,
+              rateValue: +rateValue
             };
           });
         }));

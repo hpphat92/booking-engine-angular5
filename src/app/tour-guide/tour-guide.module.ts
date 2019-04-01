@@ -27,16 +27,7 @@ const routes: Routes = [
       },
     ]
   }
-]
-
-const actualRoutes: Routes = [
-  ...routes,
-  {
-    path: ':id',
-    redirectTo: 'home', pathMatch: 'full'
-  },
 ];
-
 
 @NgModule({
   declarations: [
@@ -46,7 +37,7 @@ const actualRoutes: Routes = [
   ],
   imports: [
     SharedModule,
-    RouterModule.forChild(actualRoutes),
+    RouterModule.forChild(routes),
   ],
   providers: [
     AppMainService

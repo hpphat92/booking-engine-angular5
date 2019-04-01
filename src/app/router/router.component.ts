@@ -60,8 +60,10 @@ export class RouterComponent implements OnDestroy {
   public getBookingEngineType(partnerAlliasName: string) {
     this.appMainService.getBookingEngineTypeByAlias(partnerAlliasName)
       .subscribe((resp: any) => {
-        if (resp.data  === BookingEngineType.TourGuide) {
+        if (resp.data === BookingEngineType.TourGuide) {
           this.router.navigateByUrl(partnerAlliasName + '/tour-guide');
+        } else {
+          this.router.navigateByUrl(partnerAlliasName + '/home');
         }
       });
   }

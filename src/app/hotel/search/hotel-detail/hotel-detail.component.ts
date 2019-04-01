@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef } from '@angular/core';
-import { AuthService } from '../../shared/services/auth.service';
+import { AuthService } from '../../../shared/services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BookingService } from '../../shared/api';
+import { BookingService } from '../../../shared/api';
 import * as iconUrl from 'leaflet/dist/images/marker-icon.png';
 import * as shadowUrl from 'leaflet/dist/images/marker-shadow.png';
 import 'leaflet.gridlayer.googlemutant/Leaflet.GoogleMutant';
@@ -9,8 +9,8 @@ import * as moment from 'moment';
 import * as _ from 'lodash';
 import * as L from 'leaflet';
 import { latLng, marker, icon } from 'leaflet';
-import { AppConstant} from '../../app.constant';
-import { AppMainService } from '../../app.service';
+import { AppConstant} from '../../../app.constant';
+import { AppMainService } from '../../../app.service';
 
 @Component({
   selector: 'app-hotel-detail',
@@ -573,6 +573,8 @@ export class HotelDetailComponent {
       ...this.authService.bookingInfo,
       items: selectedItems
     };
-    this.authService.navigateByUrl(['search', 'book-now']);
+    // this.authService.navigateByUrl(['search', 'book-now']);
+    this.authService.navigateByUrl(['home', 'search','book-now']);
+
   }
 }

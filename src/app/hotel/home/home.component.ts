@@ -1,10 +1,10 @@
-import { AfterViewInit, Component, OnDestroy } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import {AfterViewInit, Component, OnDestroy} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
 import * as _ from 'lodash';
-import { AuthService } from '../shared/services/auth.service';
+import {AuthService} from '../../shared/services/auth.service';
 
-import { AppMainService } from '../app.service';
+import {AppMainService} from '../../app.service';
 
 declare var $: any;
 
@@ -123,9 +123,9 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
       numberOfPax: +model.numberOfPax.adults,
       keyword: model.keyword,
       isTraveliingForWork: model.isTraveliingForWork,
-      typeId: this.inventoryTypes[this.currentActive] ? this.inventoryTypes[this.currentActive].id : '',
+      typeId: this.inventoryTypes[this.currentActive] ? this.inventoryTypes[this.currentActive].id : ''
     };
-    this.authService.navigateByUrl('search');
+    this.authService.navigateByUrl(['home', 'search']);
   }
 
   public getInventoryTypes() {
@@ -146,17 +146,17 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
       this.appMainService.searchProperties(partnerId, this.properties.hotelList[0].id)
         .subscribe((resp: any) => {
           this.properties.properties = _.filter(_.map(_.toPairs(_.groupBy(resp.data, 'type.name')), ([type, properties]) => {
-            return { type, properties };
+            return {type, properties};
           }), (x) => {
             return x.properties.length;
-          })
+          });
         });
     } else {
       this.properties.cities = _.map(_.toPairs(_.groupBy(data, (c) => c.city || c.country)), ([cityName, listProperties]) => {
         return {
           name: cityName,
           properties: _.filter(_.map(_.toPairs(_.groupBy(listProperties, 'type.name')), ([type, properties]) => {
-            return { type, properties };
+            return {type, properties};
           }), (x) => {
             return x.properties.length;
           })
@@ -214,7 +214,7 @@ export class HomeComponent implements AfterViewInit, OnDestroy {
 
   public goDetail(hotel) {
     this.authService.hotelDetail = hotel;
-    this.authService.navigateByUrl(['search', 'detail', hotel.id]);
+    this.authService.navigateByUrl(['home', 'search', 'detail', hotel.id]);
   }
 
   public initSearch() {

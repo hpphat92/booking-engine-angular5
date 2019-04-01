@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, ElementRef } from '@angular/core';
-import { AuthService } from '../../shared/services/auth.service';
+import { AuthService } from '../../../shared/services/auth.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { BookingService } from '../../shared/api';
+import { BookingService } from '../../../shared/api';
 import 'leaflet.gridlayer.googlemutant/Leaflet.GoogleMutant';
 import { latLng, marker, icon } from 'leaflet';
 import * as _ from 'lodash';

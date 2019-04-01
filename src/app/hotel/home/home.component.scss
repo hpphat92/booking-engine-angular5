@@ -1,4 +1,4 @@
-@import "../../var";
+@import "../../../var";
 
 :host /deep/ {
   position: relative;
@@ -492,7 +492,7 @@
       }
     }
     .type-name {
-      background: url("../../assets/images/hotel.jpg");
+      background: url("../../../assets/images/hotel.jpg");
       background-size: cover;
       width: 270px;
       height: 300px;
@@ -587,7 +587,7 @@
     }
   }
   #contact {
-    background: url("../../assets/images/subscribe.jpg");
+    background: url("../../../assets/images/subscribe.jpg");
     width: 100%;
     height: 400px;
     background-repeat: no-repeat;

@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../shared/services/auth.service';
+import { AuthService } from '../../shared/services/auth.service';
 import * as moment from 'moment';
 import { Router } from '@angular/router';
 import { DaterangepickerDirective } from 'ngx-daterangepicker-material';
@@ -58,6 +58,7 @@ export class SearchComponent implements AfterViewInit {
       keyword: model.keyword,
       isTraveliingForWork: model.isTraveliingForWork,
     };
-    this.authService.navigateByUrl('search');
+    this.authService.navigateByUrl(['home', 'search']);
+
   }
 }

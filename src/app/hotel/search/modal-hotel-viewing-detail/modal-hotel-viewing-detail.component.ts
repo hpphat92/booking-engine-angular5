@@ -5,11 +5,11 @@ import * as L from 'leaflet';
 import * as iconUrl from 'leaflet/dist/images/marker-icon.png';
 import * as shadowUrl from 'leaflet/dist/images/marker-shadow.png';
 import 'leaflet.gridlayer.googlemutant/Leaflet.GoogleMutant';
-import { AuthService } from '../../shared/services/auth.service';
-import { AppConstant} from '../../app.constant';
+import { AuthService } from '../../../shared/services/auth.service';
+import { AppConstant} from '../../../app.constant';
 import * as moment from 'moment';
 import * as _ from 'lodash';
-import { BookingService } from '../../shared/api';
+import { BookingService } from '../../../shared/api';
 
 @Component({
   selector: 'app-modal-hotel-viewing-detail',
@@ -138,6 +138,6 @@ export class ModalHotelViewingDetailComponent {
   public goDetail(hotel) {
     this.dialogRef.close();
     this.authService.hotelDetail = hotel;
-    this.authService.navigateByUrl(['search', 'detail', hotel.id]);
+    this.authService.navigateByUrl(['home','search', 'detail', hotel.id]);
   }
 }

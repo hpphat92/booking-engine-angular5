@@ -1,5 +1,5 @@
-@import "../../../var";
-@import '~@angular/material/theming';
+@import "../../../../var";
+@import '../../../../../node_modules/@angular/material/theming';
 
 :host /deep/ {
   display: flex;
@@ -75,7 +75,7 @@
     .more-options {
       .option {
         position: relative;
-        background: url("../../../assets/images/riding-bike.jpg");
+        background: url("../../../../assets/images/riding-bike.jpg");
         background-size: cover;
         background-position: bottom;
         height: 160px;

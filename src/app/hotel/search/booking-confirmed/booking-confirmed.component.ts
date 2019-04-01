@@ -1,10 +1,10 @@
-import { AfterViewInit, Component, ElementRef } from '@angular/core';
-import { AuthService } from '../../shared/services/auth.service';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
-import { BookingService } from '../../shared/api';
+import {AfterViewInit, Component, ElementRef} from '@angular/core';
+import {AuthService} from '../../../shared/services/auth.service';
+import {ActivatedRoute, NavigationEnd, Router} from '@angular/router';
+import {BookingService} from '../../../shared/api';
 import 'leaflet.gridlayer.googlemutant/Leaflet.GoogleMutant';
-import { latLng, marker, icon } from 'leaflet';
-import { Location } from '@angular/common';
+import {latLng, marker, icon} from 'leaflet';
+import {Location} from '@angular/common';
 import * as _ from 'lodash';
 import * as moment from 'moment';
 
@@ -53,7 +53,7 @@ export class BookingConfirmedComponent {
       .subscribe((e: any) => {
         if (e.url.includes('booking-completed')) {
           let param = this.route.snapshot.queryParams;
-          let { paymentId, token, PayerID, bookingId } = param;
+          let {paymentId, token, PayerID, bookingId} = param;
           if (!_.compact([paymentId, token, PayerID, bookingId]).length) {
             return;
           }
@@ -72,7 +72,7 @@ export class BookingConfirmedComponent {
     this.bookingService.bookingGet(bookingId)
       .subscribe((r) => {
         this.bindHotelDetailData(r.data);
-      })
+      });
   }
 
 
@@ -80,7 +80,7 @@ export class BookingConfirmedComponent {
     this.search = {
       checkIn: moment(bookingData.checkInDate).toDate(),
       checkOut: moment(bookingData.checkOutDate).toDate(),
-      hotel: bookingData.property,
+      hotel: bookingData.property
     };
     this.bookingDetail = {
       ...bookingData,
@@ -91,7 +91,7 @@ export class BookingConfirmedComponent {
             return _.find(fItem.types, {
               name: t.name,
               rate: t.rate
-            })
+            });
           });
           return {
             ratePerItem: t.rate,
@@ -123,6 +123,8 @@ export class BookingConfirmedComponent {
   }
 
   public manageBooking() {
-    this.authService.navigateByUrl('search', 'manage-booking');
+    // this.authService.navigateByUrl('search', 'manage-booking');
+    this.authService.navigateByUrl(['home', 'search', 'manage-booking']);
+
   }
 }
