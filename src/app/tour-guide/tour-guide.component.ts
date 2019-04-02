@@ -12,6 +12,8 @@ export class TourGuideComponent {
 
   email: string;
   number: string;
+  name: string;
+  avatar: string;
 
   constructor(public authService: AuthService) {
     this.tourguideResources = this.authService.tourguideResources;
@@ -26,6 +28,8 @@ export class TourGuideComponent {
     if (this.tourguideResources) {
       this.email = this.tourguideResources.email;
       this.number = this.tourguideResources.phone;
+      this.name = this.tourguideResources.name ? this.tourguideResources.name : this.tourguideResources.aliasName;
+      this.avatar = this.tourguideResources.avatar;
     }
   }
 }

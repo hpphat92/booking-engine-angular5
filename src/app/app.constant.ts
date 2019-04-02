@@ -29,6 +29,8 @@ export class SettingKeyMap {
   public static TourGuideTitle = 'title';
   public static TourGuideAboutTitle = 'about_title';
   public static TourGuideAboutDescription = 'about_description';
+  public static TourGuideName = 'tour_guide_name';
+  public static TourGuideAvatar = 'tour_guide_avatar';
 }
 
 

@@ -17,6 +17,7 @@ export class TourGuideHomeComponent {
   specializations: any;
   galleryOptions: NgxGalleryOptions[];
   galleryImages: NgxGalleryImage[];
+
   constructor(public authService: AuthService) {
     this.galleryOptions = [
       { 'image': false, 'thumbnailsRemainingCount': true, 'height': '410px', 'width': '100%', 'thumbnailsColumns': 3, 'previewCloseOnEsc': true },
@@ -29,15 +30,17 @@ export class TourGuideHomeComponent {
       this.setTourGuideResources();
     });
   }
+
   setTourGuideResources() {
     if (this.tourguideResources) {
       this.shortSelfDescription = this.tourguideResources.seftDescription;
       this.aboutTitle = this.tourguideResources.aboutTitle;
       this.aboutDescription = this.tourguideResources.aboutDescription;
-      this.languages = JSON.parse(this.tourguideResources.languages);
-      this.specializations = JSON.parse(this.tourguideResources.specializations);
-      this.images = JSON.parse(this.tourguideResources.images);
-      this.affiliationsRecognitions = JSON.parse(this.tourguideResources.affiliationsRecognition);
+      this.languages = this.tourguideResources.languages ? JSON.parse(this.tourguideResources.languages) : [];
+      this.specializations = this.tourguideResources.specializations ? JSON.parse(this.tourguideResources.specializations) : [];
+      this.images = this.tourguideResources.images ? JSON.parse(this.tourguideResources.images) : [];
+      this.affiliationsRecognitions = this.tourguideResources.affiliationsRecognition ? JSON.parse(this.tourguideResources.affiliationsRecognition) : [];
+      this.aboutDescription = this.tourguideResources.aboutDescription;
 
       this.galleryImages = this.images.map((obj) => {
         return {

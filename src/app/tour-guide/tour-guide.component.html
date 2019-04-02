@@ -10,11 +10,11 @@
         </div>
         <div class="tg-header__info">
             <div class="tour-guide">Tour Guide</div>
-            <div class="title">Rys Bilinski</div>
+            <div class="title">{{name}}</div>
             <div class="trabble-co">{{email}} | {{number}}</div>
         </div>
         <div class="tg-header__avatar">
-            <img src="../../assets/images/rys.jpg" alt="" width="278" height="278">
+            <img [src]="avatar || '../../assets/images/noimage.jpg'" alt="" width="278" height="278">
         </div>
     </div>
     <div class="tg-content mb-2">
@@ -33,7 +33,8 @@
                 <img class="fb" src="../../assets/images/facebook-logo.png" alt="" width="24" height="24">
                 <div class="sidebar-logo" [routerLink]="['./home-section']">
                     <img src="../../assets/images/trabble-main-logo.svg" alt="" width="36" height="36">
-                    <div class="name-logo"><a href="https://www.trabble.co" target="_blank" class="underline-link">www.trabble.co</a></div>
+                    <div class="name-logo"><a href="https://www.trabble.co" target="_blank"
+                            class="underline-link">www.trabble.co</a></div>
                 </div>
             </div>
         </div>

@@ -63,7 +63,10 @@ export class RouterComponent implements OnDestroy {
           affiliationsRecognition: settingMap[SettingKeyMap.TourGuideAffiliationsRecognition],
           title: settingMap[SettingKeyMap.TourGuideTitle],
           aboutTitle: settingMap[SettingKeyMap.TourGuideAboutTitle],
-          aboutDescription: settingMap[SettingKeyMap.TourGuideAboutDescription]
+          aboutDescription: settingMap[SettingKeyMap.TourGuideAboutDescription],
+          name: settingMap[SettingKeyMap.TourGuideName],
+          avatar: settingMap[SettingKeyMap.TourGuideAvatar],
+          aliasName: partnerAlliasName,
         };
 
         this.getBookingEngineType(partnerAlliasName);
