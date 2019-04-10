@@ -1,6 +1,10 @@
-<div class="fun-outgoing-and-a">“{{shortSelfDescription}}“</div>
+<div class="fun-outgoing-and-a">
+    <span>“{{shortSelfDescription}}“</span>
+</div>
+<div class="txt-bg"></div>
 <div class="flex-row mb-2">
-    <ngx-gallery [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
+    <ngx-gallery [options]="galleryOptions"
+                 [images]="galleryImages"></ngx-gallery>
 </div>
 <div class="mini-title mb-2">
     About
@@ -8,7 +12,8 @@
 <div class="flex-row mb-1">
     <div class="flex-col-6 flex-col-mb-12">
         <div class="title-2 mb-1">{{aboutTitle}}</div>
-        <div class="description" [innerHTML]="aboutDescription">
+        <div class="description"
+             [innerHTML]="aboutDescription">
         </div>
     </div>
     <div class="flex-col-6 flex-col-mb-12">
@@ -31,27 +36,43 @@
                 Affiliations & Recognition
             </div>
             <div class="mh-305">
-                <div class="flow-row" *ngIf="affiliationsRecognitions && affiliationsRecognitions.length > 0">
-                    <div class="flex-col-4 flex-center f-left" *ngFor="let affiliationsRecognition of affiliationsRecognitions.slice(0, 6);">
+                <div class="flow-row"
+                     *ngIf="affiliationsRecognitions && affiliationsRecognitions.length > 0">
+                    <div class="flex-col-4 flex-center f-left"
+                         *ngFor="let affiliationsRecognition of affiliationsRecognitions.slice(0, 6);">
                         <div class="oval-item">
-                            <img [src]="affiliationsRecognition.image" alt="" class="img-75 img-oval">
+                            <img [src]="affiliationsRecognition.image"
+                                 alt=""
+                                 class="img-75 img-oval">
                             <div class="name">{{affiliationsRecognition.title}}</div>
                             <small class="time">{{affiliationsRecognition.description}}</small>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="more flex-center mt-1" *ngIf="affiliationsRecognitions && (affiliationsRecognitions.length - 6) > 0">+{{affiliationsRecognitions.length - 6}} more</div>
+            <div class="more flex-center mt-1"
+                 *ngIf="affiliationsRecognitions && (affiliationsRecognitions.length - 6) > 0">+{{affiliationsRecognitions.length - 6}} more</div>
         </div>
     </div>
 </div>
 <div class="input-shadown-container mb-1">
     <div class="flex-row m-0">
         <mat-form-field class="flex-col-4 flex-col-mb-12 h-55">
-            <input matInput placeholder="Where to" />
+            <input matInput
+                   placeholder="Where to" />
         </mat-form-field>
         <mat-form-field class="flex-col-4 flex-col-mb-12 h-55">
-            <input matInput placeholder="Check in - Check out" type="text" ngxDaterangepickerMd [autoApply]="true" opens="left" readonly [locale]="{format: 'DD-MM-YYYY'}" startKey="checkIn" endKey="checkOut" class="form-control" />
+            <input matInput
+                   placeholder="Check in - Check out"
+                   type="text"
+                   ngxDaterangepickerMd
+                   [autoApply]="true"
+                   opens="left"
+                   readonly
+                   [locale]="{format: 'DD-MM-YYYY'}"
+                   startKey="checkIn"
+                   endKey="checkOut"
+                   class="form-control" />
             <span matSuffix>
                 <i class="far fa-calendar-alt"></i>
             </span>
@@ -60,7 +81,8 @@
             <span matSuffix>
                 <i class="far fa-user"></i>
             </span>
-            <input matInput placeholder="People" />
+            <input matInput
+                   placeholder="People" />
         </mat-form-field>
     </div>
 </div>
@@ -76,16 +98,24 @@
         <div class="flex-col-6 flex-col-mb-12">
             <div class="flex-row">
                 <div class="flex-col-6">
-                    <img src="../../assets/images/noimage.jpg" alt="" style="width:100%">
+                    <img src="../../assets/images/noimage.jpg"
+                         alt=""
+                         style="width:100%">
                 </div>
                 <div class="flex-col-6">
-                    <img src="../../assets/images/noimage.jpg" alt="" style="width:100%">
+                    <img src="../../assets/images/noimage.jpg"
+                         alt=""
+                         style="width:100%">
                 </div>
                 <div class="flex-col-6">
-                    <img src="../../assets/images/noimage.jpg" alt="" style="width:100%">
+                    <img src="../../assets/images/noimage.jpg"
+                         alt=""
+                         style="width:100%">
                 </div>
                 <div class="flex-col-6">
-                    <img src="../../assets/images/noimage.jpg" alt="" style="width:100%">
+                    <img src="../../assets/images/noimage.jpg"
+                         alt=""
+                         style="width:100%">
                 </div>
             </div>
         </div>
@@ -97,11 +127,17 @@
 <div class="mb-2">
     <ul class="horizontal-img">
         <li class="img-item">
-            <img src="../../assets/images/noimage.jpg" alt="" width="260" height="310">
+            <img src="../../assets/images/noimage.jpg"
+                 alt=""
+                 width="260"
+                 height="310">
             <div class="has-bg">Room</div>
         </li>
         <li class="img-item">
-            <img src="../../assets/images/noimage.jpg" alt="" width="260" height="310">
+            <img src="../../assets/images/noimage.jpg"
+                 alt=""
+                 width="260"
+                 height="310">
             <div>Room</div>
         </li>
     </ul>
@@ -114,72 +150,96 @@
     <ul>
         <li class="review-item has-boder">
             <div class="flex-row">
-                <div class="flex-col-8">
+                <div class="flex-col-10 flex-col-mb-12 flex-order-mb-1">
                     <div class="rating mb-2">
                         <span class="score pr-1">8.0</span>
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star checked"></span>
                         <span class="fa fa-star"></span>
                     </div>
                     <div class="title mb-1">Location, Cleanliness, Responsible, Very Kind</div>
                     <div class="description mb-1">Lorem ipsum dolor sit amet, consectetur adipiscing faucibus sem. Nulla dapibus. sed magna ac, convallis faucibus sem. Nulla at lorem ac arcu mattis dapibus. Lorem ipsum dolor sit amet, consectetur adipiscing faucibus sem. Nulla dapibus. sed magna ac, convallis faucibus sem. Nulla at lorem ac arcu mattis dapibus. </div>
                     <div class="more mb-1">+ more</div>
                 </div>
-                <div class="flex-col-4 d-mid-end">
-                    <div class="oval-item">
-                        <img src="../../assets/images/noimage.jpg" alt="" class="img-75 img-oval">
-                        <div class="name"> Rys Bilinski</div>
-                        <div class="time">Joined 5 years</div>
+                <div class="flex-col-2 flex-col-mb-12 flex-order-mb-0">
+                    <div class="flex-row txt-center">
+                        <div class="flex-col-12 flex-col-mb-4">
+                            <div class="oval-item">
+                                <img src="../../assets/images/noimage.jpg"
+                                     alt=""
+                                     class="img-75 img-oval">
+                            </div>
+                        </div>
+                        <div class="flex-col-12 flex-col-mb-8 oval-item txt-mb-left">
+                            <div class="name"> Rys Bilinski</div>
+                            <div class="time">Joined 5 years</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </li>
-        <li class="review-item">
+        <li class="review-item has-boder">
             <div class="flex-row">
-                <div class="flex-col-8">
+                <div class="flex-col-10 flex-col-mb-12 flex-order-mb-1">
                     <div class="rating mb-2">
                         <span class="score pr-1">8.0</span>
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star checked"></span>
                         <span class="fa fa-star"></span>
                     </div>
                     <div class="title mb-1">Location, Cleanliness, Responsible, Very Kind</div>
                     <div class="description mb-1">Lorem ipsum dolor sit amet, consectetur adipiscing faucibus sem. Nulla dapibus. sed magna ac, convallis faucibus sem. Nulla at lorem ac arcu mattis dapibus. Lorem ipsum dolor sit amet, consectetur adipiscing faucibus sem. Nulla dapibus. sed magna ac, convallis faucibus sem. Nulla at lorem ac arcu mattis dapibus. </div>
                     <div class="more mb-1">+ more</div>
                 </div>
-                <div class="flex-col-4 d-mid-end">
-                    <div class="oval-item">
-                        <img src="../../assets/images/noimage.jpg" alt="" class="img-75 img-oval">
-                        <div class="name"> Rys Bilinski</div>
-                        <div class="time">Joined 5 years</div>
+                <div class="flex-col-2 flex-col-mb-12 flex-order-mb-0">
+                    <div class="flex-row txt-center">
+                        <div class="flex-col-12 flex-col-mb-4">
+                            <div class="oval-item">
+                                <img src="../../assets/images/noimage.jpg"
+                                     alt=""
+                                     class="img-75 img-oval">
+                            </div>
+                        </div>
+                        <div class="flex-col-12 flex-col-mb-8 oval-item txt-mb-left">
+                            <div class="name"> Rys Bilinski</div>
+                            <div class="time">Joined 5 years</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </li>
-        <li class="review-item">
+        <li class="review-item has-boder">
             <div class="flex-row">
-                <div class="flex-col-8">
+                <div class="flex-col-10 flex-col-mb-12 flex-order-mb-1">
                     <div class="rating mb-2">
                         <span class="score pr-1">8.0</span>
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
                         <span class="fa fa-star checked"></span>
-                        <span class="fa fa-star"></span>
+                        <span class="fa fa-star checked"></span>
                         <span class="fa fa-star"></span>
                     </div>
                     <div class="title mb-1">Location, Cleanliness, Responsible, Very Kind</div>
                     <div class="description mb-1">Lorem ipsum dolor sit amet, consectetur adipiscing faucibus sem. Nulla dapibus. sed magna ac, convallis faucibus sem. Nulla at lorem ac arcu mattis dapibus. Lorem ipsum dolor sit amet, consectetur adipiscing faucibus sem. Nulla dapibus. sed magna ac, convallis faucibus sem. Nulla at lorem ac arcu mattis dapibus. </div>
                     <div class="more mb-1">+ more</div>
                 </div>
-                <div class="flex-col-4 d-mid-end">
-                    <div class="oval-item">
-                        <img src="../../assets/images/noimage.jpg" alt="" class="img-75 img-oval">
-                        <div class="name"> Rys Bilinski</div>
-                        <div class="time">Joined 5 years</div>
+                <div class="flex-col-2 flex-col-mb-12 flex-order-mb-0">
+                    <div class="flex-row txt-center">
+                        <div class="flex-col-12 flex-col-mb-4">
+                            <div class="oval-item">
+                                <img src="../../assets/images/noimage.jpg"
+                                     alt=""
+                                     class="img-75 img-oval">
+                            </div>
+                        </div>
+                        <div class="flex-col-12 flex-col-mb-8 oval-item txt-mb-left">
+                            <div class="name"> Rys Bilinski</div>
+                            <div class="time">Joined 5 years</div>
+                        </div>
                     </div>
                 </div>
             </div>

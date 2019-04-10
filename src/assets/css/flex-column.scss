@@ -3,6 +3,14 @@
     flex-flow: row wrap;
     margin: 0 -10px;
 
+    .flex-order-0 {
+        order: 0;
+    }
+
+    .flex-order-1 {
+        order: 1;
+    }
+
     .flex-col-1,
     .flex-col-2,
     .flex-col-3,
@@ -117,6 +125,14 @@
 
         .flex-col-mb-12 {
             width: calc(100% - 22px);
+        }
+
+        .flex-order-mb-0 {
+            order: 0;
+        }
+
+        .flex-order-mb-1 {
+            order: 1;
         }
     }
 }

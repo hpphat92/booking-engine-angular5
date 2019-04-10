@@ -80,6 +80,10 @@ router-outlet~* {
     margin-top: 2em;
 }
 
+.ml-1 {
+    margin-left: 1em;
+}
+
 .pl-5 {
     padding-left: 5em;
 }
@@ -141,7 +145,8 @@ router-outlet~* {
 
 .flat-btn {
     background-color: transparent;
-    border: 1px solid $header-bg;
+    border: 2px solid #af7ddc;
+    border-radius: 6px;
     padding: 10px;
     font-size: 18px;
     font-weight: 600;
